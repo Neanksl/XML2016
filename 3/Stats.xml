@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="Transform.xsl" type="text/xsl"?>
+<mancala>
+	<svg>
+		<width>5000</width>
+		<height>5000</height>
+	</svg>
+	<house>
+		<width>100</width>
+		<height>100</height>
+		<roundX>10</roundX>
+		<roundY>10</roundY>
+		<style>fill:white;stroke:black;stroke-width:2;</style>
+	</house>
+	<seed>
+		<style>fill:black;</style>
+	</seed>
+	<store>	
+		<radius>100</radius>
+		<style>fill:white;stroke:black;stroke-width:2;</style>
+	</store>
+	<layout>
+		<nrOfHouses>6</nrOfHouses>
+		<nrOfSeedsUp>1,2,3,4,5,6</nrOfSeedsUp>
+		<nrOfSeedsBot>6,5,4,3,2,1</nrOfSeedsBot>
+		<nrOfSeedsStore>20,30</nrOfSeedsStore>
+		<nrOfSeedsReset>3</nrOfSeedsReset>
+		<posStartX>150</posStartX>
+		<posStartY>150</posStartY>
+		<distanceHouseX>15</distanceHouseX>
+		<distanceHouseY>50</distanceHouseY>
+		<distanceHouseStore>15</distanceHouseStore>
+		<distanceYextraSeeds>8</distanceYextraSeeds>
+		<distanceBetweenExtraSeeds>5</distanceBetweenExtraSeeds>
+		<lengthUnit>px</lengthUnit>
+		<playerTurn>up</playerTurn>
+	</layout>
+	<stats>
+	</stats>
+</mancala>
