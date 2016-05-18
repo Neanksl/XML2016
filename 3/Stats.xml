@@ -5,26 +5,42 @@
 		<width>5000</width>
 		<height>5000</height>
 	</svg>
-	<house>
+	<houses>
 		<width>100</width>
 		<height>100</height>
 		<roundX>10</roundX>
 		<roundY>10</roundY>
 		<style>fill:white;stroke:black;stroke-width:2;</style>
-	</house>
+		<nrOfHouses>6</nrOfHouses>
+		<nrOfSeedsReset>3</nrOfSeedsReset>
+		<up>
+			<house>1</house>
+			<house>2</house>
+			<house>3</house>
+			<house>4</house>
+			<house>5</house>
+			<house>6</house>
+		</up>
+		<bot>
+			<house>6</house>
+			<house>5</house>
+			<house>4</house>
+			<house>3</house>
+			<house>2</house>
+			<house>1</house>
+		</bot>
+	</houses>
 	<seed>
 		<style>fill:black;</style>
 	</seed>
-	<store>	
+	<stores>	
 		<radius>100</radius>
 		<style>fill:white;stroke:black;stroke-width:2;</style>
-	</store>
+		<textstyle>fill:black;font-weight:bold;font-family:Agency FB;</textstyle>
+		<store>20</store>
+		<store>100</store>
+	</stores>
 	<layout>
-		<nrOfHouses>6</nrOfHouses>
-		<nrOfSeedsUp>1,2,3,4,5,6</nrOfSeedsUp>
-		<nrOfSeedsBot>6,5,4,3,2,1</nrOfSeedsBot>
-		<nrOfSeedsStore>20,30</nrOfSeedsStore>
-		<nrOfSeedsReset>3</nrOfSeedsReset>
 		<posStartX>150</posStartX>
 		<posStartY>150</posStartY>
 		<distanceHouseX>15</distanceHouseX>
