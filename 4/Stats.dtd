@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!ELEMENT mancala (svg,houses,seed,stores,layout)>
+<!ELEMENT svg (width,height)>
+<!ELEMENT width (#PCDATA)>
+<!ELEMENT height (#PCDATA)>
+
+<!ELEMENT houses (width,height,roundX,roundY,style,nrOfHouses,nrOfSeedsReset,up,bot)>
+<!ELEMENT roundX (#PCDATA)>
+<!ELEMENT roundY (#PCDATA)>
+<!ELEMENT style (#PCDATA)>
+<!ELEMENT nrOfHouses (#PCDATA)>
+<!ELEMENT nrOfSeedsReset (#PCDATA)>
+<!ELEMENT up (house)*>
+<!ELEMENT house (#PCDATA)>
+<!ELEMENT bot (house)*>
+
+<!ELEMENT seed (style)>
+
+<!ELEMENT stores (radius,style,textstyle,(store*))>
+<!ELEMENT radius (#PCDATA)>
+<!ELEMENT textstyle (#PCDATA)>
+<!ELEMENT store (#PCDATA)>
+
+<!ELEMENT layout (posStartX,posStartY,distanceHouseX,distanceHouseY,distanceHouseStore,distanceYextraSeeds,distanceBetweenExtraSeeds,lengthUnit,players)>
+<!ELEMENT posStartX (#PCDATA)>
+<!ELEMENT posStartY (#PCDATA)>
+<!ELEMENT distanceHouseX (#PCDATA)>
+<!ELEMENT distanceHouseY (#PCDATA)>
+<!ELEMENT distanceHouseStore (#PCDATA)>
+<!ELEMENT distanceYextraSeeds (#PCDATA)>
+<!ELEMENT distanceBetweenExtraSeeds (#PCDATA)>
+<!ELEMENT lengthUnit (#PCDATA)>
+<!ELEMENT players (playerTurn,highestScore,(player*))>
+<!ELEMENT playerTurn (#PCDATA)>
+<!ELEMENT highestScore (#PCDATA)>
+<!ELEMENT player (name,currScore)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT currScore (#PCDATA)>

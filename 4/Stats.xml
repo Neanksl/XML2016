@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mancala SYSTEM "Stats.dtd">
+<?xml-stylesheet href="Transform.xsl" type="text/xsl"?>
+<mancala>
+    <svg>
+        <width>5000</width>
+        <height>5000</height>
+    </svg>
+    <houses>
+        <width>100</width>
+        <height>100</height>
+        <roundX>10</roundX>
+        <roundY>10</roundY>
+        <style>fill:white;stroke:black;stroke-width:2;</style>
+        <nrOfHouses>6</nrOfHouses>
+        <nrOfSeedsReset>3</nrOfSeedsReset>
+        <up>
+            <house>1</house>
+            <house>2</house>
+            <house>3</house>
+            <house>4</house>
+            <house>5</house>
+            <house>6</house>
+        </up>
+        <bot>
+            <house>6</house>
+            <house>5</house>
+            <house>4</house>
+            <house>3</house>
+            <house>2</house>
+            <house>1</house>
+        </bot>
+    </houses>
+    <seed>
+        <style>fill:black;</style>
+    </seed>
+    <stores>	
+        <radius>100</radius>
+        <style>fill:white;stroke:black;stroke-width:2;</style>
+        <textstyle>fill:black;font-weight:bold;font-family:Agency FB;</textstyle>
+        <store>20</store>
+        <store>100</store>
+    </stores>
+    <layout>
+        <posStartX>150</posStartX>
+        <posStartY>150</posStartY>
+        <distanceHouseX>15</distanceHouseX>
+        <distanceHouseY>50</distanceHouseY>
+        <distanceHouseStore>15</distanceHouseStore>
+        <distanceYextraSeeds>8</distanceYextraSeeds>
+        <distanceBetweenExtraSeeds>5</distanceBetweenExtraSeeds>
+        <lengthUnit>px</lengthUnit>
+        <players>
+            <playerTurn>up</playerTurn>
+            <highestScore>1000</highestScore>
+            <player>
+                <name>A</name>
+                <currScore>500</currScore>
+            </player>
+            <player>
+                <name>B</name>
+                <currScore>800</currScore>
+            </player>
+        </players>		
+    </layout>
+</mancala>
