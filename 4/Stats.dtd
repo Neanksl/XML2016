@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
-<!ELEMENT mancala (svg,pits,seed,stores,layout)>
+<!ELEMENT mancala (svg,pits,seed,houses,layout)>
 <!ELEMENT svg (width,height)>
 <!ELEMENT width (#PCDATA)>
 <!ELEMENT height (#PCDATA)>
@@ -17,10 +17,10 @@
 
 <!ELEMENT seed (style)>
 
-<!ELEMENT stores (radius,style,textstyle,(store*))>
+<!ELEMENT houses (radius,style,textstyle,(house*))>
 <!ELEMENT radius (#PCDATA)>
 <!ELEMENT textstyle (#PCDATA)>
-<!ELEMENT store (#PCDATA)>
+<!ELEMENT house (#PCDATA)>
 
 <!ELEMENT layout (posStartX,posStartY,distanceHouseX,distanceHouseY,distanceHouseStore,distanceYextraSeeds,distanceBetweenExtraSeeds,lengthUnit,players)>
 <!ELEMENT posStartX (#PCDATA)>

@@ -42,10 +42,10 @@
 					style="{seed/style}"/>
 
 				<circle
-					id="store"
-					r="{stores/radius}"
-					cx="{stores/radius}"
-					style="{stores/style}"/>
+					id="house"
+					r="{houses/radius}"
+					cx="{houses/radius}"
+					style="{houses/style}"/>
 				
 				<g id="pit1">
 					<use xlink:href="#pit0"/>
@@ -98,33 +98,33 @@
 				<xsl:with-param name="count" select="pits/pitCount"/>
 			</xsl:call-template>
 			
-			<!-- Create stores for both players -->
+			<!-- Create houses for both players -->
 			<g>
 				<use 
-					x="{layout/posStartX - layout/distancePitStore - stores/radius + layout/distancePitX}" 
+					x="{layout/posStartX - layout/distancePitStore - houses/radius + layout/distancePitX}" 
 					y="{layout/posStartY + pits/height + (layout/distancePitY div 2)}" 
-					xlink:href="#store"/>
+					xlink:href="#house"/>
 				<text
 					x="{layout/posStartX - layout/distancePitStore + layout/distancePitX}"
-					y="{layout/posStartY + pits/height + (layout/distancePitY div 2) + 0.35 * stores/radius}"
+					y="{layout/posStartY + pits/height + (layout/distancePitY div 2) + 0.35 * houses/radius}"
 					text-anchor="middle"
-					font-size="{stores/radius}"
-					style="{stores/textstyle}">
-						<xsl:value-of select="stores/store[1]"/>
+					font-size="{houses/radius}"
+					style="{houses/textstyle}">
+						<xsl:value-of select="houses/house[1]"/>
 				</text>
 			</g>
 			<g>
 				<use				
-					x="{layout/posStartX + layout/distancePitStore + (pits/width + layout/distancePitX) * pits/pitCount + stores/radius}"
+					x="{layout/posStartX + layout/distancePitStore + (pits/width + layout/distancePitX) * pits/pitCount + houses/radius}"
 					y="{layout/posStartY + pits/height + (layout/distancePitY div 2)}" 
-					xlink:href="#store"/>
+					xlink:href="#house"/>
 				<text
-					x="{layout/posStartX + layout/distancePitStore + (pits/width + layout/distancePitX) * pits/pitCount + 2 * stores/radius}"
-					y="{layout/posStartY + pits/height + (layout/distancePitY div 2) + 0.35 * stores/radius}"
+					x="{layout/posStartX + layout/distancePitStore + (pits/width + layout/distancePitX) * pits/pitCount + 2 * houses/radius}"
+					y="{layout/posStartY + pits/height + (layout/distancePitY div 2) + 0.35 * houses/radius}"
 					text-anchor="middle"
-					font-size="{stores/radius}"
-					style="{stores/textstyle}">
-						<xsl:value-of select="stores/store[2]"/>
+					font-size="{houses/radius}"
+					style="{houses/textstyle}">
+						<xsl:value-of select="houses/house[2]"/>
 				</text>
 			</g>
 				

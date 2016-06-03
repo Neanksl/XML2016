@@ -34,13 +34,13 @@
     <seed>
         <style>fill:black;</style>
     </seed>
-    <stores>	
+    <houses>	
         <radius>100</radius>
         <style>fill:white;stroke:black;stroke-width:2;</style>
         <textstyle>fill:black;font-weight:bold;font-family:Agency FB;</textstyle>
-        <store>20</store>
-        <store>100</store>
-    </stores>
+        <house>20</house>
+        <house>100</house>
+    </houses>
     <layout>
         <posStartX>150</posStartX>
         <posStartY>150</posStartY>
