@@ -6,31 +6,31 @@
         <width>5000</width>
         <height>5000</height>
     </svg>
-    <houses>
+    <pits>
         <width>100</width>
         <height>100</height>
         <roundX>10</roundX>
         <roundY>10</roundY>
         <style>fill:white;stroke:black;stroke-width:2;</style>
-        <nrOfHouses>6</nrOfHouses>
+        <pitCount>6</pitCount>
         <nrOfSeedsReset>3</nrOfSeedsReset>
-        <up>
-            <house>1</house>
-            <house>2</house>
-            <house>3</house>
-            <house>4</house>
-            <house>5</house>
-            <house>6</house>
-        </up>
+        <top>
+            <pit>1</pit>
+            <pit>2</pit>
+            <pit>3</pit>
+            <pit>4</pit>
+            <pit>5</pit>
+            <pit>6</pit>
+        </top>
         <bot>
-            <house>6</house>
-            <house>5</house>
-            <house>4</house>
-            <house>3</house>
-            <house>2</house>
-            <house>1</house>
+            <pit>6</pit>
+            <pit>5</pit>
+            <pit>4</pit>
+            <pit>3</pit>
+            <pit>2</pit>
+            <pit>1</pit>
         </bot>
-    </houses>
+    </pits>
     <seed>
         <style>fill:black;</style>
     </seed>
@@ -44,9 +44,9 @@
     <layout>
         <posStartX>150</posStartX>
         <posStartY>150</posStartY>
-        <distanceHouseX>15</distanceHouseX>
-        <distanceHouseY>50</distanceHouseY>
-        <distanceHouseStore>15</distanceHouseStore>
+        <distancePitX>15</distancePitX>
+        <distancePitY>50</distancePitY>
+        <distancePitStore>15</distancePitStore>
         <distanceYextraSeeds>8</distanceYextraSeeds>
         <distanceBetweenExtraSeeds>5</distanceBetweenExtraSeeds>
         <lengthUnit>px</lengthUnit>

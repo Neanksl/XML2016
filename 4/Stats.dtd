@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
-<!ELEMENT mancala (svg,houses,seed,stores,layout)>
+<!ELEMENT mancala (svg,pits,seed,stores,layout)>
 <!ELEMENT svg (width,height)>
 <!ELEMENT width (#PCDATA)>
 <!ELEMENT height (#PCDATA)>
 
-<!ELEMENT houses (width,height,roundX,roundY,style,nrOfHouses,nrOfSeedsReset,up,bot)>
+<!ELEMENT pits (width,height,roundX,roundY,style,pitCount,nrOfSeedsReset,top,bot)>
 <!ELEMENT roundX (#PCDATA)>
 <!ELEMENT roundY (#PCDATA)>
 <!ELEMENT style (#PCDATA)>
-<!ELEMENT nrOfHouses (#PCDATA)>
+<!ELEMENT pitCount (#PCDATA)>
 <!ELEMENT nrOfSeedsReset (#PCDATA)>
-<!ELEMENT up (house)*>
-<!ELEMENT house (#PCDATA)>
-<!ELEMENT bot (house)*>
+<!ELEMENT top (pit)*>
+<!ELEMENT pit (#PCDATA)>
+<!ELEMENT bot (pit)*>
 
 <!ELEMENT seed (style)>
 
