@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mancala SYSTEM "Stats.dtd">
+<?xml-stylesheet href="Transform.xsl" type="text/xsl"?>
+<gamestate>
+    <pits>
+        <top>
+            <pit>1</pit>
+            <pit>2</pit>
+            <pit>3</pit>
+            <pit>4</pit>
+            <pit>5</pit>
+            <pit>6</pit>
+        </top>
+        <bottom>
+            <pit>6</pit>
+            <pit>5</pit>
+            <pit>4</pit>
+            <pit>3</pit>
+            <pit>2</pit>
+            <pit>1</pit>
+        </bottom>
+    </pits>
+    
+    <houses>	
+        <top>20</top>
+        <bottom>100</bottom>
+    </houses>
+    
+    <players>
+        <playerTurn>1</playerTurn>
+        <playerTop>
+            <id>1</id>
+            <winCount>0</winCount>
+        </playerTop>
+        <playerBottom>
+            <id>2</id>
+            <winCount>0</winCount>
+        </playerBottom>
+    </players>
+    
+</gamestate>

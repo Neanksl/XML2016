@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
-<!ELEMENT mancala (svg,pits,seed,houses,layout)>
+<!ELEMENT game (svg,pits,seed,houses,layout)>
 <!ELEMENT svg (width,height)>
 <!ELEMENT width (#PCDATA)>
 <!ELEMENT height (#PCDATA)>

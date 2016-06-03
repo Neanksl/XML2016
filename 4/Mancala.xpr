@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="17.1">
+<project version="18.0">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options/>
     </meta>
     <projectTree name="Mancala.xpr">
-        <file name="restructure.xql"/>
+        <file name="gamestate.xml"/>
+        <file name="mancala_methods.xql"/>
         <file name="Stats.dtd"/>
-        <file name="Stats.xml"/>
         <file name="Transform.xsl"/>
     </projectTree>
 </project>
