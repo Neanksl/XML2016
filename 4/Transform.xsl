@@ -20,7 +20,7 @@
 			<!--
 			<style type="text/css" >
 				<![CDATA[
-					.house{
+					.pit{
 						fill:   		white;
 						stroke: 		black;
 						stroke-width: 	2;
@@ -31,14 +31,14 @@
 			
 			<defs>
 				<rect
-					id="house0"
-					width="{houses/width}" height="{houses/height}"
-					rx="{houses/roundX}"	ry="{houses/roundY}"
-					style="{houses/style}"/>
+					id="pit0"
+					width="{pits/width}" height="{pits/height}"
+					rx="{pits/roundX}"	ry="{pits/roundY}"
+					style="{pits/style}"/>
 					
 				<circle
 					id="seed"
-					r="{((houses/width + houses/height) div 2) div 12}"
+					r="{((pits/width + pits/height) div 2) div 12}"
 					style="{seed/style}"/>
 
 				<circle
@@ -47,66 +47,66 @@
 					cx="{stores/radius}"
 					style="{stores/style}"/>
 				
-				<g id="house1">
-					<use xlink:href="#house0"/>
-					<use x="{houses/width div 2}" y="{houses/height div 2}" xlink:href="#seed"/>
+				<g id="pit1">
+					<use xlink:href="#pit0"/>
+					<use x="{pits/width div 2}" y="{pits/height div 2}" xlink:href="#seed"/>
 				</g>
 				
-				<g id="house2">
-					<use xlink:href="#house0"/>
-					<use x="{houses/width div 3}" y="{houses/height div 2}" xlink:href="#seed"/>
-					<use x="{houses/width * 2 div 3}" y="{houses/height div 2}" xlink:href="#seed"/>
+				<g id="pit2">
+					<use xlink:href="#pit0"/>
+					<use x="{pits/width div 3}" y="{pits/height div 2}" xlink:href="#seed"/>
+					<use x="{pits/width * 2 div 3}" y="{pits/height div 2}" xlink:href="#seed"/>
 				</g>
 				
-				<g id="house3">
-					<use xlink:href="#house0"/>
-					<use x="{houses/width div 2}" y="{houses/height div 3}" xlink:href="#seed"/>
-					<use x="{houses/width div 3}" y="{houses/height * 2 div 3}" xlink:href="#seed"/>
-					<use x="{houses/width * 2 div 3}" y="{houses/height * 2 div 3}" xlink:href="#seed"/>
+				<g id="pit3">
+					<use xlink:href="#pit0"/>
+					<use x="{pits/width div 2}" y="{pits/height div 3}" xlink:href="#seed"/>
+					<use x="{pits/width div 3}" y="{pits/height * 2 div 3}" xlink:href="#seed"/>
+					<use x="{pits/width * 2 div 3}" y="{pits/height * 2 div 3}" xlink:href="#seed"/>
 				</g>
 				
-				<g id="house4">
-					<use xlink:href="#house0"/>
-					<use x="{houses/width div 3}" y="{houses/height div 3}" xlink:href="#seed"/>
-					<use x="{houses/width * 2 div 3}" y="{houses/height div 3}" xlink:href="#seed"/>
-					<use x="{houses/width div 3}" y="{houses/height * 2 div 3}" xlink:href="#seed"/>
-					<use x="{houses/width * 2 div 3}" y="{houses/height * 2 div 3}" xlink:href="#seed"/>
+				<g id="pit4">
+					<use xlink:href="#pit0"/>
+					<use x="{pits/width div 3}" y="{pits/height div 3}" xlink:href="#seed"/>
+					<use x="{pits/width * 2 div 3}" y="{pits/height div 3}" xlink:href="#seed"/>
+					<use x="{pits/width div 3}" y="{pits/height * 2 div 3}" xlink:href="#seed"/>
+					<use x="{pits/width * 2 div 3}" y="{pits/height * 2 div 3}" xlink:href="#seed"/>
 				</g>
 				
-				<g id="house5">
-					<use xlink:href="#house0"/>
-					<use x="{houses/width div 4}" y="{houses/height div 4}" xlink:href="#seed"/>
-					<use x="{houses/width * 3 div 4}" y="{houses/height div 4}" xlink:href="#seed"/>
-					<use x="{houses/width div 4}" y="{houses/height * 3 div 4}" xlink:href="#seed"/>
-					<use x="{houses/width * 3 div 4}" y="{houses/height * 3 div 4}" xlink:href="#seed"/>
-					<use x="{houses/width div 2}" y="{houses/height div 2}" xlink:href="#seed"/>
+				<g id="pit5">
+					<use xlink:href="#pit0"/>
+					<use x="{pits/width div 4}" y="{pits/height div 4}" xlink:href="#seed"/>
+					<use x="{pits/width * 3 div 4}" y="{pits/height div 4}" xlink:href="#seed"/>
+					<use x="{pits/width div 4}" y="{pits/height * 3 div 4}" xlink:href="#seed"/>
+					<use x="{pits/width * 3 div 4}" y="{pits/height * 3 div 4}" xlink:href="#seed"/>
+					<use x="{pits/width div 2}" y="{pits/height div 2}" xlink:href="#seed"/>
 				</g>
 				
-				<g id="house6">
-					<use xlink:href="#house0"/>
-					<use x="{houses/width div 3}" y="{houses/height div 4}" xlink:href="#seed"/>
-					<use x="{houses/width * 2 div 3}" y="{houses/height div 4}" xlink:href="#seed"/>
-					<use x="{houses/width div 3}" y="{houses/height * 2 div 4}" xlink:href="#seed"/>
-					<use x="{houses/width * 2 div 3}" y="{houses/height * 2 div 4}" xlink:href="#seed"/>
-					<use x="{houses/width div 3}" y="{houses/height * 3 div 4}" xlink:href="#seed"/>
-					<use x="{houses/width * 2 div 3}" y="{houses/height * 3 div 4}" xlink:href="#seed"/>
+				<g id="pit6">
+					<use xlink:href="#pit0"/>
+					<use x="{pits/width div 3}" y="{pits/height div 4}" xlink:href="#seed"/>
+					<use x="{pits/width * 2 div 3}" y="{pits/height div 4}" xlink:href="#seed"/>
+					<use x="{pits/width div 3}" y="{pits/height * 2 div 4}" xlink:href="#seed"/>
+					<use x="{pits/width * 2 div 3}" y="{pits/height * 2 div 4}" xlink:href="#seed"/>
+					<use x="{pits/width div 3}" y="{pits/height * 3 div 4}" xlink:href="#seed"/>
+					<use x="{pits/width * 2 div 3}" y="{pits/height * 3 div 4}" xlink:href="#seed"/>
 				</g>
 			</defs>
 			
-			<!-- Create houses for both players -->
-			<xsl:call-template name="createHouses">
-				<xsl:with-param name="count" select="houses/nrOfHouses"/>
+			<!-- Create pits for both players -->
+			<xsl:call-template name="createPits">
+				<xsl:with-param name="count" select="pits/pitCount"/>
 			</xsl:call-template>
 			
 			<!-- Create stores for both players -->
 			<g>
 				<use 
-					x="{layout/posStartX - layout/distanceHouseStore - stores/radius + layout/distanceHouseX}" 
-					y="{layout/posStartY + houses/height + (layout/distanceHouseY div 2)}" 
+					x="{layout/posStartX - layout/distancePitStore - stores/radius + layout/distancePitX}" 
+					y="{layout/posStartY + pits/height + (layout/distancePitY div 2)}" 
 					xlink:href="#store"/>
 				<text
-					x="{layout/posStartX - layout/distanceHouseStore + layout/distanceHouseX}"
-					y="{layout/posStartY + houses/height + (layout/distanceHouseY div 2) + 0.35 * stores/radius}"
+					x="{layout/posStartX - layout/distancePitStore + layout/distancePitX}"
+					y="{layout/posStartY + pits/height + (layout/distancePitY div 2) + 0.35 * stores/radius}"
 					text-anchor="middle"
 					font-size="{stores/radius}"
 					style="{stores/textstyle}">
@@ -115,12 +115,12 @@
 			</g>
 			<g>
 				<use				
-					x="{layout/posStartX + layout/distanceHouseStore + (houses/width + layout/distanceHouseX) * houses/nrOfHouses + stores/radius}"
-					y="{layout/posStartY + houses/height + (layout/distanceHouseY div 2)}" 
+					x="{layout/posStartX + layout/distancePitStore + (pits/width + layout/distancePitX) * pits/pitCount + stores/radius}"
+					y="{layout/posStartY + pits/height + (layout/distancePitY div 2)}" 
 					xlink:href="#store"/>
 				<text
-					x="{layout/posStartX + layout/distanceHouseStore + (houses/width + layout/distanceHouseX) * houses/nrOfHouses + 2 * stores/radius}"
-					y="{layout/posStartY + houses/height + (layout/distanceHouseY div 2) + 0.35 * stores/radius}"
+					x="{layout/posStartX + layout/distancePitStore + (pits/width + layout/distancePitX) * pits/pitCount + 2 * stores/radius}"
+					y="{layout/posStartY + pits/height + (layout/distancePitY div 2) + 0.35 * stores/radius}"
 					text-anchor="middle"
 					font-size="{stores/radius}"
 					style="{stores/textstyle}">
@@ -132,22 +132,22 @@
 	</xsl:template>
 	
 	<!-- Recursion -->
-	<xsl:template name="createHouses"> 
+	<xsl:template name="createPits"> 
 		<xsl:param name="count"/>
 		<xsl:if test="$count &gt; 0">
-			<!-- Upper houses -->
+			<!-- Upper pits -->
 			<use 
-				x="{layout/posStartX + (houses/width + layout/distanceHouseX) * $count}" 
+				x="{layout/posStartX + (pits/width + layout/distancePitX) * $count}" 
 				y="{layout/posStartY}" 
-				xlink:href="{concat('#house', houses/up/house[0+$count])}"/>
+				xlink:href="{concat('#pit', pits/top/pit[0+$count])}"/>
 				
-			<!-- Bottom houses -->
+			<!-- Bottom pits -->
 			<use 
-				x="{layout/posStartX + (houses/width + layout/distanceHouseX) * $count}" 
-				y="{layout/posStartY + houses/height + layout/distanceHouseY}" 
-				xlink:href="{concat('#house', houses/bot/house[0+$count])}"/>
+				x="{layout/posStartX + (pits/width + layout/distancePitX) * $count}" 
+				y="{layout/posStartY + pits/height + layout/distancePitY}" 
+				xlink:href="{concat('#pit', pits/bot/pit[0+$count])}"/>
 				
-			<xsl:call-template name="createHouses">
+			<xsl:call-template name="createPits">
 				<xsl:with-param name="count" select="$count - 1"/>
 			</xsl:call-template>
 		</xsl:if>      
