@@ -31,36 +31,69 @@ declare function functx:replace-element-values
  }:)
  
  declare function local:seedsInPit($pit)
+ as xs:integer
  {
     let $p := $pit
      return ($pit/text())
  };
  
- declare function local:setSeedsInPitTo0($game,$pitNumber)
+ declare function local:seedsInPit2($game, $pitNumber)
+ as xs:integer
  {
+    let $p := $game/pits/top/pit[$pitNumber]
+    return ($p/text())
+ };
+ 
+ declare function local:setSeedsInPitTo($game,$pitNumber, $targetNumber)
+ {
+ 
     let $oldGame := $game
     return
         copy $g := $oldGame
         modify(
-            replace value of node $g/pits/top/pit[$pitNumber] with 0
+            replace value of node $g/pits/top/pit[$pitNumber] with $targetNumber
         )
         return ($g)
+        
  };
  
- declare function local:increaseSeedsInPutBy1($pit)
+ declare function local:increaseSeedsInPitBy1($pit)
  {
     let $p := $pit
-    return (0)
+    return $p
+ };
+ 
+ 
+ 
+ declare function local:__increasePitsBy1($game, $index, $remaining)
+ {
+    if( $remaining = 0) then (
+        $game
+    )
+    else  (
+        let $newGame := local:setSeedsInPitTo($game, $index, local:seedsInPit2($game, $index) + 1)
+        return local:__increasePitsBy1($newGame, $index + 1, $remaining - 1)
+    )
+ };
+ 
+ 
+ declare function local:increasePitsBy1($game, $startingAt, $times)
+ {
+    let $foo := 1
+    return (local:__increasePitsBy1($game, $startingAt, $times + 1)) 
+ 
  };
  
  declare function local:playerSelectedPit($player, $pitNumber, $game)
  {
     let $pit := $game/pits/top/pit[$pitNumber]
     let $seedsInPit := local:seedsInPit($pit)
-    let $seedsEmpty := local:setSeedsInPitTo0($game, $pitNumber)
+    let $seedsEmpty := local:setSeedsInPitTo($game, $pitNumber, 0)
+   
+    let $seedsIncreased := local:increasePitsBy1($seedsEmpty, $pitNumber + 1, $seedsInPit)
     
-    return ($seedsEmpty)
-  (: seeds verteilen :)
+    return ($seedsIncreased)
+    
     
  };
  
