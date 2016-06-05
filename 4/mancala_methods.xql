@@ -30,17 +30,21 @@ declare function functx:replace-element-values
  
  }:)
  
- 
  declare function local:seedsInPit($pit)
  {
     let $p := $pit
      return ($pit/text())
  };
  
- declare function local:setSeedsInPitTo0($pit)
+ declare function local:setSeedsInPitTo0($game,$pitNumber)
  {
-    let $p := $pit
-    return (0)
+    let $oldGame := $game
+    return
+        copy $g := $oldGame
+        modify(
+            replace value of node $g/pits/top/pit[$pitNumber] with 0
+        )
+        return ($g)
  };
  
  declare function local:increaseSeedsInPutBy1($pit)
@@ -49,16 +53,15 @@ declare function functx:replace-element-values
     return (0)
  };
  
- 
  declare function local:playerSelectedPit($player, $pitNumber, $game)
  {
- 
-  let $pit := $game/pits/top[$pitNumber]
-  let $seedsInPit := local:seedsInPit($pit)
-  let $emptyPits := local:setSeedsInPitTo0($pit)
-  return (0)
+    let $pit := $game/pits/top/pit[$pitNumber]
+    let $seedsInPit := local:seedsInPit($pit)
+    let $seedsEmpty := local:setSeedsInPitTo0($game, $pitNumber)
+    
+    return ($seedsEmpty)
   (: seeds verteilen :)
- 
+    
  };
  
  let $game := fn:doc("gamestate.xml")/gamestate
