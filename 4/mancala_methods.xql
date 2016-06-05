@@ -14,47 +14,57 @@ declare function functx:replace-element-values
  declare function local:playerTurn($players)
  as xs:decimal
  {
-    
- }
+    let $p := 1
+    return (-1)
+ };
  
  declare function local:gameFinished($pits)
  as xs:boolean
  {
- 
+    let $p := 1
+    return false()
  };
  
- declare function local:increaseWinCountBy1($player)
+ (:declare function local:increaseWinCountBy1($player)
  {
  
- }
+ }:)
  
  
  declare function local:seedsInPit($pit)
- as xs:decimal
  {
-     return $pit
- }
+    let $p := $pit
+     return ($pit/text())
+ };
  
  declare function local:setSeedsInPitTo0($pit)
  {
- 
- }
+    let $p := $pit
+    return (0)
+ };
  
  declare function local:increaseSeedsInPutBy1($pit)
  {
+    let $p := $pit
+    return (0)
+ };
  
- }
  
- 
- declare function local:playerSelectedPit($player, $pitNumber)
+ declare function local:playerSelectedPit($player, $pitNumber, $game)
  {
  
-  let seedsInPit = local:seedsInPit($pit)
-  local:setSeedsInPitTo0($pit)
-  
+  let $pit := $game/pits/top[$pitNumber]
+  let $seedsInPit := local:seedsInPit($pit)
+  let $emptyPits := local:setSeedsInPitTo0($pit)
+  return (0)
   (: seeds verteilen :)
  
- }
+ };
+ 
+ let $game := fn:doc("gamestate.xml")/gamestate
+ let $playerID := 1
+ let $selectedPit := 1
+ return (local:playerSelectedPit($playerID, $selectedPit, $game))
  
  (:
  
