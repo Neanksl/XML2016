@@ -5,12 +5,8 @@
         <options/>
     </meta>
     <projectTree name="Mancala.xpr">
-        <file name="docbook.xml"/>
-        <file name="gamestate.xml"/>
-        <file name="Diagrams/Mancala_ClassDiagram.pdf"/>
-        <file name="mancala_methods.xql"/>
-        <file name="Stats.dtd"/>
-        <file name="Transform.xsl"/>
-        <file name="Diagrams/UseCaseDiagram.pdf"/>
+        <folder path="Diagrams/"/>
+        <folder path="Documentation/"/>
+        <folder path="Mancala/"/>
     </projectTree>
 </project>
