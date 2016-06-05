@@ -17,14 +17,34 @@
  };
 
 
+ declare updating function local:pit_incSeedCount($this)
+ {
+    replace value of node $this with $this + 1
+ };
+
+
+
 
 (: player class :)
 
 
 
 (: board class :)
-
-declare function local:board_getPitWithId($this, $pitId)
+(:
+ declare function local:__increasePitsBy1($game, $index, $remaining)
+ {
+    if( $remaining = 0) then (
+        $game
+    )
+    else  (
+        let $newGame := local:setSeedsInPitTo($game, $index, local:seedsInPit2($game, $index) + 1)
+        return local:__increasePitsBy1($newGame, $index + 1, $remaining - 1)
+    )
+ };
+ :)
+ 
+ 
+declare function local:board_getPitWithId($this, $pitId as xs:integer)
 {
     for $p in $this/top/pit
     where $p/@id = $pitId
@@ -32,32 +52,85 @@ declare function local:board_getPitWithId($this, $pitId)
 };
 
 
+
+ 
+ declare updating function local:board_increasePitsBy1($this, $startingAt, $times)
+ {
+    local:pit_incSeedCount(local:board_getPitWithId($this, $startingAt)),
+    if($times > 1)
+    then local:board_increasePitsBy1($this, $startingAt + 1, $times - 1) 
+    else ()   
+ };
+ 
+
  declare updating function local:board_playerSelectedPit($this, $player, $pitNumber)
  {
- 
- 
+    
+    local:pit_setSeedCount(local:board_getPitWithId($this, $pitNumber), 0),
+    local:board_increasePitsBy1( $this, 
+                                 $pitNumber + 1, 
+                                 local:pit_getSeedCount(
+                                                        local:board_getPitWithId($this, $pitNumber)
+                                                        )
+                                )
+    
+    
+    (:
+    
+ if(empty($person/BIDS))
+   then insert node <BIDS>{$bids}</BIDS> into $person
+   else insert node $bid as last into $person/BIDS
+
+
+
     let $pit := local:board_getPitWithId($this, $pitNumber)
     let $seedsInPit := local:pit_getSeedCount($pit)
     
-    (:
+    
+    let $x := local:pit_setSeedCount($pit, 0)
         return ( local:pit_setSeedCount($pit, 0), return $this )
-    local:board_updatePitsFollowingFrom($this, $pit, $seedsInPit)
+    
     return $this
     return $this
+    
     return $this
     :)
-    
-    
  };
  
  
- let $game := fn:doc("gamestate.xml")/game
+ 
+ local:board_playerSelectedPit(
+    fn:doc("gamestate.xml")/game/board, 
+    fn:doc("gamestate.xml")/game/players/playerTop, 
+    1
+    )
+ 
+ 
+ (:
+ let $game := 
  let $board := $game/board
  let $pitNumber := 1
  let $player := $game/players/playerTop
- let $x := local:board_playerSelectedPit($board, $player, $pitNumber)
+ 
+ 
+ let $g :=
+    copy $p := local:board_getPitWithId($board, $pitNumber)
+    modify (
+    local:pit_setSeedCount($p, 100)
+    )
+    return $board
+    
+ return $g
+ 
+ 
+ copy $foo := $pit
+ modify (
+ local:pit_setSeedCount($foo, 1)
+ return ($foo)
+ )
 return (  $game )
  
+ let $x := local:board_playerSelectedPit($board, $player, $pitNumber):)
  
 
  
