@@ -1,8 +1,15 @@
 (: Andreas Eichner, Michael Conrads :)
 
 
+(: player class :)
 
- 
+(: houseclass :)
+ declare updating function local:house_incSeedCount($this, $times)
+ {
+    replace value of node $this with $this + $times
+ };
+
+
 (: pit class :) 
  declare function local:pit_getSeedCount($this)
  as xs:integer
@@ -25,76 +32,89 @@
 
 
 
-(: player class :)
 
 
 
 (: board class :)
-(:
- declare function local:__increasePitsBy1($game, $index, $remaining)
- {
-    if( $remaining = 0) then (
-        $game
-    )
-    else  (
-        let $newGame := local:setSeedsInPitTo($game, $index, local:seedsInPit2($game, $index) + 1)
-        return local:__increasePitsBy1($newGame, $index + 1, $remaining - 1)
-    )
- };
- :)
- 
+
  
 declare function local:board_getPitWithId($this, $pitId as xs:integer)
 {
-    for $p in $this/top/pit
-    where $p/@id = $pitId
-    return $p
+    if($pitId < 7) then (
+        for $p in $this/top/pit
+        where $p/@id = $pitId
+        return $p
+        )
+    else
+    (
+        for $p in $this/bottom/pit
+        where $p/@id = $pitId
+        return $p
+    )
+};
+
+ 
+declare function local:board_getHouseWithId($this, $houseId as xs:integer)
+{
+    if($houseId = 7) then
+        for $h in $this/top/house
+        where $h/@id = $houseId
+        return $h
+    else
+        for $h in $this/bottom/house
+        where $h/@id = $houseId
+        return $h
+        
 };
 
 
 
- 
- declare updating function local:board_increasePitsBy1($this, $startingAt, $times)
+declare updating function local:board_increaseHouseBy1($this, $startingAt, $times, $old)
  {
-    local:pit_incSeedCount(local:board_getPitWithId($this, $startingAt)),
-    if($times > 1)
-    then local:board_increasePitsBy1($this, $startingAt + 1, $times - 1) 
+    local:house_incSeedCount(local:board_getHouseWithId($this, $startingAt),
+                              ($times idiv 14) + 1
+                              ),
+    if($times > 1 and $old != $startingAt) then
+        if( $startingAt = 14) 
+        then
+            local:board_increasePitsBy1($this, 1, $times - 1,$old)
+        else
+            local:board_increasePitsBy1($this, $startingAt + 1, $times - 1,$old) 
     else ()   
  };
  
+
+ 
+ declare updating function local:board_increasePitsBy1($this, $startingAt, $times, $old)
+ {
+    local:pit_incSeedCount(
+                            local:board_getPitWithId($this, $startingAt),
+                            ($times idiv 14) + 1
+                            ),
+    
+    if($times > 1 and $old != $startingAt ) then
+        if ($startingAt = 6 or $startingAt = 13 ) then
+            local:board_increaseHouseBy1($this, $startingAt + 1, $times - 1,$old)
+        else 
+            local:board_increasePitsBy1($this, $startingAt + 1, $times - 1,$old)
+    else ()   
+ };
+ 
+ 
+ 
+ declare updating function local:board_distributeSeeds($this, $startingAt, $times)
+ {
+    if ($startingAt = 7 or $startingAt = 14 ) then
+            local:board_increaseHouseBy1($this, $startingAt, $times,$startingAt)
+        else 
+            local:board_increasePitsBy1($this, $startingAt, $times,$startingAt)
+ };
 
  declare updating function local:board_playerSelectedPit($this, $player, $pitNumber)
  {
     
     local:pit_setSeedCount(local:board_getPitWithId($this, $pitNumber), 0),
-    local:board_increasePitsBy1( $this, 
-                                 $pitNumber + 1, 
-                                 local:pit_getSeedCount(
-                                                        local:board_getPitWithId($this, $pitNumber)
-                                                        )
-                                )
-    
-    
-    (:
-    
- if(empty($person/BIDS))
-   then insert node <BIDS>{$bids}</BIDS> into $person
-   else insert node $bid as last into $person/BIDS
-
-
-
-    let $pit := local:board_getPitWithId($this, $pitNumber)
-    let $seedsInPit := local:pit_getSeedCount($pit)
-    
-    
-    let $x := local:pit_setSeedCount($pit, 0)
-        return ( local:pit_setSeedCount($pit, 0), return $this )
-    
-    return $this
-    return $this
-    
-    return $this
-    :)
+    local:board_distributeSeeds($this, $pitNumber + 1, local:pit_getSeedCount(local:board_getPitWithId($this, $pitNumber)))
  };
  
  

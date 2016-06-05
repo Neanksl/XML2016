@@ -3,22 +3,24 @@
 <game>
     <board>
         <top>
-            <pit id="1">0</pit>
+            <pit id="1">14</pit>
             <pit id="2">3</pit>
-            <pit id="3">4</pit>
-            <pit id="4">5</pit>
-            <pit id="5">5</pit>
-            <pit id="6">6</pit>
-            <house id="7">10</house>
+            <pit id="3">3</pit>
+            <pit id="4">3</pit>
+            <pit id="5">3</pit>
+            <pit id="6">3</pit>
+            
+            <house id="7">17</house>
+            
         </top>
         <bottom>
-            <pit id="8">0</pit>
-            <pit id="9">3</pit>
+            <pit id="8">5</pit>
+            <pit id="9">5</pit>
             <pit id="10">4</pit>
-            <pit id="11">5</pit>
-            <pit id="12">5</pit>
-            <pit id="13">6</pit>
-            <house id="14">10</house>
+            <pit id="11">4</pit>
+            <pit id="12">2</pit>
+            <pit id="13">2</pit>
+            <house id="14">14</house>
         </bottom>
     </board>
     
