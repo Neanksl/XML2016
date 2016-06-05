@@ -12,34 +12,34 @@
     <sect1>
         <title>Use Cases</title>
         <para>TODO: Explain use cases</para>
-        <inlinemediaobject>
+        <mediaobject>
             <imageobject>
                 <imagedata
-                    fileref="./Diagrams/UseCaseDiagram.pdf"
+                    fileref="./../Diagrams/UseCaseDiagram.pdf"
                 />
             </imageobject>
-        </inlinemediaobject>
+        </mediaobject>
     </sect1>
     <sect1>
         <title>Classes</title>
         <para>TODO: Explain classes</para>
-        <inlinemediaobject>
+        <mediaobject>
             <imageobject>
                 <imagedata
-                    fileref="./Diagrams/ClassDiagram.pdf"
+                    fileref="./../Diagrams/ClassDiagram.pdf"
                 />
             </imageobject>
-        </inlinemediaobject>
+        </mediaobject>
     </sect1>
     <sect1>
         <title>XQuery usage</title>
-        <section>
-            <subtitle>"this" context</subtitle>
+        <sect2>
+            <title>"this" context</title>
             <para>TODO</para>
-        </section>
-        <section>
-            <subtitle>Methods</subtitle>
+        </sect2>
+        <sect2>
+            <title>Methods</title>
             <para>TODO</para>
-        </section>
+        </sect2>
     </sect1>
 </article>
