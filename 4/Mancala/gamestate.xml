@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE gamestate SYSTEM "Stats.dtd">
 <?xml-stylesheet href="Transform.xsl" type="text/xsl"?>
-
-<gamestate>
-    <pits>
+<game>
+    <board>
         <top>
-            <pit>1</pit>
-            <pit>2</pit>
-            <pit>3</pit>
-            <pit>4</pit>
-            <pit>5</pit>
-            <pit>6</pit>
+            <pit id="1">5</pit>
+            <pit id="2">2</pit>
+            <pit id="3">3</pit>
+            <pit id="4">4</pit>
+            <pit id="5">5</pit>
+            <pit id="6">6</pit>
+            <house id="7">10</house>
         </top>
         <bottom>
-            <pit>6</pit>
-            <pit>5</pit>
-            <pit>4</pit>
-            <pit>3</pit>
-            <pit>2</pit>
-            <pit>1</pit>
+            <pit id="8">6</pit>
+            <pit id="9">5</pit>
+            <pit id="10">4</pit>
+            <pit id="11">3</pit>
+            <pit id="12">2</pit>
+            <pit id="13">1</pit>
+            <house id="14">10</house>
         </bottom>
-    </pits>
-    
-    <houses>	
-        <top>20</top>
-        <bottom>100</bottom>
-    </houses>
+    </board>
     
     <players>
         <playerTurn>1</playerTurn>
@@ -39,4 +34,4 @@
         </playerBottom>
     </players>
     
-</gamestate>
+</game>
