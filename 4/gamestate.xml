@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mancala SYSTEM "Stats.dtd">
+<!DOCTYPE gamestate SYSTEM "Stats.dtd">
 <?xml-stylesheet href="Transform.xsl" type="text/xsl"?>
+
 <gamestate>
     <pits>
         <top>
