@@ -10,6 +10,52 @@ declare function functx:replace-element-values
                $values[$seq] }
  } ;
  
+ 
+ declare function local:playerTurn($players)
+ {
+    
+ }
+ 
+ declare function local:gameFinished($pits)
+ as xs:boolean
+ {
+ 
+ }
+ 
+ declare function local:increaseWinCountBy1(player)
+ {
+ 
+ }
+ 
+ 
+ declare function local:seedsInPit($pit)
+ as xs:decimal
+ {
+     
+ }
+ 
+ declare function local:setSeedsInPitTo0($pit)
+ {
+ 
+ }
+ 
+ declare function local:increaseSeedsInPutBy1($pit)
+ {
+ 
+ }
+ 
+ 
+ declare function local:playerSelectedPit($player, $pitNumber)
+ {
+  let seedsInPit = local:seedsInPit($pit)
+  local:setSeedsInPitTo0($pit)
+  
+  (: seeds verteilen :)
+ 
+ }
+ 
+ (:
+ 
 declare function local:getPitsFromMancala($m )
 {
     let $s := $m/game/pits
@@ -26,9 +72,9 @@ let $m := fn:doc("Stats.xml")
 let $pits := local:getPitsFromMancala($m)
 let $playerTurn := local:playerTurnFrom
 return ( local:increasePitCount($pits, 1) )
+:)
 
-
-
+(:
 (\:<id>{string($s)}</id> as first into $s, delete node $s/@id):\)
 (\:
 
@@ -39,7 +85,7 @@ functx:add-attributes(
   
   for $x in doc('Document2')//a
 return 
-insert node attribute att2{'2'} into $x:\):)
+insert node attribute att2{'2'} into $x:\):\):)
 
 (:for $topPit in fn:doc("Stats.xml")
 return (insert node <value>{string($topPit)}</value> as first into $topPit)
