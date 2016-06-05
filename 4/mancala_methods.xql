@@ -12,6 +12,7 @@ declare function functx:replace-element-values
  
  
  declare function local:playerTurn($players)
+ as xs:decimal
  {
     
  }
@@ -20,9 +21,9 @@ declare function functx:replace-element-values
  as xs:boolean
  {
  
- }
+ };
  
- declare function local:increaseWinCountBy1(player)
+ declare function local:increaseWinCountBy1($player)
  {
  
  }
@@ -31,7 +32,7 @@ declare function functx:replace-element-values
  declare function local:seedsInPit($pit)
  as xs:decimal
  {
-     
+     return $pit
  }
  
  declare function local:setSeedsInPitTo0($pit)
@@ -47,6 +48,7 @@ declare function functx:replace-element-values
  
  declare function local:playerSelectedPit($player, $pitNumber)
  {
+ 
   let seedsInPit = local:seedsInPit($pit)
   local:setSeedsInPitTo0($pit)
   
