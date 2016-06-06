@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!--Andreas Eichner, Michael Conrads-->
 
-<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <article xmlns="http://docbook.org/ns/docbook"
@@ -13,7 +14,41 @@
     </info>
     <sect1>
         <title>Use Cases</title>
-        <para>TODO: Explain use cases</para>
+        <para>
+            The mancala game can be splitted in six different usecases:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Start a game
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Restart the current game
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Make a move
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Undo the current action
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Win the game
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Save the game
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
         <mediaobject>
             <imageobject>
                 <imagedata

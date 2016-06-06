@@ -1,6 +1,6 @@
-<!--Andreas Eichner, Michael Conrads-->
-
 <?xml version='1.0' encoding='UTF-8'?>
+
+<!--Andreas Eichner, Michael Conrads-->
 
 <!ELEMENT gamestate (pits,houses,players)>
 <!ELEMENT pits (top, bottom)>
