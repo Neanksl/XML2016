@@ -1,0 +1,17 @@
+<!--Andreas Eichner, Michael Conrads-->
+
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!ELEMENT gamestate (pits,houses,players)>
+<!ELEMENT pits (top, bottom)>
+<!ELEMENT top (#PCDATA|pit)* >
+<!ELEMENT bottom (#PCDATA|pit)* >
+<!ELEMENT pit (#PCDATA) >
+
+<!ELEMENT houses (top, bottom)>
+<!ELEMENT players (playerTurn, playerTop, playerBottom) >
+<!ELEMENT playerTurn (#PCDATA) >
+<!ELEMENT playerTop (id, winCount) >
+<!ELEMENT playerBottom (id, winCount) >
+<!ELEMENT id (#PCDATA) >
+<!ELEMENT winCount (#PCDATA) >
