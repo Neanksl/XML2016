@@ -7,7 +7,6 @@
     <projectTree name="Mancala.xpr">
         <folder path="Diagrams/"/>
         <folder path="Documentation/"/>
-        <folder path="Documentation/css/"/>
         <folder path="Mancala/"/>
     </projectTree>
 </project>
