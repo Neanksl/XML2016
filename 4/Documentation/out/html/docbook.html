@@ -1,6 +1,6 @@
 <html><head>
       <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-   <title>Mancala - XQuery</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="article"><div class="titlepage"><div><div><h1 class="title"><a name="d5e1"></a>Mancala - XQuery</h1></div><div><div class="author"><h3 class="author"><span class="orgname">Michael Conrads &amp; Andreas Eichner</span></h3></div></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl class="toc"><dt><span class="sect1"><a href="#d5e6">Use Cases</a></span></dt><dt><span class="sect1"><a href="#d5e26">Classes</a></span></dt><dt><span class="sect1"><a href="#d5e32">Implementation</a></span></dt><dd><dl><dt><span class="sect2"><a href="#d5e34">"this" context</a></span></dt><dt><span class="sect2"><a href="#d5e37">Methods</a></span></dt></dl></dd></dl></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e6"></a>Use Cases</h2></div></div></div><p>
+   <title>Mancala - XQuery</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="article"><div class="titlepage"><div><div><h1 class="title"><a name="d5e1"></a>Mancala - XQuery</h1></div><div><div class="author"><h3 class="author"><span class="orgname">Michael Conrads &amp; Andreas Eichner</span></h3></div></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl class="toc"><dt><span class="sect1"><a href="#d5e6">Use Cases</a></span></dt><dt><span class="sect1"><a href="#d5e26">Classes</a></span></dt><dt><span class="sect1"><a href="#d5e54">Implementation</a></span></dt><dd><dl><dt><span class="sect2"><a href="#d5e56">Filestructure</a></span></dt><dt><span class="sect2"><a href="#d5e69">Namespaces</a></span></dt><dt><span class="sect2"><a href="#d5e72">Updating vs FLWOR</a></span></dt></dl></dd></dl></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e6"></a>Use Cases</h2></div></div></div><p>
             The mancala game can be splitted up in the following usecases:
             </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
                         Initially the players want to be able to start a new game of mancala.
@@ -15,4 +15,40 @@
                     </p></li><li class="listitem"><p>
                         Optionally the player want to be able to save the game.
                     </p></li></ul></div><p>
-        </p><div class="mediaobject"><img src="../.././../Diagrams/UseCaseDiagram.pdf"></div></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e26"></a>Classes</h2></div></div></div><p>TODO: Explain classes</p><div class="mediaobject"><img src="../.././../Diagrams/ClassDiagram.pdf"></div></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e32"></a>Implementation</h2></div></div></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="d5e34"></a>"this" context</h3></div></div></div><p>TODO</p></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="d5e37"></a>Methods</h3></div></div></div><p>TODO</p></div></div></div></body></html>
+        </p><div class="mediaobject"><img src="../.././../Diagrams/UseCaseDiagram.pdf"></div></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e26"></a>Classes</h2></div></div></div><p>
+            The following list explains the classes shown in the class diagram.
+            </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+                        <span class="emphasis"><em>Game</em></span>:
+                        TODO
+                    </p></li><li class="listitem"><p>
+                        <span class="emphasis"><em>Players</em></span>:
+                        TODO
+                    </p></li><li class="listitem"><p>
+                        <span class="emphasis"><em>Player</em></span>:
+                        TODO
+                    </p></li><li class="listitem"><p>
+                        <span class="emphasis"><em>Board</em></span>:
+                        TODO
+                    </p></li><li class="listitem"><p>
+                        <span class="emphasis"><em>Layer</em></span>:
+                        TODO
+                    </p></li><li class="listitem"><p>
+                        <span class="emphasis"><em>Pit</em></span>:
+                        TODO
+                    </p></li><li class="listitem"><p>
+                        <span class="emphasis"><em>House</em></span>:
+                        TODO
+                    </p></li></ul></div><p>
+        </p><div class="mediaobject"><img src="../.././../Diagrams/ClassDiagram.pdf"></div></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e54"></a>Implementation</h2></div></div></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="d5e56"></a>Filestructure</h3></div></div></div><p>
+                The following list shows the files, which were used to implement the basic functionalities of XQuery for mancala.
+                </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+                            <span class="emphasis"><em>gamestate.xml</em></span>:
+                            Contains all elements shown in the class diagram with according mulitplicity.
+                        </p></li><li class="listitem"><p>
+                            <span class="emphasis"><em>gamestate.dtd</em></span>:
+                            The DTD file for "gamestate.xml", which declares all elements.
+                        </p></li><li class="listitem"><p>
+                            <span class="emphasis"><em>mancala_methods.xql</em></span>:
+                            Contains all methods described in the class diagram
+                        </p></li></ul></div><p>
+            </p></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="d5e69"></a>Namespaces</h3></div></div></div><p>for readability e.g. house</p></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="d5e72"></a>Updating vs FLWOR</h3></div></div></div><p>TODO</p></div></div></div></body></html>

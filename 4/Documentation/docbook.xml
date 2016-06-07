@@ -4,6 +4,7 @@
 
 <?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
 <article xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
     <info>
@@ -61,7 +62,53 @@
     </sect1>
     <sect1>
         <title>Classes</title>
-        <para>TODO: Explain classes</para>
+        <para>
+            The following list explains the classes shown in the class diagram.
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis>Game</emphasis>:
+                        TODO
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Players</emphasis>:
+                        TODO
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Player</emphasis>:
+                        TODO
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Board</emphasis>:
+                        TODO
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Layer</emphasis>:
+                        TODO
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Pit</emphasis>:
+                        TODO
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>House</emphasis>:
+                        TODO
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
         <mediaobject>
             <imageobject>
                 <imagedata
@@ -73,11 +120,37 @@
     <sect1>
         <title>Implementation</title>
         <sect2>
-            <title>"this" context</title>
-            <para>TODO</para>
+            <title>Filestructure</title>
+            <para>
+                The following list shows the files, which were used to implement the basic functionalities of XQuery for mancala.
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>gamestate.xml</emphasis>:
+                            Contains all elements shown in the class diagram with according mulitplicity.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>gamestate.dtd</emphasis>:
+                            The DTD file for "gamestate.xml", which declares all elements.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>mancala_methods.xql</emphasis>:
+                            Contains all methods described in the class diagram
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
         </sect2>
         <sect2>
-            <title>Methods</title>
+            <title>Namespaces</title>
+            <para>for readability e.g. house</para>
+        </sect2>
+        <sect2>
+            <title>Updating vs FLWOR</title>
             <para>TODO</para>
         </sect2>
     </sect1>
