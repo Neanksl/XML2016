@@ -1,4 +1,5 @@
 (: Andreas Eichner, Michael Conrads :)
+
 declare namespace players = "mancala:players";
 declare namespace player = "mancala:player";
 declare namespace house = "mancala:house";
@@ -24,8 +25,6 @@ declare updating function players:setNextPlayerWithId($this, $id)
 {
     replace value of node $this/turn with $id
 };
-
-
 
 declare updating function players:toggleCurrentPlayer($this)
 {
@@ -60,6 +59,8 @@ declare updating function house:setSeedCount($this, $amount)
  {
     replace value of node $this with $amount
  };
+
+
 
 
 (: pit class :)
@@ -113,68 +114,57 @@ declare function board:getHouseWithId($this, $houseId as xs:integer)
 };
 
 
-
-declare updating function board:increaseHouseBy1($this, $startingAt, $times, $old, $active)
- {
-    if($times > 0 and ($old != $startingAt or $active)) then
-         board:_increaseHouseBy1($this, $startingAt, $times, $old, $active)
-    else ()   
- };
- 
- 
 declare updating function board:_increaseHouseBy1($this, $startingAt, $times, $old, $active)
  {
+    if($times > 0 and ($old != $startingAt or $active)) then
+        (
         house:incSeedCount( board:getHouseWithId($this, $startingAt), 
                                   (($times - 1) idiv 14) + 1),
                                   
         if( $startingAt = 14) then
-            board:increasePitsBy1($this, 1, $times - 1,$old, false())
+            board:_increasePitsBy1($this, 1, $times - 1,$old, false())
         else
-            board:increasePitsBy1($this, $startingAt + 1, $times - 1,$old, false()) 
- };
- 
-
-
- 
- declare updating function board:increasePitsBy1($this, $startingAt, $times, $old, $active)
- {
-    if($times > 0 and ($old != $startingAt or $active ) ) then
-        board:_increasePitsBy1($this, $startingAt, $times, $old, $active)
+            board:_increasePitsBy1($this, $startingAt + 1, $times - 1,$old, false()) 
+         )
     else ()   
  };
  
  
  declare updating function board:_increasePitsBy1($this, $startingAt, $times, $old, $active)
  {
+    if($times > 0 and ($old != $startingAt or $active ) ) then
+        (
         pit:incSeedCount(
                             board:getPitWithId($this, $startingAt),
                             (($times - 1) idiv 14) + 1
                             ),
     
         if ($startingAt = 6 or $startingAt = 13 ) then
-            board:increaseHouseBy1($this, $startingAt + 1, $times - 1,$old, false())
+            board:_increaseHouseBy1($this, $startingAt + 1, $times - 1,$old, false())
         else 
-            board:increasePitsBy1($this, $startingAt + 1, $times - 1,$old, false())
+            board:_increasePitsBy1($this, $startingAt + 1, $times - 1,$old, false())
+        )
+    else ()   
  };
  
- 
+
  
  declare updating function board:distributeSeeds($this, $clickedPit, $times)
  {
     if ($clickedPit = 7 or $clickedPit = 14 ) then
-            board:increaseHouseBy1($this, $clickedPit + 1, $times, $clickedPit, true())
+            board:_increaseHouseBy1($this, $clickedPit + 1, $times, $clickedPit, true())
         else 
-            board:increasePitsBy1($this, $clickedPit + 1, $times, $clickedPit, true())
+            board:_increasePitsBy1($this, $clickedPit + 1, $times, $clickedPit, true())
  };
 
- declare updating function board:clickedPit($this, $pitNumber)
+ declare updating function board:clickedPit($this, $pitId)
  {
     pit:setSeedCount(
             board:getPitWithId($this, $pitNumber), 
-            pit:getSeedCount(board:getPitWithId($this, $pitNumber)) idiv 14),
+            pit:getSeedCount(board:getPitWithId($this, $pitId)) idiv 14),
     
     board:distributeSeeds($this, $pitNumber, 
-                   pit:getSeedCount(board:getPitWithId($this, $pitNumber)))
+                   pit:getSeedCount(board:getPitWithId($this, $pitId)))
  };
  
  
@@ -193,19 +183,21 @@ declare updating function board:_increaseHouseBy1($this, $startingAt, $times, $o
     players:setNextPlayerWithId($this/players, 1)
  };
  
- game:resetGame(fn:doc("gamestate.xml")/game)
-    
+      
+ board:clickedPit(
+    fn:doc("gamestate.xml")/game/board, 
+    1
+    ) 
     
  (:
+ game:resetGame(fn:doc("gamestate.xml")/game)
+ 
+ 
  board:resetBoard(
     fn:doc("gamestate.xml")/game/board, 
     3
     )
-    
- board:clickedPit(
-    fn:doc("gamestate.xml")/game/board, 
-    1
-    )
+ 
  
  let $current := players:getCurrentPlayer(fn:doc("gamestate.xml")/game/players)
  return $current
