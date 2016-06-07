@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--Andreas Eichner, Michael Conrads-->
-
 <?xml-stylesheet href="transform.xsl" type="text/xsl"?>
 <game>
     <board>
         <top>
             <pit id="1">1</pit>
-            <pit id="2">9</pit>
+            <pit id="2">11</pit>
             <pit id="3">9</pit>
             <pit id="4">9</pit>
             <pit id="5">9</pit>
             <pit id="6">9</pit>
             
             <house id="7">9</house>
-            
         </top>
+        
         <bottom>
             <pit id="8">9</pit>
             <pit id="9">9</pit>
@@ -23,20 +21,22 @@
             <pit id="11">9</pit>
             <pit id="12">9</pit>
             <pit id="13">9</pit>
+            
             <house id="14">9</house>
         </bottom>
     </board>
     
     <players>
-        <playerTurn>1</playerTurn>
-        <playerTop>
+        <turn>1</turn>
+        
+        <player>
             <id>1</id>
             <winCount>0</winCount>
-        </playerTop>
-        <playerBottom>
+        </player>
+        
+        <player>
             <id>2</id>
             <winCount>0</winCount>
-        </playerBottom>
+        </player>
     </players>
-    
 </game>

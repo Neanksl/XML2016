@@ -1,39 +1,42 @@
 (: Andreas Eichner, Michael Conrads :)
-
-
+declare namespace player = "mancala:player";
+declare namespace house = "mancala:house";
+declare namespace pit = "mancala:pit";
+declare namespace board = "mancala:board";
 (: player class :)
 
-(: houseclass :)
- declare updating function local:house_incSeedCount($this, $amount)
+
+(: house class :)
+
+ declare updating function house:incSeedCount($this, $amount)
  {
     replace value of node $this with $this + $amount
  };
 
 
-(: pit class :) 
- declare function local:pit_getSeedCount($this)
+(: pit class :)
+
+ declare function pit:getSeedCount($this)
  as xs:integer
  {
     let $this := $this
     return $this
  };
  
- declare updating function local:pit_setSeedCount($this, $count)
+ declare updating function pit:setSeedCount($this, $count)
  {
     replace value of node $this with $count
  };
 
 
- declare updating function local:pit_incSeedCount($this, $amount)
+ declare updating function pit:incSeedCount($this, $amount)
  {
     replace value of node $this with $this + $amount
  };
 
 
 (: board class :)
-
- 
-declare function local:board_getPitWithId($this, $pitId as xs:integer)
+declare function board:getPitWithId($this, $pitId as xs:integer)
 {
     if($pitId < 7) then (
         for $p in $this/top/pit
@@ -49,7 +52,7 @@ declare function local:board_getPitWithId($this, $pitId as xs:integer)
 };
 
  
-declare function local:board_getHouseWithId($this, $houseId as xs:integer)
+declare function board:getHouseWithId($this, $houseId as xs:integer)
 {
     if($houseId = 7) then
         for $h in $this/top/house
@@ -64,72 +67,74 @@ declare function local:board_getHouseWithId($this, $houseId as xs:integer)
 
 
 
-declare updating function local:board_increaseHouseBy1($this, $startingAt, $times, $old, $active)
+declare updating function board:increaseHouseBy1($this, $startingAt, $times, $old, $active)
  {
     if($times > 0 and ($old != $startingAt or $active)) then
-         local:board_guard_increaseHouseBy1($this, $startingAt, $times, $old, $active)
+         board:_increaseHouseBy1($this, $startingAt, $times, $old, $active)
     else ()   
  };
  
  
-declare updating function local:board_guard_increaseHouseBy1($this, $startingAt, $times, $old, $active)
+declare updating function board:_increaseHouseBy1($this, $startingAt, $times, $old, $active)
  {
-        local:house_incSeedCount( local:board_getHouseWithId($this, $startingAt), 
+        house:incSeedCount( board:getHouseWithId($this, $startingAt), 
                                   (($times - 1) idiv 14) + 1),
      
         if( $startingAt = 14) then
-            local:board_increasePitsBy1($this, 1, $times - 1,$old, false())
+            board:increasePitsBy1($this, 1, $times - 1,$old, false())
         else
-            local:board_increasePitsBy1($this, $startingAt + 1, $times - 1,$old, false()) 
+            board:increasePitsBy1($this, $startingAt + 1, $times - 1,$old, false()) 
  };
  
 
 
  
- declare updating function local:board_increasePitsBy1($this, $startingAt, $times, $old, $active)
+ declare updating function board:increasePitsBy1($this, $startingAt, $times, $old, $active)
  {
     if($times > 0 and ($old != $startingAt or $active ) ) then
-    local:board_guard_increasePitsBy1($this, $startingAt, $times, $old, $active)
+        board:_increasePitsBy1($this, $startingAt, $times, $old, $active)
     else ()   
  };
  
  
- declare updating function local:board_guard_increasePitsBy1($this, $startingAt, $times, $old, $active)
+ declare updating function board:_increasePitsBy1($this, $startingAt, $times, $old, $active)
  {
     
-    local:pit_incSeedCount(
-                            local:board_getPitWithId($this, $startingAt),
+    pit:incSeedCount(
+                            board:getPitWithId($this, $startingAt),
                             (($times - 1) idiv 14) + 1
                             ),
     
         if ($startingAt = 6 or $startingAt = 13 ) then
-            local:board_increaseHouseBy1($this, $startingAt + 1, $times - 1,$old, false())
+            board:increaseHouseBy1($this, $startingAt + 1, $times - 1,$old, false())
         else 
-            local:board_increasePitsBy1($this, $startingAt + 1, $times - 1,$old, false())
+            board:increasePitsBy1($this, $startingAt + 1, $times - 1,$old, false())
  };
  
  
  
- declare updating function local:board_distributeSeeds($this, $clickedPit, $times)
+ declare updating function board:distributeSeeds($this, $clickedPit, $times)
  {
     if ($clickedPit = 7 or $clickedPit = 14 ) then
-            local:board_increaseHouseBy1($this, $clickedPit + 1, $times, $clickedPit, true())
+            board:increaseHouseBy1($this, $clickedPit + 1, $times, $clickedPit, true())
         else 
-            local:board_increasePitsBy1($this, $clickedPit + 1, $times, $clickedPit, true())
+            board:increasePitsBy1($this, $clickedPit + 1, $times, $clickedPit, true())
  };
 
- declare updating function local:board_playerSelectedPit($this, $player, $pitNumber)
+ declare updating function board:clickedPit($this, $pitNumber)
  {
+    pit:setSeedCount(
+            board:getPitWithId($this, $pitNumber), 
+            pit:getSeedCount(board:getPitWithId($this, $pitNumber)) idiv 14),
     
-    local:pit_setSeedCount(local:board_getPitWithId($this, $pitNumber), local:pit_getSeedCount(local:board_getPitWithId($this, $pitNumber)) idiv 14),
-    local:board_distributeSeeds($this, $pitNumber, local:pit_getSeedCount(local:board_getPitWithId($this, $pitNumber)))
+    board:distributeSeeds($this, $pitNumber, 
+                   pit:getSeedCount(board:getPitWithId($this, $pitNumber)))
  };
  
  
  
- local:board_playerSelectedPit(
+ board:clickedPit(
     fn:doc("gamestate.xml")/game/board, 
-    fn:doc("gamestate.xml")/game/players/playerTop, 
     1
     )
  
