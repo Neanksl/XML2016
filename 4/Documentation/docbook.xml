@@ -15,36 +15,38 @@
     <sect1>
         <title>Use Cases</title>
         <para>
-            The mancala game can be splitted in six different usecases:
+            The mancala game can be splitted up in the following usecases:
             <itemizedlist>
                 <listitem>
                     <para>
                         Initially the players want to be able to start a new game of mancala.
                     </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                The players also want have the possibility to discard the current game and restart it.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
                 </listitem>
                 <listitem>
                     <para>
-                        Restart the current game
+                        Each player wants to be able to make the game specific moves.
                     </para>
                 </listitem>
                 <listitem>
                     <para>
-                        Make a move
+                        Each player wants to have the option to undo his latest action.
                     </para>
                 </listitem>
                 <listitem>
                     <para>
-                        Undo the current action
+                        The players want to be able to win the game and see how many games they won so far.
                     </para>
                 </listitem>
                 <listitem>
                     <para>
-                        Win the game
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        Save the game
+                        Optionally the player want to be able to save the game.
                     </para>
                 </listitem>
             </itemizedlist>
@@ -69,7 +71,7 @@
         </mediaobject>
     </sect1>
     <sect1>
-        <title>XQuery usage</title>
+        <title>Implementation</title>
         <sect2>
             <title>"this" context</title>
             <para>TODO</para>
