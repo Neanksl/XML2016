@@ -147,12 +147,18 @@
         </sect2>
         <sect2>
             <title>Namespaces</title>
-            <para>In order to realise the architecture represented in the classdiagram we introduced multiple namespaces, which help to differentiate between those classes. Since only classes with methods received their own namespace, the layer and the position are the only classes which do not have an explicit namespace. Accordingly each method is defined in the namespace of its class.
-            </para>
+            <para>In order to realise the architecture represented in the classdiagram we introduced multiple namespaces, to simulate class-scopes. Since only classes with methods received their own namespace, the layer and the position are the only classes which do not have an explicit namespace. Accordingly each method is defined in the namespace of its class.</para>
         </sect2>
         <sect2>
             <title>Updating vs FLWOR</title>
             <para>By marking a function <emphasis>updating</emphasis>, FLWOR statements cannot be used inside the function scope. To mitigate this issue, updating functions use getters on composite objects instead of local <emphasis>let</emphasis> variables.</para>
         </sect2>
+
+        <sect2>
+            <title>Single Node Updates</title>
+            <para>As xQuery updates are gathered and applied at once the end of the xQuery script, nodes cannot be updated multiple times. Therefore, the amount of seeds is calculated and each pit is updated only once.</para>
+        </sect2>
+        
+
     </sect1>
 </article>
