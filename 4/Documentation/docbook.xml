@@ -152,7 +152,7 @@
         </sect2>
         <sect2>
             <title>Updating vs FLWOR</title>
-            <para>XQuery provides multiple ways to implement a function. Generally the mancala game iterates over the gamestate.xml and that requires the usage of the "update" function of XQuery. On the other side we commonly used the FLWOR statement, but we had some trouble to combine those two approaches, since "update" cannot be called in a FLWOR statement.</para>
+            <para>By marking a function <emphasis>updating</emphasis>, FLWOR statements cannot be used inside the function scope. To mitigate this issue, updating functions use getters on composite objects instead of local <emphasis>let</emphasis> variables.</para>
         </sect2>
     </sect1>
 </article>
