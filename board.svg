@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <title>Mancala Board</title>
+    <desc>A dynamic Mancala board</desc>
+
+    <defs>
+        
+        <linearGradient id="board_gradient" gradientUnits="userSpaceOnUse" x1="-10%" y1="-30%" x2="100%" y2="100%">
+            <stop  offset="0.2082" style="stop-color:#F8951D"/>
+            <stop  offset="0.3386" style="stop-color:#EB8E1D"/>
+            <stop  offset="0.5819" style="stop-color:#C77B1F"/>
+            <stop  offset="0.9093" style="stop-color:#8F5C20"/>
+            <stop  offset="1" style="stop-color:#7E5321"/>
+        </linearGradient>
+        
+        <radialGradient id="seedpit_fill" cx="1%" cy="1%" r="3.5%" gradientUnits="userSpaceOnUse">
+            <stop  offset="0.2446" style="stop-color:#F8951D"/>
+            <stop  offset="0.369" style="stop-color:#EB8E1D"/>
+            <stop  offset="0.6011" style="stop-color:#C77B1F"/>
+            <stop  offset="0.9135" style="stop-color:#8F5C20"/>
+            <stop  offset="1" style="stop-color:#7E5321"/>
+        </radialGradient>
+        
+        <radialGradient id="largeseedpit_fill" cx="10%" cy="15%" r="12.5%" gradientUnits="userSpaceOnUse">
+            <stop  offset="0.2446" style="stop-color:#F8951D"/>
+            <stop  offset="0.369" style="stop-color:#EB8E1D"/>
+            <stop  offset="0.6011" style="stop-color:#C77B1F"/>
+            <stop  offset="0.9135" style="stop-color:#8F5C20"/>
+            <stop  offset="1" style="stop-color:#7E5321"/>
+        </radialGradient>
+        
+        <radialGradient id="seed_blue_fill" cx="-0.3%" cy="-0.3%" r="1.2%" gradientUnits="userSpaceOnUse">
+            <stop  offset="0.2444" style="stop-color:#B5E3EF"/>
+            <stop  offset="0.9" style="stop-color:#006D95"/>
+        </radialGradient>
+
+        <circle id="seedpit" r="3%"  fill="url(#seedpit_fill)" stroke="black" stroke-width="0.5"/>
+        <circle id="seed_blue" r="1%"  fill="url(#seed_blue_fill)" stroke="black" stroke-width="0.1"/>
+        <circle id="seed_red" r="2%"  fill="url(#largeseedpit_fill)" stroke="black" stroke-width="0.5"/>
+        <rect id="largepit" rx="1%" ry="2%" width="8%" height="20%" fill="url(#largeseedpit_fill)" stroke="black" stroke-width="0.5"/>
+        
+        <g id="board">
+            <rect x="10%" y="30%" width="70%" height="30%" stroke="black" stroke-width="2" fill="url(#board_gradient)" />
+            <use xlink:href="#largepit" x="15%" y="35%"/>
+            <use xlink:href="#seedpit" x="28%" y="38%"/>
+            <use xlink:href="#seed_blue" x="28%" y="38%"/>
+            <use xlink:href="#seedpit" x="34%" y="38%"/>
+            <use xlink:href="#seedpit" x="40%" y="38%"/>
+            <use xlink:href="#seedpit" x="46%" y="38%"/>
+            <use xlink:href="#seedpit" x="52%" y="38%"/>
+            <use xlink:href="#seedpit" x="58%" y="38%"/>
+            <use xlink:href="#seedpit" x="28%" y="52%"/>
+            <use xlink:href="#seedpit" x="34%" y="52%"/>
+            <use xlink:href="#seedpit" x="40%" y="52%"/>
+            <use xlink:href="#seedpit" x="46%" y="52%"/>
+            <use xlink:href="#seedpit" x="52%" y="52%"/>
+            <use xlink:href="#seedpit" x="58%" y="52%"/>
+            <use xlink:href="#largepit" x="63%" y="35%"/>
+        </g>
+    </defs>
+
+    <use xlink:href="#board"/>
+</svg>
+
