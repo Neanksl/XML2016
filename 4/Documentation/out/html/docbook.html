@@ -18,26 +18,26 @@
         </p><div class="mediaobject"><img src="../.././../Diagrams/UseCaseDiagram.pdf"></div></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e26"></a>Classes</h2></div></div></div><p>
             The following list explains the classes shown in the class diagram.
             </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
-                        <span class="emphasis"><em>Game</em></span>:
-                        TODO
+                        <span class="emphasis"><em>Player</em></span>:
+                        The Player class represents one of two players. It has an ID to differentiate between the players and each player has a winCount, which contains the amount of won games. Thereby it has the method to increase the winCount after a won match and the method to reset the winCount if the game session has came to an end.
                     </p></li><li class="listitem"><p>
                         <span class="emphasis"><em>Players</em></span>:
-                        TODO
-                    </p></li><li class="listitem"><p>
-                        <span class="emphasis"><em>Player</em></span>:
-                        TODO
-                    </p></li><li class="listitem"><p>
-                        <span class="emphasis"><em>Board</em></span>:
-                        TODO
-                    </p></li><li class="listitem"><p>
-                        <span class="emphasis"><em>Layer</em></span>:
-                        TODO
+                        The Players class is the controller of two Player. It remembers which players turn it is and provides the according methods to set/get/toggle the player turn. 
                     </p></li><li class="listitem"><p>
                         <span class="emphasis"><em>Pit</em></span>:
-                        TODO
+                        The pits represents the holes on the board in which the seeds will sit in. To identify the different pits they contain the property ID. Furthermore, each pit tracks the amount of seeds in it and provide the appropriate methods to get/set/increment the current seedCount.  
                     </p></li><li class="listitem"><p>
                         <span class="emphasis"><em>House</em></span>:
-                        TODO
+                        The house is the slightly bigger pit, which stores all the seeds a player won. Therefore, each player only has one house. The house has up to now the exactly same attributes and methods as a pit.
+                    </p></li><li class="listitem"><p>
+                        <span class="emphasis"><em>Layer</em></span>:
+                        The Layer class is just a wrapper class for the house and the pits of one player. Since a player has six pits and one house it consists exactly of six pits and one house. Furthermore, the Layer class contains the attribute position, which is an enumeration of either "top" or "bottom". 
+                    </p></li><li class="listitem"><p>
+                        <span class="emphasis"><em>Board</em></span>:
+                        The board is the contoller class for the mancala board. It consists of two layers - one top and one bottom layer. The board handles is able to get a pit or house by its ID so that the appropriate method (inSeedCount) can be called if a player clicks on a pit. The board also wraps getting the pit/house and calling its incSeedCount by the handler method clickedPit, which is called if a player clicks on a pit. Finally the board contains the resetBoard method, which sets the board to its initial setup.
+                    </p></li><li class="listitem"><p>
+                        <span class="emphasis"><em>Game</em></span>:
+                        The game is the top level controller of one instance of a game. It consist of the Board and the Players class. Besides wrapping those classes it has the method to reset the current game.
                     </p></li></ul></div><p>
         </p><div class="mediaobject"><img src="../.././../Diagrams/ClassDiagram.pdf"></div></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e54"></a>Implementation</h2></div></div></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="d5e56"></a>Filestructure</h3></div></div></div><p>
                 The following list shows the files, which were used to implement the basic functionalities of XQuery for mancala.
