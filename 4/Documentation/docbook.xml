@@ -156,7 +156,7 @@
 
         <sect2>
             <title>Single Node Updates</title>
-            <para>As xQuery updates are gathered and applied at once the end of the xQuery script, nodes cannot be updated multiple times. Therefore, the amount of seeds is calculated and each pit is updated only once.</para>
+            <para>As XQuery updates are gathered and applied at once the end of the XQuery script, nodes cannot be updated multiple times. Therefore, the amount of seeds is calculated and each pit is updated only once.</para>
         </sect2>
         
 
