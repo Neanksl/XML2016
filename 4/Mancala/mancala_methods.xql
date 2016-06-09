@@ -160,10 +160,10 @@ declare updating function board:_increaseHouseBy1($this, $startingAt, $times, $o
  declare updating function board:clickedPit($this, $pitId)
  {
     pit:setSeedCount(
-            board:getPitWithId($this, $pitNumber), 
+            board:getPitWithId($this, $pitId), 
             pit:getSeedCount(board:getPitWithId($this, $pitId)) idiv 14),
     
-    board:distributeSeeds($this, $pitNumber, 
+    board:distributeSeeds($this, $pitId, 
                    pit:getSeedCount(board:getPitWithId($this, $pitId)))
  };
  

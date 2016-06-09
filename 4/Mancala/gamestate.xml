@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Andreas Eichner, Michael Conrads-->
 
-<!DOCTYPE game SYSTEM "file:/Users/Andi/TUM/Faecher/XML_Praktikum/XML2016/4/Mancala/gamestate.dtd">
+<!DOCTYPE game SYSTEM "./gamestate.dtd">
 <?xml-stylesheet href="transform.xsl" type="text/xsl"?>
 <game>
     <board>
