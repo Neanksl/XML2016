@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Andreas Eichner, Michael Conrads-->
+
+<!DOCTYPE game SYSTEM "./gamestate.dtd">
+<?xml-stylesheet href="transform.xsl" type="text/xsl"?>
+<game>
+    <board>
+        <layer position="top">
+            <pit id="1">3</pit>
+            <pit id="2">3</pit>
+            <pit id="3">3</pit>
+            <pit id="4">3</pit>
+            <pit id="5">3</pit>
+            <pit id="6">3</pit>
+            
+            <house id="7">0</house>
+        </layer>
+        
+        <layer position="bottom">
+            <pit id="8">3</pit>
+            <pit id="9">3</pit>
+            <pit id="10">3</pit>
+            <pit id="11">3</pit>
+            <pit id="12">3</pit>
+            <pit id="13">3</pit>
+            
+            <house id="14">0</house>
+        </layer>
+    </board>
+    
+    <players>
+        <turn>1</turn>
+        
+        <player>
+            <id>1</id>
+            <winCount>2</winCount>
+        </player>
+        
+        <player>
+            <id>2</id>
+            <winCount>0</winCount>
+        </player>
+    </players>
+</game>
