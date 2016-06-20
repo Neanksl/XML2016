@@ -1,8 +1,8 @@
 # General Options
 DEBUG = true
-DBPATH = /Users/michaelconrads/Downloads/basex/data
+DBPATH = ../data
 LOGPATH = .logs
-REPOPATH = /Users/michaelconrads/Downloads/basex/repo
+REPOPATH = ../repo
 LANG = English
 LANGKEYS = false
 GLOBALLOCK = false
@@ -26,7 +26,7 @@ LOGMSGMAXLEN = 1000
 ASYNCTIMEOUT = 3600
 
 # HTTP Services
-WEBPATH = /Users/michaelconrads/Downloads/basex/webapp
+WEBPATH = ../webapp
 RESTPATH = 
 RESTXQPATH = 
 CACHERESTXQ = false
