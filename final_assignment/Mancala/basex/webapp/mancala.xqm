@@ -171,14 +171,22 @@ declare updating function page:board_increaseHouseBy1($this, $startingAt, $times
                    page:pit_getSeedCount(page:board_getPitWithId($this, $pitId)))
  };
  
- (:
+ 
  declare  
  %rest:path("clicked/{$pitId}")
  updating function page:clickedPit($pitId)
  {
-    return page:board_clickedPit(page:getDB()/game/board, $pitId) 
+ let $x := 1
+    return (
+        
+        page:board_clickedPit(page:getDB()/game/board, xs:integer($pitId))
+        (: 
+        <rest:forward>/</rest:forward> 
+        return page:getDB()
+        :)
+    )
  };
- :)
+ 
  
  
  declare updating function page:game_resetBoard($this, $startSeeds)
