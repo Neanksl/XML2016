@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--Andreas Eichner, Michael Conrads-->
+
+<!ELEMENT winCount (#PCDATA)>
+<!ELEMENT game (#PCDATA | board | players)*>
+<!ELEMENT players (#PCDATA | turn | player)*>
+<!ELEMENT pit (#PCDATA)>
+<!ATTLIST pit id CDATA #IMPLIED>
+<!ELEMENT turn (#PCDATA)>
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT house (#PCDATA)>
+<!ATTLIST house id CDATA #IMPLIED>
+<!ELEMENT board (#PCDATA | layer)*>
+<!ELEMENT layer (#PCDATA | pit | house)*>
+<!ATTLIST layer position CDATA #IMPLIED>
+<!ELEMENT player (#PCDATA | id | winCount)*>

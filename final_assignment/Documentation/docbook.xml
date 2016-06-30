@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--Andreas Eichner, Michael Conrads-->
+
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<article xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>Mancala - XQuery</title>
+        <author>
+            <orgname>Michael Conrads &amp; Andreas Eichner</orgname>
+        </author>
+    </info>
+    <sect1>
+        <title>Use Cases</title>
+        <para>
+            The mancala game can be splitted up in the following usecases:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Initially the players want to be able to start a new game of mancala.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                The players also want have the possibility to discard the current game and restart it.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+                <listitem>
+                    <para>
+                        Each player wants to be able to make the game specific moves.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Each player wants to have the option to undo his latest action.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The players want to be able to win the game and see how many games they won so far.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Optionally the player want to be able to save the game.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <mediaobject>
+            <imageobject>
+                <imagedata
+                    fileref="./../Diagrams/UseCaseDiagram.pdf"
+                />
+            </imageobject>
+        </mediaobject>
+    </sect1>
+    <sect1>
+        <title>Classes</title>
+        <para>
+            The following list explains the classes shown in the class diagram.
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis>Player</emphasis>:
+                        The Player class represents one of two players. It has an ID to differentiate between the players and each player has a winCount, which contains the amount of won games. Thereby it has the method to increase the winCount after a won match and the method to reset the winCount if the game session has came to an end.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Players</emphasis>:
+                        The Players class is the controller of two Player. It remembers which players turn it is and provides the according methods to set/get/toggle the player turn. 
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Pit</emphasis>:
+                        The pits represents the holes on the board in which the seeds will sit in. To identify the different pits they contain the property ID. Furthermore, each pit tracks the amount of seeds in it and provide the appropriate methods to get/set/increment the current seedCount.  
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>House</emphasis>:
+                        The house is the slightly bigger pit, which stores all the seeds a player won. Therefore, each player only has one house. The house has up to now the exactly same attributes and methods as a pit.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Layer</emphasis>:
+                        The Layer class is just a wrapper class for the house and the pits of one player. Since a player has six pits and one house it consists exactly of six pits and one house. Furthermore, the Layer class contains the attribute position, which is an enumeration of either "top" or "bottom". 
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Board</emphasis>:
+                        The board is the contoller class for the mancala board. It consists of two layers - one top and one bottom layer. The board handles is able to get a pit or house by its ID so that the appropriate method (inSeedCount) can be called if a player clicks on a pit. The board also wraps getting the pit/house and calling its incSeedCount by the handler method clickedPit, which is called if a player clicks on a pit. Finally the board contains the resetBoard method, which sets the board to its initial setup.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Game</emphasis>:
+                        The game is the top level controller of one instance of a game. It consist of the Board and the Players class. Besides wrapping those classes it has the method to reset the current game.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <mediaobject>
+            <imageobject>
+                <imagedata
+                    fileref="./../Diagrams/ClassDiagram.pdf"
+                />
+            </imageobject>
+        </mediaobject>
+    </sect1>
+    <sect1>
+        <title>Implementation</title>
+        <sect2>
+            <title>Filestructure</title>
+            <para>
+                The following list shows the files, which were used to implement the basic functionalities of XQuery for mancala.
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>gamestate.xml</emphasis>:
+                            Contains all elements shown in the class diagram with according mulitplicity.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>gamestate.dtd</emphasis>:
+                            The DTD file for "gamestate.xml", which declares all elements.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>mancala_methods.xql</emphasis>:
+                            Contains all methods described in the class diagram
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </sect2>
+        <sect2>
+            <title>Namespaces</title>
+            <para>In order to realise the architecture represented in the classdiagram we introduced multiple namespaces, to simulate class-scopes. Since only classes with methods received their own namespace, the layer and the position are the only classes which do not have an explicit namespace. Accordingly each method is defined in the namespace of its class.</para>
+        </sect2>
+        <sect2>
+            <title>Updating vs FLWOR</title>
+            <para>By marking a function <emphasis>updating</emphasis>, FLWOR statements cannot be used inside the function scope. To mitigate this issue, updating functions use getters on composite objects instead of local <emphasis>let</emphasis> variables.</para>
+        </sect2>
+
+        <sect2>
+            <title>Single Node Updates</title>
+            <para>As XQuery updates are gathered and applied at once the end of the XQuery script, nodes cannot be updated multiple times. Therefore, the amount of seeds is calculated and each pit is updated only once.</para>
+        </sect2>
+        
+
+    </sect1>
+</article>
