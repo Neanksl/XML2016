@@ -410,3 +410,28 @@ updating function page:createDB()
         )
 };
 
+(:   testing :)
+
+declare
+%rest:path("test/db/create/{$dbname}")
+%rest:GET
+updating function page:createDB($dbname)
+{
+    let $db := doc( concat("./static/tests/", $dbname , ".xml"))
+    
+    return
+        (
+        db:output(page:redirect("/")),
+        db:create("mancala-db", $db, "mancala-db.xml")
+        )
+};
+
+(:
+declare
+%rest:path("gamestate/{$dbname}")
+function page:gamestate($dbname)
+{
+    let $db := db:open(concat("./static/tests/", $dbname , ".xml"))
+    return
+        $db
+};:)

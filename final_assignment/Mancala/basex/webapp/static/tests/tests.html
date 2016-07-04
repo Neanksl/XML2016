@@ -1,0 +1,55 @@
+    <html>
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    </head>
+    <body>
+    <script>
+
+function resetDB(file, callback)
+{
+    $.ajax({
+        url:"http://localhost:8984/test/db/create/" + file}).done(function(data){
+
+            console.log("cleared db")
+            callback()
+        });
+}
+
+function assert(cond)
+{
+    if(!cond) alert("foo");
+}
+
+$(document).ready(function(){
+
+    resetDB("test1", function(){
+
+        $.ajax({
+            url:"http://localhost:8984/clicked/1"
+        }).done(function(data) {
+
+            console.log("clicked 1")
+            
+            $.ajax({url:"http://localhost:8984/gamestate"}).done(function(data){
+
+                $xml = $( data );
+                console.log(data);
+                
+                assert(
+                    $xml.find("game board layer[position = 'top'] house").eq(1).text() == "1"
+                );
+               
+            });
+
+        });
+
+    });
+    
+    
+
+
+});
+</script>
+    tests
+</body>
+    </html>

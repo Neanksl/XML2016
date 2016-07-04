@@ -1,0 +1,56 @@
+ <game>
+        <board>
+            <layer position="top">
+                <house
+                    id="1">1</house>
+                <house
+                    id="2">0</house>
+                <house
+                    id="3">0</house>
+                <house
+                    id="4">0</house>
+                <house
+                    id="5">0</house>
+                <house
+                    id="6">0</house>
+
+                <store
+                    id="7">0</store>
+            </layer>
+
+            <layer
+                position="bottom">
+                <house
+                    id="8">1</house>
+                <house
+                    id="9">0</house>
+                <house
+                    id="10">0</house>
+                <house
+                    id="11">0</house>
+                <house
+                    id="12">0</house>
+                <house
+                    id="13">0</house>
+                <store
+                    id="14">0</store>
+            </layer>
+        </board>
+
+        <wonBy>0</wonBy>
+
+        <players>
+            <turn>1</turn>
+
+            <player>
+                <id>1</id>
+                <winCount>0</winCount>
+            </player>
+
+            <player>
+                <id>2</id>
+                <winCount>0</winCount>
+            </player>
+        </players>
+    </game>
+
