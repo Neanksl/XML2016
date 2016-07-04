@@ -6,22 +6,25 @@
 	xmlns:xlink="http://www.w3.org/1999/xlink">
 
 <xsl:output
-	method="xml"
+	method="html"
 	indent="yes"
 	standalone="no"
 	doctype-public="-//W3C//DTD SVG 1.1//EN"
 	doctype-system="http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"
 	media-type="image/svg"/>
 
+
 	<!-- This XSLT uses two XML sources, where Static.xml is declared 
 	and GameState.xml must be imported. -->
 	<xsl:variable name="GameState" select="document('http://localhost:8984/gamestate')"/>
 
 	<xsl:template match="static">
-		<html>
-			<body>
-				TODO
-				<svg width="{board/width}" height="{board/height}">				
+          <p style="display:inline-block; float:left; ">
+            <a style="margin-right:30px; background-color:yellow; border:1px black;"
+               href="db/create">new game </a>
+                        <a href="foobar">reset </a>
+          </p>
+                  <svg width="{board/width}" height="{board/height}">				
 					<defs>
 						<rect
 							id="houseTemplate"
@@ -77,8 +80,7 @@
 					</g>
 						
 				</svg>
-			</body>
-		</html>
+
 	</xsl:template>
 	
 	<!-- Recursion -->
@@ -87,11 +89,13 @@
 		<xsl:if test="$count &gt; 0">
 			<!-- Upper houses -->
 			<g>
+                                                          <a href="clicked/{7 - $count}" >
 				<use 
 					x="{layout/posStartX + (house/width + layout/distanceHouseX) * $count}" 
 					y="{layout/posStartY}"
 					xlink:href="#houseTemplate"/>
-					<!-- xlink:href="{concat('#house', houses/up/house[0+$count])}"/> -->
+
+				<!-- xlink:href="{concat('#house', houses/up/house[0+$count])}"/> -->
 					
 				<text
 					x="{layout/posStartX + (house/width + layout/distanceHouseX) * $count + 0.5 * house/width}"
@@ -99,13 +103,15 @@
 					text-anchor="middle"
 					font-size="{0.3 * house/width}"
 					style="{house/textstyle}">
-						<xsl:value-of select="$GameState/game/board/layer[1]/house[0+$count]"/>
+						<xsl:value-of select="$GameState/game/board/layer[1]/house[7 - $count]"/>
 				</text>
+                                                          </a>
 			</g>
 			
 				
 			<!-- Bottom houses -->
 			<g>
+                                                                                    <a href="clicked/{$count + 7}" >
 				<use 
 					x="{layout/posStartX + (house/width + layout/distanceHouseX) * $count}" 
 					y="{layout/posStartY + house/height + layout/distanceHouseY}" 
@@ -116,8 +122,9 @@
 					text-anchor="middle"
 					font-size="{0.3 * house/width}"
 					style="{house/textstyle}">
-						<xsl:value-of select="$GameState/game/board/layer[2]/house[0+$count]"/>
+						<xsl:value-of select="$GameState/game/board/layer[2]/house[0 + $count]"/>
 				</text>
+                                                                                    </a>
 			</g>			
 				
 			<xsl:call-template name="createHouses">
