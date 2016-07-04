@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- <!DOCTYPE mancala SYSTEM "Static.dtd"> -->
-<?xml-stylesheet href="Transform.xsl" type="text/xsl"?>
+<?xml-stylesheet href="http://localhost:8984/static/Transform.xsl" type="text/xsl"?>
 <static>	
     <board>
         <width>1500</width>
