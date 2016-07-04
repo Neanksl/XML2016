@@ -157,14 +157,14 @@
                 <title>Create game</title>
                 <para>
                     To start a new game the player presses the start button.
-                    <enumeratedlist>
+                    <orderedlist>
                         <listitem>
                             <para>
                                 <emphasis>a action</emphasis>:
                                 such action
                             </para>
                         </listitem>
-                    </enumeratedlist>
+                    </orderedlist>
                 </para>
                 <mediaobject>
                     <imageobject>
