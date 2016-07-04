@@ -6,22 +6,27 @@
         <width>1500</width>
         <height>1500</height>
     </board>
-	<seed>
+    <seed>
         <style>fill:black;</style>
     </seed>
-	<house>        
-		<nrOfHouses>6</nrOfHouses>
-		<width>100</width>
-		<height>100</height>
-		<roundX>10</roundX>
-		<roundY>10</roundY>
-		<textstyle>fill:black;font-family:Agency FB;</textstyle>
-		<style>fill:white;stroke:black;stroke-width:2;</style>
+    <house>        
+        <nrOfHouses>6</nrOfHouses>
+        <width>100</width>
+        <height>100</height>
+        <roundX>10</roundX>
+        <roundY>10</roundY>
+        <styleThisPlayer>fill:white;stroke:black;stroke-width:2;</styleThisPlayer>
+        <textstyleThisPlayer>fill:black;font-family:Agency FB;</textstyleThisPlayer>
+        <styleOtherPlayer>fill:white;stroke:red;stroke-width:2;</styleOtherPlayer>
+        <textstyleOtherPlayer>fill:red;font-family:Agency FB;</textstyleOtherPlayer>
     </house>
-	<store>
-		<radius>100</radius>
-		<textstyle>fill:black;font-weight:bold;font-family:Agency FB;</textstyle>
-		<style>fill:white;stroke:black;stroke-width:2;</style>
+    <store>
+        <radius>100</radius>
+        
+        <styleThisPlayer>fill:white;stroke:black;stroke-width:2;</styleThisPlayer>
+        <textstyleThisPlayer>fill:black;font-weight:bold;font-family:Agency FB;</textstyleThisPlayer>
+        <styleOtherPlayer>fill:white;stroke:red;stroke-width:2;</styleOtherPlayer>
+        <textstyleOtherPlayer>fill:red;font-weight:bold;font-family:Agency FB;</textstyleOtherPlayer>
     </store>
     <layout>
         <posStartX>150</posStartX>
