@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE mancala SYSTEM "Static.dtd"> -->
+<?xml-stylesheet href="Transform.xsl" type="text/xsl"?>
+<static>	
+    <board>
+        <width>1500</width>
+        <height>1500</height>
+    </board>
+	<seed>
+        <style>fill:black;</style>
+    </seed>
+	<house>        
+		<nrOfHouses>6</nrOfHouses>
+		<width>100</width>
+		<height>100</height>
+		<roundX>10</roundX>
+		<roundY>10</roundY>
+		<textstyle>fill:black;font-family:Agency FB;</textstyle>
+		<style>fill:white;stroke:black;stroke-width:2;</style>
+    </house>
+	<store>
+		<radius>100</radius>
+		<textstyle>fill:black;font-weight:bold;font-family:Agency FB;</textstyle>
+		<style>fill:white;stroke:black;stroke-width:2;</style>
+    </store>
+    <layout>
+        <posStartX>150</posStartX>
+        <posStartY>150</posStartY>
+        <distanceHouseX>15</distanceHouseX>
+        <distanceHouseY>50</distanceHouseY>
+        <distanceHouseStore>15</distanceHouseStore>
+        <distanceYextraSeeds>8</distanceYextraSeeds>
+        <distanceBetweenExtraSeeds>5</distanceBetweenExtraSeeds>
+        <lengthUnit>px</lengthUnit>
+    </layout>
+</static>
