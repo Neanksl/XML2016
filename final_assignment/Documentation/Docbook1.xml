@@ -108,6 +108,13 @@
                     </para>
                 </listitem>
             </itemizedlist>
+            <mediaobject>
+                <imageobject>
+                    <imagedata
+                        fileref="./../Diagrams/UseCases.pdf"
+                    />
+                </imageobject>
+            </mediaobject>
         </para>
         
         <section>
@@ -177,9 +184,80 @@
                             Besides wrapping those classes it has the method to reset the current
                             game.</para>
                     </listitem>
+<<<<<<< HEAD
                 </itemizedlist></para>
         </section>
         
+        <section>
+            <title>Architecture</title>
+            <para>
+                TODO explain Architecture
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>a component</emphasis>:
+                            such component
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata
+                        fileref="./../Diagrams/Architecture.pdf"
+                    />
+                </imageobject>
+            </mediaobject>
+        </section>
+        
+        <section>
+            <title>Sequence</title>
+            <para>
+                TODO explain Sequence
+            </para>
+            <section>
+                <title>Sequence_createGame</title>
+                <para>
+                    TODO explain Sequence_createGame
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>a action</emphasis>:
+                                such action
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </para>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata
+                            fileref="./../Diagrams/Sequence_createGame.pdf"
+                        />
+                    </imageobject>
+                </mediaobject>
+            </section>
+            <section>
+                <title>Sequence_clickHouse</title>
+                <para>
+                    TODO explain Sequence_clickHouse
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>a action</emphasis>:
+                                such action
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </para>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata
+                            fileref="./../Diagrams/Sequence_clickHouse.pdf"
+                        />
+                    </imageobject>
+                </mediaobject>
+            </section>
+        </section>
     </section>
     
     <section>
