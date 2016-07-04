@@ -170,7 +170,7 @@ declare updating function page:board_increaseHousesBy1($this, $startingAt, $time
 
 declare updating function page:board_distributeSeeds($this, $clickedHouse, $times)
 {
-    if ($clickedHouse = 7 or $clickedHouse = 14) then
+    if ($clickedHouse = 6 or $clickedHouse = 13) then
         page:board_increaseStoreBy1($this, $clickedHouse + 1, $times, $clickedHouse, true())
     else
         page:board_increaseHousesBy1($this, $clickedHouse + 1, $times, $clickedHouse, true())
@@ -274,4 +274,5 @@ updating function page:createDB()
         db:create("mancala-db", $db, "mancala-db.xml")
         )
 };
+
 
