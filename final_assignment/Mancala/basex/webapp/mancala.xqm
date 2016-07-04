@@ -266,62 +266,7 @@ declare
 %rest:GET
 updating function page:createDB()
 {
-    let $db := <game>
-        <board>
-            <layer
-                position="top">
-                <house
-                    id="1">1</house>
-                <house
-                    id="2">2</house>
-                <house
-                    id="3">3</house>
-                <house
-                    id="4">4</house>
-                <house
-                    id="5">5</house>
-                <house
-                    id="6">6</house>
-                
-                <store
-                    id="7">7</store>
-            </layer>
-            
-            <layer
-                position="bottom">
-                <house
-                    id="8">8</house>
-                <house
-                    id="9">9</house>
-                <house
-                    id="10">10</house>
-                <house
-                    id="11">11</house>
-                <house
-                    id="12">12</house>
-                <house
-                    id="13">13</house>
-                
-                <store
-                    id="14">14</store>
-            </layer>
-        </board>
-        
-        <players>
-            <turn>1</turn>
-            
-            <player>
-                <id>1</id>
-                <winCount>2</winCount>
-            </player>
-            
-            <player>
-                <id>2</id>
-                <winCount>0</winCount>
-            </player>
-        </players>
-    </game>
-    
+    let $db := doc("./static/initial_gamestate.xml")
     
     return
         (
