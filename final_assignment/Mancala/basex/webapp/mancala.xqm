@@ -70,6 +70,13 @@ declare updating function page:store_setSeedCount($this, $amount)
         with $amount
 };
 
+declare function page:store_getSeedCount($this)
+as xs:integer
+{
+    let $this := $this
+    return
+        $this
+};
 
 
 
@@ -185,6 +192,120 @@ updating function page:board_clickedHouse($this, $houseId)
     
     page:board_distributeSeeds($this, $houseId,
     page:house_getSeedCount(page:board_getHouseWithId($this, $houseId)))
+    
+};
+
+
+
+
+declare function page:board_rowIsEmpty($this, $position as xs:string)
+as xs:boolean
+{
+    let $houses := $this/layer[@position = $position]/house
+    return
+        sum($houses) = 0
+};
+
+declare function page:board_sumOfStoreAndRow($this, $position as xs:string)
+as xs:integer
+{
+    let $row := $this/layer[@position = $position]
+    return xs:integer(sum($row/store)) + xs:integer(sum($row/house))
+};
+
+
+declare updating function page:board_setHouseTo($this, $startIndex, $lastIndex, $value)
+{
+    if($startIndex < $lastIndex + 1) then
+    (
+        page:house_setSeedCount(page:board_getHouseWithId($this,$startIndex), $value),
+        page:board_setHouseTo($this, $startIndex + 1, $lastIndex, $value)
+    )
+    else ()
+};
+
+declare updating function page:board_clearHouses($this, $position as xs:string)
+{
+    if($position = "top") then
+        page:board_setHouseTo($this, 1, 6, 0)
+    else
+        page:board_setHouseTo($this, 8, 13, 0)
+};
+
+declare updating function page:game_UpdateWinner($this)
+{
+        if (page:board_sumOfStoreAndRow($this/board, "top") > page:board_sumOfStoreAndRow($this/board, "bottom") ) then
+            (replace value of node $this/wonBy
+                with 1, 
+                page:player_increaseWinCount($this/players/player[1])
+                )
+        else
+            (replace value of node $this/wonBy
+                with 2,
+                page:player_increaseWinCount($this/players/player[2])
+                )
+    
+};
+
+declare
+updating function page:game_checkForGameFinished($this)
+{
+    
+    if (page:board_rowIsEmpty($this/board, "top")) then
+        (
+        page:store_setSeedCount(
+        (: store:)
+        page:board_getStoreWithId($this/board, 14),
+        
+        (: store + sum of top row:)
+        page:board_sumOfStoreAndRow($this/board, "bottom")
+        ),
+        page:board_clearHouses($this/board,"bottom"),
+        page:game_UpdateWinner($this)
+        )
+    
+    else
+        (
+        if (page:board_rowIsEmpty($this/board, "bottom")) then
+            
+            (
+                page:board_clearHouses($this/board,"top"),
+                page:store_setSeedCount(
+            (: store:)
+                    page:board_getStoreWithId($this/board, 7), 
+            
+            (: store + sum of top row :)
+                    page:board_sumOfStoreAndRow($this/board, "top")
+                ),
+            
+            page:game_UpdateWinner($this)
+            
+            )
+        else
+            ()
+        )
+    
+    
+    
+    
+};
+
+declare updating function page:game_clicked($this, $id)
+{
+    page:board_clickedHouse($this/board, xs:integer($id)),
+    page:players_toggleCurrentPlayer($this/players)
+};
+
+declare
+%rest:path("/updategamefinished")
+updating function page:checkIfGameIsFinished()
+{
+    let $x := 1
+    return
+        (
+        db:output(page:redirect("/")),
+        page:game_checkForGameFinished(page:getDB()/game)
+        )
 };
 
 
@@ -195,11 +316,11 @@ updating function page:clickedHouse($houseId)
     let $x := 1
     return
         (
-        db:output(page:redirect("/")),
-        page:board_clickedHouse(page:getDB()/game/board, xs:integer($houseId))
+        db:output(page:redirect("/updategamefinished")),
+        page:game_clicked(page:getDB()/game, xs:integer($houseId))
         )
-
 };
+
 
 
 
@@ -219,7 +340,8 @@ declare updating function page:game_resetBoard($this, $startSeeds)
 declare updating function page:game_resetGame($this)
 {
     page:game_resetBoard($this/board, 3),
-    page:players_setNextPlayerWithId($this/players, 1)
+    page:players_setNextPlayerWithId($this/players, 1),
+    replace value of node $this/wonBy with 0
 };
 
 
@@ -262,6 +384,19 @@ declare function page:redirect($redirect as xs:string) as element(restxq:redirec
 };
 
 declare
+%rest:path("tryagain")
+%rest:GET
+updating function page:tryAgain()
+{
+    let $db := page:getDB()
+    return
+        (
+        db:output(page:redirect("/")),
+        page:game_resetGame($db/game)
+        )
+};
+
+declare
 %rest:path("db/create")
 %rest:GET
 updating function page:createDB()
@@ -274,5 +409,4 @@ updating function page:createDB()
         db:create("mancala-db", $db, "mancala-db.xml")
         )
 };
-
 
