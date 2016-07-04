@@ -108,6 +108,13 @@
                     </para>
                 </listitem>
             </itemizedlist>
+            <mediaobject>
+                <imageobject>
+                    <imagedata
+                        fileref="./../Diagrams/UseCases.pdf"
+                    />
+                </imageobject>
+            </mediaobject>
         </para>
         
         <section>
@@ -162,12 +169,42 @@
             <mediaobject>
                 <imageobject>
                     <imagedata
-                        fileref="./../Diagrams/ClassDiagram.pdf"
+                        fileref="./../Diagrams/Classes.pdf"
                     />
                 </imageobject>
             </mediaobject>
         </section>
         
+        <section>
+            <title>Architecture</title>
+            
+            <mediaobject>
+                <imageobject>
+                    <imagedata
+                        fileref="./../Diagrams/Architecture.pdf"
+                    />
+                </imageobject>
+            </mediaobject>
+        </section>
+        
+        <section>
+            <title>Sequence</title>
+            
+            <mediaobject>
+                <imageobject>
+                    <imagedata
+                        fileref="./../Diagrams/Sequence_createGame.pdf"
+                    />
+                </imageobject>
+            </mediaobject>
+            <mediaobject>
+                <imageobject>
+                    <imagedata
+                        fileref="./../Diagrams/Sequence_clickHouse.pdf"
+                    />
+                </imageobject>
+            </mediaobject>
+        </section>
     </section>
     
     <section>
