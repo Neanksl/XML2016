@@ -151,20 +151,20 @@
         <section>
             <title>Sequence</title>
             <para>
-                TODO explain Sequence
+                The following sequence diagrams describe a chain of events that is triggered when a player interacts with the system.
             </para>
             <section>
-                <title>Sequence_createGame</title>
+                <title>Create game</title>
                 <para>
-                    TODO explain Sequence_createGame
-                    <itemizedlist>
+                    To start a new game the player presses the start button.
+                    <orderedlist>
                         <listitem>
                             <para>
                                 <emphasis>a action</emphasis>:
                                 such action
                             </para>
                         </listitem>
-                    </itemizedlist>
+                    </orderedlist>
                 </para>
                 <mediaobject>
                     <imageobject>
@@ -175,9 +175,9 @@
                 </mediaobject>
             </section>
             <section>
-                <title>Sequence_clickHouse</title>
+                <title>Select a house</title>
                 <para>
-                    TODO explain Sequence_clickHouse
+                    click it
                     <itemizedlist>
                         <listitem>
                             <para>
@@ -211,45 +211,48 @@
                     <listitem>
                         <para>
                             <emphasis>Players</emphasis>:
-                            The Players class is the controller of two Player. It remembers which players turn it is and provides the according methods to set/get/toggle the player turn. 
+                            The Players class is the controller of two Player classes. It remembers which players turn it is and provides the according methods to set/get/toggle the player turn. 
                         </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis>GameObject</emphasis>:
-                            trololol 
+                            The GameObject is an abstract class which works as a superclass for the House and the Store class. 
+                            To identify the different GameObjects they contain the property ID. Furthermore, each GameObject tracks the amount of seeds in it and provide the appropriate methods to get/set/increment the current seedCount.
+                            The Store and the House classes has up to now the exact same attributes and methods as their superclass.
                         </para>
                         <itemizedlist>
                             <listitem>
                                 <para>
                                     <emphasis>House</emphasis>:
-                                    The houses represents the holes on the board in which the seeds will sit in. To identify the different houses they contain the property ID. Furthermore, each house tracks the amount of seeds in it and provide the appropriate methods to get/set/increment the current seedCount.  
+                                    The houses represents the holes on the board in which the seeds will sit in.  
                                 </para>
                             </listitem>
                             <listitem>
                                 <para>
                                     <emphasis>Store</emphasis>:
-                                    The store is the slightly bigger house, which stores all the seeds a player won. Therefore, each player has only one store. The store has up to now the exactly same attributes and methods as a house.
+                                    The store is the slightly bigger house, which stores all the seeds a player won. Therefore, each player has only one store.
                                 </para>
                             </listitem>
                         </itemizedlist>
+                        
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis>Layer</emphasis>:
-                            The Layer class is just a wrapper class for the house and the pits of one player. Since a player has six pits and one house it consists exactly of six pits and one house. Furthermore, the Layer class contains the attribute position, which is an enumeration of either "top" or "bottom". 
+                            The Layer class is just a wrapper class for the store and the houses of one player. Since a player has six houses and one store it consists exactly of six houses and one store. Furthermore, the Layer class contains the attribute position, which is an enumeration of either "top" or "bottom". 
                         </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis>Board</emphasis>:
-                            The board is the contoller class for the mancala board. It consists of two layers - one top and one bottom layer. The board handles is able to get a pit or house by its ID so that the appropriate method (inSeedCount) can be called if a player clicks on a pit. The board also wraps getting the pit/house and calling its incSeedCount by the handler method clickedPit, which is called if a player clicks on a pit. Finally the board contains the resetBoard method, which sets the board to its initial setup.
+                            The board is the contoller class for the mancala board. It consists of two layers - one top and one bottom layer. The board is able to get a hosue or a store by its ID so that the appropriate method (inSeedCount) can be called if a player clicks on a house. The board also wraps getting a house/store and calling its incSeedCount by the handler method clickedHouse, which is called if a player clicks on a house. Finally the board contains the resetBoard method, which sets the board to its initial setup.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis>Game</emphasis>:
-                            The game is the top level controller of one instance of a game. It consist of the Board and the Players class. Besides wrapping those classes it has the method to reset the current game.
+                            The game is the top level controller of one instance of a game. It consists of the Board and the Players class and after calling the contructor the currentGame property is instanciated. Additionally it has the method to reset the current game.
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -302,6 +305,24 @@
             <title>Single Node Updates</title>
             <para>As XQuery updates are gathered and applied at once the end of the XQuery script, nodes cannot be updated multiple times. Therefore, the amount of seeds is calculated and each house is updated only once.</para>
         </section>
+        
+        <section>
+            <title>TODOs</title>
+            <warning>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>mancala_methods.xql</emphasis>:
+                            Contains all methods described in the class diagram
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </warning>
+            <para>Eine Beschreibung der Requests und Responses zischen Client und Server nach dem REST-Prinzip und ihre Abbildung auf Queries mit restXQ.</para>
+            <para>Eine Beschreibung der Benutzeroberfläche für die verschiedenen Stadien des Spiels mit den jeweiligen Interaktionsmüglichkeiten.</para>
+        </section>
+        
+        
     </section>
     
     <section>
@@ -314,10 +335,45 @@
     
     <section>
         <title>Future Work</title>
+        <para>The game could be improved by adding the following additional features</para>
         
         <section>
-            <title>Fancy additional feature</title>
-            <para>Do cool stuff</para>
+            <title>Play against the computer</title>
+            <para>The player has the possibility to choose between playing against a real opponent
+                or against the computer. When a game against the computer is selected, the player
+                can chose the difficulty level of the game. There are 3 options available - easy,
+                medium, difficult.</para>
+        </section>
+        <section>
+            <title>Allow multiple pairs of users to play simultaneously</title>
+            <para>Currently, the mancala application can only save the state of one game which
+                limits it to allowing only two users to play. In order to extend the service and
+                support a multiple number of games simultaneously, each game state should be
+                preserved separatelly.</para>
+        </section>
+        <section>
+            <title>User Ranking</title>
+            <para>Allowing multiple games at the same time asumes a bigger number of users. Adding a
+                user ranking and statistics would provide the players with a better overview of
+                their own performance as well as of their competitors. The statistics could be
+                integrated into each user's profile, showing the amount of games he/she won or lost.
+                A hall of fame listing the best 5 players of all time could be an additional
+                motivation for the users.</para>
+        </section>
+        <section>
+            <title>User Network</title>
+            <para>Building a user network allows the inegration of many additional features which
+                can improve the user experience. As mentoined above, each use will have a profile
+                that shows his statistics. The profile will also be visible for other players.
+                Additional features could include challenging a user, chat as well as offline
+                messaging.</para>
+        </section>
+        <section>
+            <title>Animation</title>
+            <para>Adding animation and special effects to the game play would also have a positive
+                impact on the user experience. An example for such special effects is animating the
+                movement of the seeds or adding sound effects when a seed get into the user's
+                store.</para>
         </section>
     </section>
 </article>
