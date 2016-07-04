@@ -306,10 +306,45 @@
     
     <section>
         <title>Future Work</title>
+        <para>The game could be improved by adding the following additional features</para>
         
         <section>
-            <title>Fancy additional feature</title>
-            <para>Do cool stuff</para>
+            <title>Play against the computer</title>
+            <para>The player has the possibility to choose between playing against a real opponent
+                or against the computer. When a game against the computer is selected, the player
+                can chose the difficulty level of the game. There are 3 options available - easy,
+                medium, difficult.</para>
+        </section>
+        <section>
+            <title>Allow multiple pairs of users to play simultaneously</title>
+            <para>Currently, the mancala application can only save the state of one game which
+                limits it to allowing only two users to play. In order to extend the service and
+                support a multiple number of games simultaneously, each game state should be
+                preserved separatelly.</para>
+        </section>
+        <section>
+            <title>User Ranking</title>
+            <para>Allowing multiple games at the same time asumes a bigger number of users. Adding a
+                user ranking and statistics would provide the players with a better overview of
+                their own performance as well as of their competitors. The statistics could be
+                integrated into each user's profile, showing the amount of games he/she won or lost.
+                A hall of fame listing the best 5 players of all time could be an additional
+                motivation for the users.</para>
+        </section>
+        <section>
+            <title>User Network</title>
+            <para>Building a user network allows the inegration of many additional features which
+                can improve the user experience. As mentoined above, each use will have a profile
+                that shows his statistics. The profile will also be visible for other players.
+                Additional features could include challenging a user, chat as well as offline
+                messaging.</para>
+        </section>
+        <section>
+            <title>Animation</title>
+            <para>Adding animation and special effects to the game play would also have a positive
+                impact on the user experience. An example for such special effects is animating the
+                movement of the seeds or adding sound effects when a seed get into the user's
+                store.</para>
         </section>
     </section>
 </article>
