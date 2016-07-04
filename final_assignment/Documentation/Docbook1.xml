@@ -6,7 +6,7 @@
     version="5.0">
     <info>
         <title>
-            <emphasis> Mancala - SVG </emphasis></title>
+            <emphasis> Mancala </emphasis></title>
         <subtitle>Praktikum: XML-Technologie</subtitle>
         <pubdate>01.07.2016</pubdate>
     </info>
@@ -19,10 +19,10 @@
         <para><emphasis role="underline">Number of players</emphasis> Mostly two </para>
         <para>At the beginning of the game, a <emphasis role="bold">Mancala-Playboard</emphasis> is
             needed. The board will be seperated into 2 rows. Each player has 6 small <emphasis
-                role="bold">"pits"</emphasis> on their side, and a big <emphasis role="bold">"house"
+                role="bold">"houses"</emphasis> on their side, and a big <emphasis role="bold">"store"
                 </emphasis> - which also called <emphasis role="bold">Kalah</emphasis> - where the
             stones are to be collected and stored. In this lab course, we chose the Kalah-version,
-            which uses 36 "seeds" equally distributed in 12 pits.</para>
+            which uses 36 "seeds" equally distributed in 12 houses.</para>
     </section>
     
     <section>
@@ -32,7 +32,7 @@
         
         <itemizedlist mark="opencircle">
             <listitem>
-                <para>Player begins by choosing a pit at his option and starts distributing the
+                <para>Player begins by choosing a house at his option and starts distributing the
                     seeds around the board until there is no seed left in his hand. The seeds should
                     be dropped one-by-one and in counterclockwise direction. The opponent's Kalah
                     should be skipped. </para>
@@ -41,16 +41,16 @@
                 <para>If the last seed is dropped into the player's Kalah, he got an extra turn. </para>
             </listitem>
             <listitem>
-                <para>If the last seed falls into an empty pit owned by the player, player is
-                    allowed to capture all the seeds of the opposite pit and store them in his own
+                <para>If the last seed falls into an empty house owned by the player, player is
+                    allowed to capture all the seeds of the opposite house and store them in his own
                     Kalah. </para>
             </listitem>
             <listitem>
                 <para>The player who still has seeds on his side of the board when the opponent's
-                    pits are empty captures all of those.</para>
+                    houses are empty captures all of those.</para>
             </listitem>
             <listitem>
-                <para>The game ends where there are no seeds left on the 12 pits. The player with
+                <para>The game ends where there are no seeds left on the 12 houses. The player with
                     the most seeds wins the game. </para>
             </listitem>
         </itemizedlist>
@@ -112,60 +112,72 @@
         
         <section>
             <title>Classes</title>
-            <para>
-                The following list explains the classes shown in the class diagram.
+            <para> The following list explains the classes shown in the class diagram. 
+                <mediaobject>
+                    <imageobject>
+                        <imagedata
+                            fileref="./../Diagrams/Classes.pdf"
+                        />
+                    </imageobject>
+                </mediaobject>
                 <itemizedlist>
                     <listitem>
                         <para>
-                            <emphasis>Player</emphasis>:
-                            The Player class represents one of two players. It has an ID to differentiate between the players and each player has a winCount, which contains the amount of won games. Thereby it has the method to increase the winCount after a won match and the method to reset the winCount if the game session has came to an end.
+                            <emphasis>Player</emphasis>: The Player class represents one of two
+                            players. It has an ID to differentiate between the players and each
+                            player has a winCount, which contains the amount of won games. Thereby
+                            it has the method to increase the winCount after a won match and the
+                            method to reset the winCount if the game session has came to an end.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Players</emphasis>:
-                            The Players class is the controller of two Player. It remembers which players turn it is and provides the according methods to set/get/toggle the player turn. 
-                        </para>
+                            <emphasis>Players</emphasis>: The Players class is the controller of two
+                            Player. It remembers which players turn it is and provides the according
+                            methods to set/get/toggle the player turn. </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Pit</emphasis>:
-                            The pits represents the holes on the board in which the seeds will sit in. To identify the different pits they contain the property ID. Furthermore, each pit tracks the amount of seeds in it and provide the appropriate methods to get/set/increment the current seedCount.  
-                        </para>
+                            <emphasis>Pit</emphasis>: The pits represents the holes on the board in
+                            which the seeds will sit in. To identify the different pits they contain
+                            the property ID. Furthermore, each pit tracks the amount of seeds in it
+                            and provide the appropriate methods to get/set/increment the current
+                            seedCount. </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>House</emphasis>:
-                            The house is the slightly bigger pit, which stores all the seeds a player won. Therefore, each player only has one house. The house has up to now the exactly same attributes and methods as a pit.
-                        </para>
+                            <emphasis>House</emphasis>: The house is the slightly bigger pit, which
+                            stores all the seeds a player won. Therefore, each player only has one
+                            house. The house has up to now the exactly same attributes and methods
+                            as a pit. </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Layer</emphasis>:
-                            The Layer class is just a wrapper class for the house and the pits of one player. Since a player has six pits and one house it consists exactly of six pits and one house. Furthermore, the Layer class contains the attribute position, which is an enumeration of either "top" or "bottom". 
-                        </para>
+                            <emphasis>Layer</emphasis>: The Layer class is just a wrapper class for
+                            the house and the pits of one player. Since a player has six pits and
+                            one house it consists exactly of six pits and one house. Furthermore,
+                            the Layer class contains the attribute position, which is an enumeration
+                            of either "top" or "bottom". </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Board</emphasis>:
-                            The board is the contoller class for the mancala board. It consists of two layers - one top and one bottom layer. The board handles is able to get a pit or house by its ID so that the appropriate method (inSeedCount) can be called if a player clicks on a pit. The board also wraps getting the pit/house and calling its incSeedCount by the handler method clickedPit, which is called if a player clicks on a pit. Finally the board contains the resetBoard method, which sets the board to its initial setup.
-                        </para>
+                            <emphasis>Board</emphasis>: The board is the contoller class for the
+                            mancala board. It consists of two layers - one top and one bottom layer.
+                            The board handles is able to get a pit or house by its ID so that the
+                            appropriate method (inSeedCount) can be called if a player clicks on a
+                            pit. The board also wraps getting the pit/house and calling its
+                            incSeedCount by the handler method clickedPit, which is called if a
+                            player clicks on a pit. Finally the board contains the resetBoard
+                            method, which sets the board to its initial setup. </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Game</emphasis>:
-                            The game is the top level controller of one instance of a game. It consist of the Board and the Players class. Besides wrapping those classes it has the method to reset the current game.
-                        </para>
+                            <emphasis>Game</emphasis>: The game is the top level controller of one
+                            instance of a game. It consist of the Board and the Players class.
+                            Besides wrapping those classes it has the method to reset the current
+                            game.</para>
                     </listitem>
-                </itemizedlist>
-            </para>
-            <mediaobject>
-                <imageobject>
-                    <imagedata
-                        fileref="./../Diagrams/ClassDiagram.pdf"
-                    />
-                </imageobject>
-            </mediaobject>
+                </itemizedlist></para>
         </section>
         
     </section>
@@ -179,9 +191,8 @@
                 <itemizedlist>
                     <listitem>
                         <para>
-                            <emphasis>gamestate.xml</emphasis>:
-                            Contains all elements shown in the class diagram with according mulitplicity.
-                        </para>
+                            <emphasis>gamestate.xml</emphasis>: Contains all elements shown in the
+                            class diagram with according multiplicity. </para>
                     </listitem>
                     <listitem>
                         <para>
