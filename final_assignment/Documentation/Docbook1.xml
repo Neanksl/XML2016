@@ -89,12 +89,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        Each player wants to be able to make the game specific moves.
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        Each player wants to have the option to undo his latest action.
+                        Each player wants to be able to make specific moves.
                     </para>
                 </listitem>
                 <listitem>
@@ -104,7 +99,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        Optionally the player wants to be able to save the game.
+                        Optionally the players have the ability to save the game.
                     </para>
                 </listitem>
             </itemizedlist>
@@ -132,7 +127,7 @@
                         <para>
                             <emphasis>Player</emphasis>: The Player class represents one of two
                             players. It has an ID to differentiate between the players and each
-                            player has a winCount, which contains the amount of won games. Thereby
+                            player has a winCount, which contains the number of won games. Thereby
                             it has the method to increase the winCount after a won match and the
                             method to reset the winCount if the game session has came to an end.
                         </para>
@@ -140,41 +135,41 @@
                     <listitem>
                         <para>
                             <emphasis>Players</emphasis>: The Players class is the controller of two
-                            Player. It remembers which players turn it is and provides the according
-                            methods to set/get/toggle the player turn. </para>
+                            Player. It remembers which player's turn it is and provides the according
+                            methods to set/get/toggle the player's turn. </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Pit</emphasis>: The pits represents the holes on the board in
-                            which the seeds will sit in. To identify the different pits they contain
-                            the property ID. Furthermore, each pit tracks the amount of seeds in it
+                            <emphasis>House</emphasis>: The houses represent the holes on the board in
+                            which the seeds will be "sown". Different houses will be identified by using 
+                            the property ID. Furthermore, each house tracks the amount of seeds in it
                             and provide the appropriate methods to get/set/increment the current
                             seedCount. </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>House</emphasis>: The house is the slightly bigger pit, which
+                            <emphasis>Store</emphasis>: The store is the slightly bigger house, which
                             stores all the seeds a player won. Therefore, each player only has one
-                            house. The house has up to now the exactly same attributes and methods
-                            as a pit. </para>
+                            store. The store has up to now the exactly same attributes and methods
+                            as a house. </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis>Layer</emphasis>: The Layer class is just a wrapper class for
-                            the house and the pits of one player. Since a player has six pits and
-                            one house it consists exactly of six pits and one house. Furthermore,
+                            the houses and the store of one player. Since a player has six houses and
+                            one store, it consists exactly of six pits and one house. Furthermore,
                             the Layer class contains the attribute position, which is an enumeration
                             of either "top" or "bottom". </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Board</emphasis>: The board is the contoller class for the
+                            <emphasis>Board</emphasis>: The board is the controller class for the
                             mancala board. It consists of two layers - one top and one bottom layer.
-                            The board handles is able to get a pit or house by its ID so that the
+                            The board handles is able to get a house or store by its ID so that the
                             appropriate method (inSeedCount) can be called if a player clicks on a
-                            pit. The board also wraps getting the pit/house and calling its
-                            incSeedCount by the handler method clickedPit, which is called if a
-                            player clicks on a pit. Finally the board contains the resetBoard
+                            house. The board also wraps getting the house/store and calling its
+                            incSeedCount by the handler method clickedHouse, which is called if a
+                            player clicks on a house in his option. Finally the board contains the resetBoard
                             method, which sets the board to its initial setup. </para>
                     </listitem>
                     <listitem>
@@ -190,7 +185,7 @@
         <section>
             <title>Architecture</title>
             <para>
-                TODO explain Architecture
+                3 components of the architecture are client, server and the database. 
                 <itemizedlist>
                     <listitem>
                         <para>
