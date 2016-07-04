@@ -232,8 +232,8 @@ declare function page:getDB()
 
 
 declare
-%rest:path("")
-function page:start()
+%rest:path("gamestate")
+function page:gamestate()
 {
     page:getDB()
 };
@@ -245,6 +245,15 @@ function page:getStatic()
 {
     doc("./static/Static.xml")
 };
+
+declare
+%rest:path("")
+%rest:GET
+function page:index()
+{
+    doc("./index.html")
+};
+
 
 
 declare function page:redirect($redirect as xs:string) as element(restxq:redirect)
