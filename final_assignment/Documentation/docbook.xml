@@ -284,20 +284,32 @@
                 </itemizedlist>
             </para>
         </section>
+        
         <section>
             <title>Namespaces</title>
             <para>In order to realise the architecture represented in the classdiagram we introduced multiple namespaces, to simulate class-scopes. Since only classes with methods received their own namespace, the layer and the position are the only classes which do not have an explicit namespace. Accordingly each method is defined in the namespace of its class.</para>
-        </section>
-        <section>
-            <title>Updating vs FLWOR</title>
-            <para>By marking a function <emphasis>updating</emphasis>, FLWOR statements cannot be used inside the function scope. To mitigate this issue, updating functions use getters on composite objects instead of local <emphasis>let</emphasis> variables.</para>
         </section>
         
         <section>
             <title>Single Node Updates</title>
             <para>As XQuery updates are gathered and applied at once the end of the XQuery script, nodes cannot be updated multiple times. Therefore, the amount of seeds is calculated and each pit is updated only once.</para>
         </section>
+    </section>
+    
+    <section>
+        <title>Reflections</title>
+        <section>
+            <title>Updating vs FLWOR</title>
+            <para>By marking a function <emphasis>updating</emphasis>, FLWOR statements cannot be used inside the function scope. To mitigate this issue, updating functions use getters on composite objects instead of local <emphasis>let</emphasis> variables.</para>
+        </section>
+    </section>
+    
+    <section>
+        <title>Future Work</title>
         
-        
+        <section>
+            <title>Fancy additional feature</title>
+            <para>Do cool stuff</para>
+        </section>
     </section>
 </article>
