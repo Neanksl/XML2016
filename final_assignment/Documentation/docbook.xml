@@ -13,7 +13,7 @@
         <pubdate>01.07.2016</pubdate>
     </info>
     <para>
-        <wordasword>Mancala</wordasword>, also Manqala or Mankala, is a very popular ancient game with numerous variations. This count-and-capture game can be played 
+        <wordasword>Mancala</wordasword>, also Manqala or Mancala, is a very popular ancient game with numerous variations. This count-and-capture game can be played 
         by two people, with the aim of winning the most "seeds" on the "field". </para>
     <section>
         <title>Introduction</title>
@@ -121,20 +121,20 @@
                 <itemizedlist>
                     <listitem>
                         <para>
+                            <emphasis>Database</emphasis>:
+                            The database represents the storage for one gamestate. That means one current instance of the game is saved in the database.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
                             <emphasis>Client</emphasis>:
-                            The client represents the frontend of the application, i.e. the user interaction interface. Any action from the players will be forwarded as a RESTful request to the server. 
+                            The client is the frontend of the application, i.e. the user interaction interface. Any action from the players will be forwarded as a RESTful request to the server. 
                         </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis>Server</emphasis>:
-                            The server
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>Database</emphasis>:
-                            such DB
+                            The server receives the requests (actions) from the client and then acts as a controller by deciding if a new gamestate should be created or the existing gamestate (currently saved on the database) should be edited. Independently from that decision the new gamestate will be stored in the database and a visual representation of this gamestate is being returned to the client.
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -216,15 +216,23 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Pit</emphasis>:
-                            The pits represents the holes on the board in which the seeds will sit in. To identify the different pits they contain the property ID. Furthermore, each pit tracks the amount of seeds in it and provide the appropriate methods to get/set/increment the current seedCount.  
+                            <emphasis>GameObject</emphasis>:
+                            trololol 
                         </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>House</emphasis>:
-                            The house is the slightly bigger pit, which stores all the seeds a player won. Therefore, each player only has one house. The house has up to now the exactly same attributes and methods as a pit.
-                        </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <emphasis>House</emphasis>:
+                                    The houses represents the holes on the board in which the seeds will sit in. To identify the different houses they contain the property ID. Furthermore, each house tracks the amount of seeds in it and provide the appropriate methods to get/set/increment the current seedCount.  
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <emphasis>Store</emphasis>:
+                                    The store is the slightly bigger house, which stores all the seeds a player won. Therefore, each player has only one store. The store has up to now the exactly same attributes and methods as a house.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
                     </listitem>
                     <listitem>
                         <para>
@@ -292,7 +300,7 @@
         
         <section>
             <title>Single Node Updates</title>
-            <para>As XQuery updates are gathered and applied at once the end of the XQuery script, nodes cannot be updated multiple times. Therefore, the amount of seeds is calculated and each pit is updated only once.</para>
+            <para>As XQuery updates are gathered and applied at once the end of the XQuery script, nodes cannot be updated multiple times. Therefore, the amount of seeds is calculated and each house is updated only once.</para>
         </section>
     </section>
     
