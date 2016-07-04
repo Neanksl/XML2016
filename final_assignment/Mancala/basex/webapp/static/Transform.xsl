@@ -18,14 +18,7 @@
     and GameState.xml must be imported. -->
     <xsl:variable name="GameState" select="document('http://localhost:8984/gamestate')"/>
 
-    <xsl:template match="static">
-        <!-- Menu buttons -->
-        <p style="display:inline-block; float:left; ">
-            <a style="margin-right:30px; background-color:yellow; border:1px black;"
-               href="db/create">new game</a>
-            <a href="foobar">reset </a>
-        </p>
-        
+    <xsl:template match="static">        
         <svg width="{board/width}" height="{board/height}">				
             <defs>
                 <rect
@@ -57,6 +50,50 @@
                     cx="{store/radius}"
                     style="{store/styleOtherPlayer}"/>
             </defs>
+            
+            <!-- Create reset game button -->
+            <g>
+                <a href="{menu/resetGame/link}">
+                    <rect
+                        x="{menu/resetGame/posX}" 
+                        y="{menu/resetGame/posY}"
+                        id="resetGameButton"
+                        width="{menu/resetGame/width}" height="{menu/resetGame/height}"
+                        rx="{menu/resetGame/roundX}" ry="{menu/resetGame/roundY}"
+                        style="{menu/resetGame/style}"/>
+					
+                    <text
+                        x="{menu/resetGame/posX + 0.5 * menu/resetGame/width}"
+                        y="{menu/resetGame/posY + 0.6 * menu/resetGame/height}"
+                        text-anchor="middle"
+                        font-size="{0.2 * menu/resetGame/width}"
+                        style="{menu/resetGame/textstyle}">
+                        Try again
+                    </text>
+                </a>
+            </g>
+            
+            <!-- Create new game button -->
+            <g>
+                <a href="{menu/newGame/link}">
+                    <rect
+                        x="{menu/newGame/posX}" 
+                        y="{menu/newGame/posY}"
+                        id="newGameButton"
+                        width="{menu/newGame/width}" height="{menu/newGame/height}"
+                        rx="{menu/newGame/roundX}" ry="{menu/newGame/roundY}"
+                        style="{menu/newGame/style}"/>
+					
+                    <text
+                        x="{menu/newGame/posX + 0.5 * menu/newGame/width}"
+                        y="{menu/newGame/posY + 0.6 * menu/newGame/height}"
+                        text-anchor="middle"
+                        font-size="{0.2 * menu/newGame/width}"
+                        style="{menu/newGame/textstyle}">
+                        Start over
+                    </text>
+                </a>
+            </g>
 					
             <!-- Create houses for both players -->
             <xsl:call-template name="createHouses">
@@ -167,18 +204,18 @@
                     <!-- Bottom houses -->
                     <g>
                         <!-- <a href="clicked/{$count + 7}" > -->
-                            <use 
-                                x="{layout/posStartX + (house/width + layout/distanceHouseX) * $count}" 
-                                y="{layout/posStartY + house/height + layout/distanceHouseY}" 
-                                xlink:href="#houseOtherPlayerTemplate"/>
-                            <text
-                                x="{layout/posStartX + (house/width + layout/distanceHouseX) * $count + 0.5 * house/width}"
-                                y="{layout/posStartY + house/height + layout/distanceHouseY + 0.5 * house/height}"
-                                text-anchor="middle"
-                                font-size="{0.3 * house/width}"
-                                style="{house/textstyleOtherPlayer}">
-                                <xsl:value-of select="$GameState/game/board/layer[2]/house[0 + $count]"/>
-                            </text>
+                        <use 
+                            x="{layout/posStartX + (house/width + layout/distanceHouseX) * $count}" 
+                            y="{layout/posStartY + house/height + layout/distanceHouseY}" 
+                            xlink:href="#houseOtherPlayerTemplate"/>
+                        <text
+                            x="{layout/posStartX + (house/width + layout/distanceHouseX) * $count + 0.5 * house/width}"
+                            y="{layout/posStartY + house/height + layout/distanceHouseY + 0.5 * house/height}"
+                            text-anchor="middle"
+                            font-size="{0.3 * house/width}"
+                            style="{house/textstyleOtherPlayer}">
+                            <xsl:value-of select="$GameState/game/board/layer[2]/house[0 + $count]"/>
+                        </text>
                         <!-- </a> -->
                     </g>
                 </xsl:when>
@@ -186,21 +223,21 @@
                     <!-- Upper houses -->
                     <g>
                         <!-- <a href="clicked/{7 - $count}" > -->
-                            <use 
-                                x="{layout/posStartX + (house/width + layout/distanceHouseX) * $count}" 
-                                y="{layout/posStartY}"
-                                xlink:href="#houseOtherPlayerTemplate"/>
+                        <use 
+                            x="{layout/posStartX + (house/width + layout/distanceHouseX) * $count}" 
+                            y="{layout/posStartY}"
+                            xlink:href="#houseOtherPlayerTemplate"/>
 
-                            <!-- xlink:href="{concat('#house', houses/up/house[0+$count])}"/> -->
+                        <!-- xlink:href="{concat('#house', houses/up/house[0+$count])}"/> -->
 					
-                            <text
-                                x="{layout/posStartX + (house/width + layout/distanceHouseX) * $count + 0.5 * house/width}"
-                                y="{layout/posStartY + 0.5 * house/height}"
-                                text-anchor="middle"
-                                font-size="{0.3 * house/width}"
-                                style="{house/textstyleOtherPlayer}">
-                                <xsl:value-of select="$GameState/game/board/layer[1]/house[7 - $count]"/>
-                            </text>
+                        <text
+                            x="{layout/posStartX + (house/width + layout/distanceHouseX) * $count + 0.5 * house/width}"
+                            y="{layout/posStartY + 0.5 * house/height}"
+                            text-anchor="middle"
+                            font-size="{0.3 * house/width}"
+                            style="{house/textstyleOtherPlayer}">
+                            <xsl:value-of select="$GameState/game/board/layer[1]/house[7 - $count]"/>
+                        </text>
                         <!-- </a> -->
                     </g>			
 				

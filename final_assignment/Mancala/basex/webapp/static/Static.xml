@@ -38,4 +38,28 @@
         <distanceBetweenExtraSeeds>5</distanceBetweenExtraSeeds>
         <lengthUnit>px</lengthUnit>
     </layout>
+    <menu>
+        <resetGame>
+            <link>tryagain</link>
+            <width>100</width>
+            <height>50</height>
+            <roundX>5</roundX>
+            <roundY>5</roundY>
+            <posX>100</posX>
+            <posY>10</posY>
+            <style>fill:white;stroke:green;stroke-width:2;</style>
+            <textstyle>fill:green;font-weight:bold;font-family:Agency FB;</textstyle>
+        </resetGame>
+        <newGame>
+            <link>db/create</link>
+            <width>100</width>
+            <height>50</height>
+            <roundX>5</roundX>
+            <roundY>5</roundY>
+            <posX>220</posX>
+            <posY>10</posY>
+            <style>fill:white;stroke:blue;stroke-width:2;</style>
+            <textstyle>fill:blue;font-weight:bold;font-family:Agency FB;</textstyle>
+        </newGame>
+    </menu>
 </static>
