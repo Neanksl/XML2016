@@ -235,11 +235,15 @@ declare updating function page:board_clearHouses($this, $position as xs:string)
 declare updating function page:game_UpdateWinner($this)
 {
         if (page:board_sumOfStoreAndRow($this/board, "top") > page:board_sumOfStoreAndRow($this/board, "bottom") ) then
-            replace value of node $this/wonBy
-                with 1
+            (replace value of node $this/wonBy
+                with 1, 
+                page:player_increaseWinCount($this/players/player[1])
+                )
         else
-            replace value of node $this/wonBy
-                with 2
+            (replace value of node $this/wonBy
+                with 2,
+                page:player_increaseWinCount($this/players/player[2])
+                )
     
 };
 
@@ -336,7 +340,8 @@ declare updating function page:game_resetBoard($this, $startSeeds)
 declare updating function page:game_resetGame($this)
 {
     page:game_resetBoard($this/board, 3),
-    page:players_setNextPlayerWithId($this/players, 1)
+    page:players_setNextPlayerWithId($this/players, 1),
+    replace value of node $this/wonBy with 0
 };
 
 
@@ -376,6 +381,19 @@ function page:index()
 declare function page:redirect($redirect as xs:string) as element(restxq:redirect)
 {
     <restxq:redirect>{$redirect}</restxq:redirect>
+};
+
+declare
+%rest:path("tryagain")
+%rest:GET
+updating function page:tryAgain()
+{
+    let $db := page:getDB()
+    return
+        (
+        db:output(page:redirect("/")),
+        page:game_resetGame($db/game)
+        )
 };
 
 declare
