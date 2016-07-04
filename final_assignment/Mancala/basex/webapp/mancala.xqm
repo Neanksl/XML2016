@@ -251,7 +251,7 @@ declare
 %rest:GET
 function page:index()
 {
-    doc("./index.html")
+    page:getStatic()
 };
 
 
