@@ -166,7 +166,7 @@
 				
                     <!-- Bottom houses -->
                     <g>
-                        <a href="clicked/{$count + 7}" >
+                        <!-- <a href="clicked/{$count + 7}" > -->
                             <use 
                                 x="{layout/posStartX + (house/width + layout/distanceHouseX) * $count}" 
                                 y="{layout/posStartY + house/height + layout/distanceHouseY}" 
@@ -179,13 +179,13 @@
                                 style="{house/textstyleOtherPlayer}">
                                 <xsl:value-of select="$GameState/game/board/layer[2]/house[0 + $count]"/>
                             </text>
-                        </a>
+                        <!-- </a> -->
                     </g>
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- Upper houses -->
                     <g>
-                        <a href="clicked/{7 - $count}" >
+                        <!-- <a href="clicked/{7 - $count}" > -->
                             <use 
                                 x="{layout/posStartX + (house/width + layout/distanceHouseX) * $count}" 
                                 y="{layout/posStartY}"
@@ -201,7 +201,7 @@
                                 style="{house/textstyleOtherPlayer}">
                                 <xsl:value-of select="$GameState/game/board/layer[1]/house[7 - $count]"/>
                             </text>
-                        </a>
+                        <!-- </a> -->
                     </g>			
 				
                     <!-- Bottom houses -->
