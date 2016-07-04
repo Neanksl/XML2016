@@ -14,3 +14,5 @@ set BASEX_JVM=-Xmx512m %BASEX_JVM%
 
 REM Run code
 java -cp "%CP%" %BASEX_JVM% org.basex.BaseXHTTP %*
+
+-Dorg.eclipse.jetty.util.log.class=org.eclipse.jetty.util.log.StdErrLog -D{classref}.LEVEL=DEBUG
