@@ -1,21 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--Andreas Eichner, Michael Conrads-->
-
-<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.oxygenxml.com/docbook/xml/5.0/rng/dbsvg.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
-<article xmlns="http://docbook.org/ns/docbook"
-    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<!DOCTYPE article PUBLIC "ARTICLE" "docbook.dtd">
+<?xml-stylesheet type="text/css" href="./css/docbook.css"?>
+
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/2001/xlink" version="5.0">
     <info>
-        <title>Mancala - XQuery</title>
-        <author>
-            <orgname>Michael Conrads &amp; Andreas Eichner</orgname>
-        </author>
+        <title>
+            <emphasis> Mancala </emphasis></title>
+        <subtitle>Praktikum: XML-Technologie</subtitle>
+        <pubdate>01.07.2016</pubdate>
     </info>
-    <sect1>
-        <title>Use Cases</title>
-        <para>
+    <para>
+        <wordasword>Mancala</wordasword>, also Manqala or Mankala, is a very popular ancient game with numerous variations. This count-and-capture game can be played 
+        by two people, with the aim of winning the most "seeds" on the "field". </para>
+    <section>
+        <title>Introduction</title>
+        <para><emphasis role="underline">Type</emphasis> Board game</para>
+        <para><emphasis role="underline">Number of players</emphasis> Mostly two </para>
+        <para>At the beginning of the game, a <emphasis role="bold">Mancala-Playboard</emphasis> is
+            needed. The board will be seperated into 2 rows. Each player has 6 small <emphasis
+                role="bold">"houses"</emphasis> on their side, and a big <emphasis role="bold">"store"
+                </emphasis> - which also called <emphasis role="bold">Kalah</emphasis> - where the
+            stones are to be collected and stored. In this lab course, we chose the Kalah-version,
+            which uses 36 "seeds" equally distributed in 12 houses.</para>
+    </section>
+    
+    <section>
+        <title>Playing rules</title>
+        <para><emphasis role="underline"><emphasis role="bold">Game objective</emphasis></emphasis>
+            : The objective of the game is to capture more seeds than the opponent. </para>
+        
+        <itemizedlist mark="opencircle">
+            <listitem>
+                <para>Player begins by choosing a house at his option and starts distributing the
+                    seeds around the board until there is no seed left in his hand. The seeds should
+                    be dropped one-by-one and in counterclockwise direction. The opponent's Kalah
+                    should be skipped. </para>
+            </listitem>
+            <listitem>
+                <para>If the last seed is dropped into the player's Kalah, he got an extra turn. </para>
+            </listitem>
+            <listitem>
+                <para>If the last seed falls into an empty house owned by the player, player is
+                    allowed to capture all the seeds of the opposite house and store them in his own
+                    Kalah. </para>
+            </listitem>
+            <listitem>
+                <para>The player who still has seeds on his side of the board when the opponent's
+                    houses are empty captures all of those.</para>
+            </listitem>
+            <listitem>
+                <para>The game ends where there are no seeds left on the 12 houses. The player with
+                    the most seeds wins the game. </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section>
+        <title>Technologies</title>
+        <para>In this lab course, there were many of XML-Technologies used. 
+            <itemizedlist mark="opencircle">
+                <listitem>
+                    <para> SVG: Scalable Vector Graphics, helps describing two-dimensional graphics for the Web with support for interactivity and animation.</para>
+                    <para> XSLT, XSL: EXtensible Stylesheet Language is a part of XSL, which is the stylesheet language for XML. XSLT helps transforming XML Documents into other XML Documents.</para>
+                    <para> XQuery is to XML what SQL is to database tables. XML Data will be queried thanks to XQuery.  </para>
+                    <para> BaseX: scalable, high performance XML Database engine which allows querying and storing XML on the net.</para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </section>
+    
+    <section>
+        <title>Diagrams</title>
+        <para>Use Cases and Use Case Diagram
             The mancala game can be splitted up in the following usecases:
             <itemizedlist>
                 <listitem>
@@ -32,12 +91,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        Each player wants to be able to make the game specific moves.
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        Each player wants to have the option to undo his latest action.
+                        Each player wants to be able to make specific moves.
                     </para>
                 </listitem>
                 <listitem>
@@ -47,79 +101,164 @@
                 </listitem>
                 <listitem>
                     <para>
-                        Optionally the player want to be able to save the game.
+                        If the players decide to continue the match later, they want to be able to save and load the game.
                     </para>
                 </listitem>
             </itemizedlist>
+            <mediaobject>
+                <imageobject>
+                    <imagedata
+                        fileref="./../Diagrams/UseCases.pdf"
+                    />
+                </imageobject>
+            </mediaobject>
         </para>
-        <mediaobject>
-            <imageobject>
-                <imagedata
-                    fileref="./../Diagrams/UseCaseDiagram.pdf"
-                />
-            </imageobject>
-        </mediaobject>
-    </sect1>
-    <sect1>
-        <title>Classes</title>
-        <para>
-            The following list explains the classes shown in the class diagram.
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis>Player</emphasis>:
-                        The Player class represents one of two players. It has an ID to differentiate between the players and each player has a winCount, which contains the amount of won games. Thereby it has the method to increase the winCount after a won match and the method to reset the winCount if the game session has came to an end.
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis>Players</emphasis>:
-                        The Players class is the controller of two Player. It remembers which players turn it is and provides the according methods to set/get/toggle the player turn. 
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis>Pit</emphasis>:
-                        The pits represents the holes on the board in which the seeds will sit in. To identify the different pits they contain the property ID. Furthermore, each pit tracks the amount of seeds in it and provide the appropriate methods to get/set/increment the current seedCount.  
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis>House</emphasis>:
-                        The house is the slightly bigger pit, which stores all the seeds a player won. Therefore, each player only has one house. The house has up to now the exactly same attributes and methods as a pit.
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis>Layer</emphasis>:
-                        The Layer class is just a wrapper class for the house and the pits of one player. Since a player has six pits and one house it consists exactly of six pits and one house. Furthermore, the Layer class contains the attribute position, which is an enumeration of either "top" or "bottom". 
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis>Board</emphasis>:
-                        The board is the contoller class for the mancala board. It consists of two layers - one top and one bottom layer. The board handles is able to get a pit or house by its ID so that the appropriate method (inSeedCount) can be called if a player clicks on a pit. The board also wraps getting the pit/house and calling its incSeedCount by the handler method clickedPit, which is called if a player clicks on a pit. Finally the board contains the resetBoard method, which sets the board to its initial setup.
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis>Game</emphasis>:
-                        The game is the top level controller of one instance of a game. It consist of the Board and the Players class. Besides wrapping those classes it has the method to reset the current game.
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </para>
-        <mediaobject>
-            <imageobject>
-                <imagedata
-                    fileref="./../Diagrams/ClassDiagram.pdf"
-                />
-            </imageobject>
-        </mediaobject>
-    </sect1>
-    <sect1>
+        
+        <section>
+            <title>Architecture</title>
+            <para>
+                The following diagram show the architecture of our implementation of the Mancala game. The architecture can be divided in three components:
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>Client</emphasis>:
+                            The client represents the frontend of the application, i.e. the user interaction interface. Any action from the players will be forwarded as a RESTful request to the server. 
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Server</emphasis>:
+                            The server
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Database</emphasis>:
+                            such DB
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata
+                        fileref="./../Diagrams/Architecture.pdf"
+                    />
+                </imageobject>
+            </mediaobject>
+        </section>
+        
+        <section>
+            <title>Sequence</title>
+            <para>
+                TODO explain Sequence
+            </para>
+            <section>
+                <title>Sequence_createGame</title>
+                <para>
+                    TODO explain Sequence_createGame
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>a action</emphasis>:
+                                such action
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </para>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata
+                            fileref="./../Diagrams/Sequence_createGame.pdf"
+                        />
+                    </imageobject>
+                </mediaobject>
+            </section>
+            <section>
+                <title>Sequence_clickHouse</title>
+                <para>
+                    TODO explain Sequence_clickHouse
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>a action</emphasis>:
+                                such action
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </para>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata
+                            fileref="./../Diagrams/Sequence_clickHouse.pdf"
+                        />
+                    </imageobject>
+                </mediaobject>
+            </section>
+        </section>
+        
+        <section>
+            <title>Classes</title>
+            <para>
+                The following list explains the classes shown in the class diagram.
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>Player</emphasis>:
+                            The Player class represents one of two players. It has an ID to differentiate between the players and each player has a winCount, which contains the amount of won games. Thereby it has the method to increase the winCount after a won match and the method to reset the winCount if the game session has came to an end.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Players</emphasis>:
+                            The Players class is the controller of two Player. It remembers which players turn it is and provides the according methods to set/get/toggle the player turn. 
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Pit</emphasis>:
+                            The pits represents the holes on the board in which the seeds will sit in. To identify the different pits they contain the property ID. Furthermore, each pit tracks the amount of seeds in it and provide the appropriate methods to get/set/increment the current seedCount.  
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>House</emphasis>:
+                            The house is the slightly bigger pit, which stores all the seeds a player won. Therefore, each player only has one house. The house has up to now the exactly same attributes and methods as a pit.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Layer</emphasis>:
+                            The Layer class is just a wrapper class for the house and the pits of one player. Since a player has six pits and one house it consists exactly of six pits and one house. Furthermore, the Layer class contains the attribute position, which is an enumeration of either "top" or "bottom". 
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Board</emphasis>:
+                            The board is the contoller class for the mancala board. It consists of two layers - one top and one bottom layer. The board handles is able to get a pit or house by its ID so that the appropriate method (inSeedCount) can be called if a player clicks on a pit. The board also wraps getting the pit/house and calling its incSeedCount by the handler method clickedPit, which is called if a player clicks on a pit. Finally the board contains the resetBoard method, which sets the board to its initial setup.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Game</emphasis>:
+                            The game is the top level controller of one instance of a game. It consist of the Board and the Players class. Besides wrapping those classes it has the method to reset the current game.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata
+                        fileref="./../Diagrams/Classes.pdf"
+                    />
+                </imageobject>
+            </mediaobject>
+        </section>
+    </section>
+    
+    <section>
         <title>Implementation</title>
-        <sect2>
+        <section>
             <title>Filestructure</title>
             <para>
                 The following list shows the files, which were used to implement the basic functionalities of XQuery for mancala.
@@ -144,21 +283,21 @@
                     </listitem>
                 </itemizedlist>
             </para>
-        </sect2>
-        <sect2>
+        </section>
+        <section>
             <title>Namespaces</title>
             <para>In order to realise the architecture represented in the classdiagram we introduced multiple namespaces, to simulate class-scopes. Since only classes with methods received their own namespace, the layer and the position are the only classes which do not have an explicit namespace. Accordingly each method is defined in the namespace of its class.</para>
-        </sect2>
-        <sect2>
+        </section>
+        <section>
             <title>Updating vs FLWOR</title>
             <para>By marking a function <emphasis>updating</emphasis>, FLWOR statements cannot be used inside the function scope. To mitigate this issue, updating functions use getters on composite objects instead of local <emphasis>let</emphasis> variables.</para>
-        </sect2>
-
-        <sect2>
+        </section>
+        
+        <section>
             <title>Single Node Updates</title>
             <para>As XQuery updates are gathered and applied at once the end of the XQuery script, nodes cannot be updated multiple times. Therefore, the amount of seeds is calculated and each pit is updated only once.</para>
-        </sect2>
+        </section>
         
-
-    </sect1>
+        
+    </section>
 </article>
