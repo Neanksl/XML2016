@@ -38,6 +38,8 @@
             </layer>
         </board>
         
+        <wonBy>0</wonBy>
+     
         <players>
             <turn>1</turn>
             
