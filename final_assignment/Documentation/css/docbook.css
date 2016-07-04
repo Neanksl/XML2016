@@ -1,2 +1,10 @@
-/*Andreas Eichner, Michael Conrads*/
+BODY
+{
+    font-family: verdana;
+    color: red;
+}
 
+h1 
+{
+    color: green;
+}
