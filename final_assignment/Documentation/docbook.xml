@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://www.oxygenxml.com/docbook/xml/5.0/rng/dbsvg.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?> 
-<?xml-stylesheet href="./css/docbook.css" type="text/css"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
 <!DOCTYPE article PUBLIC "ARTICLE" "docbook.dtd">
 <?xml-stylesheet type="text/css" href="./css/docbook.css"?>
@@ -9,7 +8,7 @@
 <article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/2001/xlink" version="5.0">
     <info>
         <title>
-            <emphasis> Mancala - SVG </emphasis></title>
+            <emphasis> Mancala </emphasis></title>
         <subtitle>Praktikum: XML-Technologie</subtitle>
         <pubdate>01.07.2016</pubdate>
     </info>
@@ -22,10 +21,10 @@
         <para><emphasis role="underline">Number of players</emphasis> Mostly two </para>
         <para>At the beginning of the game, a <emphasis role="bold">Mancala-Playboard</emphasis> is
             needed. The board will be seperated into 2 rows. Each player has 6 small <emphasis
-                role="bold">pits</emphasis> on their side, and a big <emphasis role="bold">house
+                role="bold">"houses"</emphasis> on their side, and a big <emphasis role="bold">"store"
                 </emphasis> - which also called <emphasis role="bold">Kalah</emphasis> - where the
             stones are to be collected and stored. In this lab course, we chose the Kalah-version,
-            which uses 36 "seeds" equally distributed in 12 pits.</para>
+            which uses 36 "seeds" equally distributed in 12 houses.</para>
     </section>
     
     <section>
@@ -35,7 +34,7 @@
         
         <itemizedlist mark="opencircle">
             <listitem>
-                <para>Player begins by choosing a pit at his option and starts distributing the
+                <para>Player begins by choosing a house at his option and starts distributing the
                     seeds around the board until there is no seed left in his hand. The seeds should
                     be dropped one-by-one and in counterclockwise direction. The opponent's Kalah
                     should be skipped. </para>
@@ -44,16 +43,16 @@
                 <para>If the last seed is dropped into the player's Kalah, he got an extra turn. </para>
             </listitem>
             <listitem>
-                <para>If the last seed falls into an empty pit owned by the player, player is
-                    allowed to capture all the seeds of the opposite pit and store them in his own
+                <para>If the last seed falls into an empty house owned by the player, player is
+                    allowed to capture all the seeds of the opposite house and store them in his own
                     Kalah. </para>
             </listitem>
             <listitem>
                 <para>The player who still has seeds on his side of the board when the opponent's
-                    pits are empty captures all of those.</para>
+                    houses are empty captures all of those.</para>
             </listitem>
             <listitem>
-                <para>The game ends where there are no seeds left on the 12 pits. The player with
+                <para>The game ends where there are no seeds left on the 12 houses. The player with
                     the most seeds wins the game. </para>
             </listitem>
         </itemizedlist>
@@ -92,12 +91,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        Each player wants to be able to make the game specific moves.
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        Each player wants to have the option to undo his latest action.
+                        Each player wants to be able to make specific moves.
                     </para>
                 </listitem>
                 <listitem>
