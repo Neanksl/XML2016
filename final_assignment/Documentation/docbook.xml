@@ -305,6 +305,24 @@
             <title>Single Node Updates</title>
             <para>As XQuery updates are gathered and applied at once the end of the XQuery script, nodes cannot be updated multiple times. Therefore, the amount of seeds is calculated and each house is updated only once.</para>
         </section>
+        
+        <section>
+            <title>TODOs</title>
+            <warning>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>mancala_methods.xql</emphasis>:
+                            Contains all methods described in the class diagram
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </warning>
+            <para>Eine Beschreibung der Requests und Responses zischen Client und Server nach dem REST-Prinzip und ihre Abbildung auf Queries mit restXQ.</para>
+            <para>Eine Beschreibung der Benutzeroberfläche für die verschiedenen Stadien des Spiels mit den jeweiligen Interaktionsmüglichkeiten.</para>
+        </section>
+        
+        
     </section>
     
     <section>
