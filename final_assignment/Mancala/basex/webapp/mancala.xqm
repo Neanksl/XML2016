@@ -271,39 +271,39 @@ updating function page:createDB()
             <layer
                 position="top">
                 <house
-                    id="1">3</house>
+                    id="1">1</house>
                 <house
-                    id="2">3</house>
+                    id="2">2</house>
                 <house
                     id="3">3</house>
                 <house
-                    id="4">3</house>
+                    id="4">4</house>
                 <house
-                    id="5">3</house>
+                    id="5">5</house>
                 <house
-                    id="6">3</house>
+                    id="6">6</house>
                 
                 <store
-                    id="7">0</store>
+                    id="7">7</store>
             </layer>
             
             <layer
                 position="bottom">
                 <house
-                    id="8">3</house>
+                    id="8">8</house>
                 <house
-                    id="9">3</house>
+                    id="9">9</house>
                 <house
-                    id="10">3</house>
+                    id="10">10</house>
                 <house
-                    id="11">3</house>
+                    id="11">11</house>
                 <house
-                    id="12">3</house>
+                    id="12">12</house>
                 <house
-                    id="13">3</house>
+                    id="13">13</house>
                 
                 <store
-                    id="14">0</store>
+                    id="14">14</store>
             </layer>
         </board>
         
