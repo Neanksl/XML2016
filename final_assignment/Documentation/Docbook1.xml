@@ -177,7 +177,17 @@
         
         <section>
             <title>Architecture</title>
-            
+            <para>
+                TODO explain Architecture
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>a component</emphasis>:
+                            such component
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
             <mediaobject>
                 <imageobject>
                     <imagedata
@@ -189,21 +199,51 @@
         
         <section>
             <title>Sequence</title>
-            
-            <mediaobject>
-                <imageobject>
-                    <imagedata
-                        fileref="./../Diagrams/Sequence_createGame.pdf"
-                    />
-                </imageobject>
-            </mediaobject>
-            <mediaobject>
-                <imageobject>
-                    <imagedata
-                        fileref="./../Diagrams/Sequence_clickHouse.pdf"
-                    />
-                </imageobject>
-            </mediaobject>
+            <para>
+                TODO explain Sequence
+            </para>
+            <section>
+                <title>Sequence_createGame</title>
+                <para>
+                    TODO explain Sequence_createGame
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>a action</emphasis>:
+                                such action
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </para>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata
+                            fileref="./../Diagrams/Sequence_createGame.pdf"
+                        />
+                    </imageobject>
+                </mediaobject>
+            </section>
+            <section>
+                <title>Sequence_clickHouse</title>
+                <para>
+                    TODO explain Sequence_clickHouse
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>a action</emphasis>:
+                                such action
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </para>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata
+                            fileref="./../Diagrams/Sequence_clickHouse.pdf"
+                        />
+                    </imageobject>
+                </mediaobject>
+            </section>
         </section>
     </section>
     
