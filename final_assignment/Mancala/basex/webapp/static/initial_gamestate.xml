@@ -2,39 +2,39 @@
         <board>
             <layer position="top">
                 <house
-                    id="1">1</house>
+                    id="1">4</house>
                 <house
-                    id="2">2</house>
+                    id="2">4</house>
                 <house
-                    id="3">3</house>
+                    id="3">4</house>
                 <house
                     id="4">4</house>
                 <house
-                    id="5">5</house>
+                    id="5">4</house>
                 <house
-                    id="6">6</house>
+                    id="6">4</house>
                 
                 <store
-                    id="7">7</store>
+                    id="7">0</store>
             </layer>
             
             <layer
                 position="bottom">
                 <house
-                    id="8">8</house>
+                    id="8">4</house>
                 <house
-                    id="9">9</house>
+                    id="9">4</house>
                 <house
-                    id="10">10</house>
+                    id="10">4</house>
                 <house
-                    id="11">11</house>
+                    id="11">4</house>
                 <house
-                    id="12">12</house>
+                    id="12">4</house>
                 <house
-                    id="13">13</house>
+                    id="13">4</house>
                 
                 <store
-                    id="14">14</store>
+                    id="14">0</store>
             </layer>
         </board>
         
@@ -42,10 +42,11 @@
      
         <players>
             <turn>1</turn>
+            <highestScore>0</highestScore>
             
             <player>
                 <id>1</id>
-                <winCount>2</winCount>
+                <winCount>0</winCount>
             </player>
             
             <player>

@@ -5,6 +5,7 @@
     <board>
         <width>1500</width>
         <height>1500</height>
+        <trianglestyleThisPlayer>fill:blue;stroke:white;stroke-width:1</trianglestyleThisPlayer>
     </board>
     <seed>
         <style>fill:black;</style>
@@ -15,51 +16,82 @@
         <height>100</height>
         <roundX>10</roundX>
         <roundY>10</roundY>
-        <styleThisPlayer>fill:white;stroke:black;stroke-width:2;</styleThisPlayer>
-        <textstyleThisPlayer>fill:black;font-family:Agency FB;</textstyleThisPlayer>
+        <styleThisPlayer>fill:white;stroke:blue;stroke-width:2;</styleThisPlayer>
+        <textstyleThisPlayer>fill:blue;font-family:Agency FB;</textstyleThisPlayer>
         <styleOtherPlayer>fill:white;stroke:red;stroke-width:2;</styleOtherPlayer>
         <textstyleOtherPlayer>fill:red;font-family:Agency FB;</textstyleOtherPlayer>
     </house>
     <store>
-        <radius>100</radius>
-        
-        <styleThisPlayer>fill:white;stroke:black;stroke-width:2;</styleThisPlayer>
-        <textstyleThisPlayer>fill:black;font-weight:bold;font-family:Agency FB;</textstyleThisPlayer>
+        <radius>100</radius>        
+        <styleThisPlayer>fill:white;stroke:blue;stroke-width:2;</styleThisPlayer>
+        <textstyleThisPlayer>fill:blue;font-weight:bold;font-family:Agency FB;</textstyleThisPlayer>
         <styleOtherPlayer>fill:white;stroke:red;stroke-width:2;</styleOtherPlayer>
-        <textstyleOtherPlayer>fill:red;font-weight:bold;font-family:Agency FB;</textstyleOtherPlayer>
+        <textstyleOtherPlayer>fill:red;font-weight:bold;font-family:Agency FB;</textstyleOtherPlayer>        
     </store>
     <layout>
-        <posStartX>150</posStartX>
-        <posStartY>150</posStartY>
-        <distanceHouseX>15</distanceHouseX>
-        <distanceHouseY>50</distanceHouseY>
-        <distanceHouseStore>15</distanceHouseStore>
+        <posStartX>300</posStartX>
+        <posStartY>300</posStartY>
+        <distanceHorizontalHouse>15</distanceHorizontalHouse>
+        <distanceVertitalHouse>50</distanceVertitalHouse>
+        <distanceHouseStore>50</distanceHouseStore>
         <distanceYextraSeeds>8</distanceYextraSeeds>
         <distanceBetweenExtraSeeds>5</distanceBetweenExtraSeeds>
+        <distanceVerticalHouseFrame>30</distanceVerticalHouseFrame>
+        <distanceHorizontalStoreFrame>30</distanceHorizontalStoreFrame>
+        <backgroundFrame>
+            <roundX>120</roundX>
+            <roundY>120</roundY>
+            <style>fill:#CEECF5;stroke:#BCA9F5;stroke-width:2;</style>
+        </backgroundFrame>        
         <lengthUnit>px</lengthUnit>
     </layout>
     <menu>
-        <resetGame>
+        <!-- clickable -->
+        <tryAgainButton>
+            <desc>Try again</desc>
             <link>tryagain</link>
-            <width>100</width>
-            <height>50</height>
-            <roundX>5</roundX>
-            <roundY>5</roundY>
-            <posX>100</posX>
-            <posY>10</posY>
-            <style>fill:white;stroke:green;stroke-width:2;</style>
-            <textstyle>fill:green;font-weight:bold;font-family:Agency FB;</textstyle>
-        </resetGame>
-        <newGame>
+            <style>fill:green;stroke:green;stroke-width:2;</style>
+            <textstyle>fill:white;font-weight:bold;font-family:Agency FB;</textstyle>
+        </tryAgainButton>
+        <startOverButton>
+            <desc>Start Over</desc>
+            <link>db/create</link>
+            <style>fill:orange;stroke:orange;stroke-width:2;</style>
+            <textstyle>fill:white;font-weight:bold;font-family:Agency FB;</textstyle>
+        </startOverButton>
+        <highscoreButton>
+            <desc>Highest Score:</desc>
+            <link></link>
+            <style>fill:yellow;stroke:orange;stroke-width:2;</style>
+            <textstyle>fill:black;font-weight:bold;font-family:Agency FB;</textstyle>
+        </highscoreButton>
+        <!--
+        <button>
+            <id>newGameButton</id>
+            <desc>Start over</desc>
             <link>db/create</link>
             <width>100</width>
             <height>50</height>
             <roundX>5</roundX>
             <roundY>5</roundY>
-            <posX>220</posX>
-            <posY>10</posY>
-            <style>fill:white;stroke:blue;stroke-width:2;</style>
-            <textstyle>fill:blue;font-weight:bold;font-family:Agency FB;</textstyle>
-        </newGame>
+            <posX>430</posX>
+            <posY>200</posY>
+            <style>fill:orange;stroke:orange;stroke-width:2;</style>
+            <textstyle>fill:white;font-weight:bold;font-family:Agency FB;</textstyle>
+        </button>       
+
+        <display>
+            <id>backgroundFrame</id>
+            <desc>Record: </desc>
+            <width>100</width>
+            <height>50</height>
+            <roundX>10</roundX>
+            <roundY>10</roundY>
+            <posX>1000</posX>
+            <posY>200</posY>
+            <style>fill:blue;stroke:blue;stroke-width:2;</style>
+            <textstyle>fill:white;font-weight:bold;font-family:Agency FB;</textstyle>
+        </display>
+        -->
     </menu>
 </static>

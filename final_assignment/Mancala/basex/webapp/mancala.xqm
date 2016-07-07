@@ -339,7 +339,7 @@ declare updating function page:game_resetBoard($this, $startSeeds)
 
 declare updating function page:game_resetGame($this)
 {
-    page:game_resetBoard($this/board, 3),
+    page:game_resetBoard($this/board, 4),
     page:players_setNextPlayerWithId($this/players, 1),
     replace value of node $this/wonBy with 0
 };
