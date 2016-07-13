@@ -117,7 +117,7 @@
         <section>
             <title>Architecture</title>
             <para>
-                The following diagram show the architecture of our implementation of the Mancala game. The architecture can be divided in three components:
+                The following diagram show the architecture of our implementation of the Mancala game. The architecture can be divided in three components, which are also a representation for the MVC (model view controller) pattern.
                 <itemizedlist>
                     <listitem>
                         <para>
@@ -151,17 +151,91 @@
         <section>
             <title>Sequence</title>
             <para>
-                The following sequence diagrams describe a chain of events that is triggered when a player interacts with the system.
+                Each of the following sequence diagrams describe a chain of events that is triggered when a player interacts with the system. These events are actions between the four entities:
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>Client</emphasis>:
+                            The client is the user interface, which serves the user as visual representation of the application. If a user interacts with the system, the interaction is aimed at a component shown by the client.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Controller</emphasis>:
+                             The controller represents the application controller. It forwards requests from the frontend to the backend and it triggers updates of the client, if new data are available.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Game</emphasis>:
+                            The game is implemented as the server of the application. Different frontends (Client and Controller) can interact with this server, i.e. the game. Therefore, it also acts as a controller but its scope is only a instance of the mancala game. 
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Database</emphasis>:
+                            This entity stores the active gamestate. A gamestate is an instance of the current game. There is always just one gamestate that can be saved.
+                        </para>
+                    </listitem>
+                </itemizedlist>
             </para>
             <section>
                 <title>Create game</title>
                 <para>
-                    To start a new game the player presses the start button.
+                    In order to start a new game the player can press the start button. 
                     <orderedlist>
                         <listitem>
                             <para>
-                                <emphasis>a action</emphasis>:
-                                such action
+                                <emphasis>click</emphasis>:
+                                The user clicked on the startbutton shown by the Client.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>newGame()</emphasis>:
+                                The client evaluates the click to be a click on the startbutton. Then the client sends the newGame() request to the controller in order to instanciate a new game. Now the Client is waiting for a response of the controller.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>newGame()</emphasis>:
+                                The controller received the newGame() request from the client and forwards it to the server, i.e. the game.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>createGameState()</emphasis>:
+                                After receiving the request for a new game the game creates a new instance of the mancala game with the initial settings.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>createGameState()</emphasis>:
+                                The just instanciated gamestate is immediately sent to the database where it is being stored.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>gamestate</emphasis>:
+                                Now the game send the gamestate to the controller as response for the newGame() request from the controller (Nr. 3).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>updateGameStateView()</emphasis>:
+                                The Controller generates the SVG which can represents the current gamestate.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>gameStateSVG</emphasis>:
+                                The just generated SVG is now sent to the client as response for the newGame() request (Nr. 2).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>refreshView()</emphasis>:
+                                Finally the Client refreshs its view and the user can now see the game with the initial settings.
                             </para>
                         </listitem>
                     </orderedlist>
@@ -178,14 +252,62 @@
                 <title>Select a house</title>
                 <para>
                     click it
-                    <itemizedlist>
+                    <orderedlist>
                         <listitem>
                             <para>
-                                <emphasis>a action</emphasis>:
-                                such action
+                                <emphasis>click</emphasis>:
+                                The user clicked on the startbutton shown by the Client.
                             </para>
                         </listitem>
-                    </itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>clickedHouse(int)</emphasis>:
+                                The client evaluates the click to be a click on a house with a specific index. Then the client sends the clickedHouse(int) request with the regarding index as parameter to the controller in order to trigger the player move. Now the Client is waiting for a response of the controller.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>clickedHouse(int)</emphasis>:
+                                The controller received the newGame() request from the client and forwards it to the server, i.e. the game.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>createGameState()</emphasis>:
+                                After receiving the request for a new game the game creates a new instance of the mancala game with the initial settings.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>createGameState()</emphasis>:
+                                The just instanciated gamestate is immediately sent to the database where it is being stored.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>gamestate</emphasis>:
+                                Now the game send the gamestate to the controller as response for the newGame() request from the controller (Nr. 3).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>updateGameStateView()</emphasis>:
+                                The Controller generates the SVG which can represents the current gamestate.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>gameStateSVG</emphasis>:
+                                The just generated SVG is now sent to the client as response for the newGame() request (Nr. 2).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>refreshView()</emphasis>:
+                                Finally the Client refreshs its view and the user can now see the game with the initial settings.
+                            </para>
+                        </listitem>
+                    </orderedlist>
                 </para>
                 <mediaobject>
                     <imageobject>
@@ -269,6 +391,7 @@
     
     <section>
         <title>Implementation</title>
+        
         <section>
             <title>Filestructure</title>
             <para>
@@ -312,17 +435,17 @@
                 <itemizedlist>
                     <listitem>
                         <para>
-                            <emphasis>mancala_methods.xql</emphasis>:
-                            Contains all methods described in the class diagram
+                            Eine Beschreibung der Requests und Responses zwischen Client und Server nach dem REST-Prinzip und ihre Abbildung auf Queries mit restXQ.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Eine Beschreibung der Benutzeroberfläche für die verschiedenen Stadien des Spiels mit den jeweiligen Interaktionsmüglichkeiten.
                         </para>
                     </listitem>
                 </itemizedlist>
             </warning>
-            <para>Eine Beschreibung der Requests und Responses zischen Client und Server nach dem REST-Prinzip und ihre Abbildung auf Queries mit restXQ.</para>
-            <para>Eine Beschreibung der Benutzeroberfläche für die verschiedenen Stadien des Spiels mit den jeweiligen Interaktionsmüglichkeiten.</para>
         </section>
-        
-        
     </section>
     
     <section>
