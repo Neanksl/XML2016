@@ -210,14 +210,14 @@
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>createGameState()</emphasis>:
+                                <emphasis>setGameState()</emphasis>:
                                 The just instanciated gamestate is immediately sent to the database where it is being stored.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
                                 <emphasis>gamestate</emphasis>:
-                                Now the game send the gamestate to the controller as response for the newGame() request from the controller (Nr. 3).
+                                Now the game sends the gamestate to the controller as response for the newGame() request from the controller (Nr. 3).
                             </para>
                         </listitem>
                         <listitem>
@@ -251,7 +251,7 @@
             <section>
                 <title>Select a house</title>
                 <para>
-                    click it
+                    In order to make a move, a player can click in the browser on a house and trigger the intended move. 
                     <orderedlist>
                         <listitem>
                             <para>
@@ -268,25 +268,37 @@
                         <listitem>
                             <para>
                                 <emphasis>clickedHouse(int)</emphasis>:
-                                The controller received the newGame() request from the client and forwards it to the server, i.e. the game.
+                                The controller received the clickedHouse(int) request from the client and forwards it to the server, i.e. the game.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>createGameState()</emphasis>:
-                                After receiving the request for a new game the game creates a new instance of the mancala game with the initial settings.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis>createGameState()</emphasis>:
-                                The just instanciated gamestate is immediately sent to the database where it is being stored.
+                                <emphasis>getGameState()</emphasis>:
+                                The server now requests the current state of the game from the database.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
                                 <emphasis>gamestate</emphasis>:
-                                Now the game send the gamestate to the controller as response for the newGame() request from the controller (Nr. 3).
+                                The database returns the current gamestate.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>updateGameState()</emphasis>:
+                                After receiving the current gamestate the server evaluates the move which was triggered by the player and updates the gamestate appropriately.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>setGameState()</emphasis>:
+                                The just updated gamestate is immediately sent to the database where it is being stored.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>gamestate</emphasis>:
+                                Now the game sends the gamestate to the controller as response for the clickedHouse(int) request from the controller (Nr. 3).
                             </para>
                         </listitem>
                         <listitem>
@@ -298,7 +310,7 @@
                         <listitem>
                             <para>
                                 <emphasis>gameStateSVG</emphasis>:
-                                The just generated SVG is now sent to the client as response for the newGame() request (Nr. 2).
+                                The just generated SVG is now sent to the client as response for the clickedHouse(int) request (Nr. 2).
                             </para>
                         </listitem>
                         <listitem>
