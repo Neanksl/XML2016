@@ -18,15 +18,15 @@
         <roundY>10</roundY>
         <styleThisPlayer>fill:white;stroke:blue;stroke-width:2;</styleThisPlayer>
         <textstyleThisPlayer>fill:blue;font-family:Agency FB;</textstyleThisPlayer>
-        <styleOtherPlayer>fill:white;stroke:red;stroke-width:2;</styleOtherPlayer>
-        <textstyleOtherPlayer>fill:red;font-family:Agency FB;</textstyleOtherPlayer>
+        <styleOtherPlayer>fill:white;stroke:#F6D8CE;stroke-width:2;</styleOtherPlayer>
+        <textstyleOtherPlayer>fill:#F6D8CE;font-family:Agency FB;</textstyleOtherPlayer>
     </house>
     <store>
         <radius>100</radius>        
         <styleThisPlayer>fill:white;stroke:blue;stroke-width:2;</styleThisPlayer>
         <textstyleThisPlayer>fill:blue;font-weight:bold;font-family:Agency FB;</textstyleThisPlayer>
-        <styleOtherPlayer>fill:white;stroke:red;stroke-width:2;</styleOtherPlayer>
-        <textstyleOtherPlayer>fill:red;font-weight:bold;font-family:Agency FB;</textstyleOtherPlayer>        
+        <styleOtherPlayer>fill:white;stroke:#F6D8CE;stroke-width:2;</styleOtherPlayer>
+        <textstyleOtherPlayer>fill:#F6D8CE;font-weight:bold;font-family:Agency FB;</textstyleOtherPlayer>        
     </store>
     <layout>
         <posStartX>300</posStartX>
