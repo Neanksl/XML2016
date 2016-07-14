@@ -12,13 +12,12 @@
         doctype-public="-//W3C//DTD SVG 1.1//EN"
         doctype-system="http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"
         media-type="image/svg"/>
-
-
+    
     <!-- This XSLT uses two XML sources, where Static.xml is declared as a main XML -->
     <xsl:variable name="GameState" select="document('http://localhost:8984/gamestate')"/>
 
-    <xsl:template match="static">        
-        <svg width="{board/width}" height="{board/height}">				
+    <xsl:template match="static">
+        <svg width="{board/width}" height="{board/height}">
             <!-- Create graphics templates -->
             <defs>
                 <rect
@@ -57,22 +56,46 @@
                     <animate
                         attributeType="XML"
                         attributeName="fill"
-                        values="blue;white;white;blue"
+                        values="{board/triangleAnimateThisPlayer}"
                         dur="2s"
                         repeatCount="indefinite"/>
                 </polygon>
                 
-                <polygon 
+                <polygon
                     id="triangleBotTemplate"
                     points="0,{0.9*0.3*store/radius} {0.3*store/radius},{0.9*0.3*store/radius} {0.5*0.3*store/radius},0" 
                     style="{board/trianglestyleThisPlayer}">
                     <animate
                         attributeType="XML"
                         attributeName="fill"
-                        values="blue;white;white;blue"
+                        values="{board/triangleAnimateThisPlayer}"
                         dur="2s"
                         repeatCount="indefinite"/>
-                </polygon>                    
+                </polygon>
+                
+                <polygon 
+                    id="triangleLeftTemplate"
+                    points="0,{0.15*store/radius} 0,{-0.15*store/radius} {-0.9*0.3*store/radius},0" 
+                    style="{board/trianglestyleWinner}">
+                    <animate
+                        attributeType="XML"
+                        attributeName="fill"
+                        values="{board/triangleAnimateWinner}"
+                        dur="1s"
+                        repeatCount="indefinite"/>
+                </polygon>
+                
+                <polygon 
+                    id="triangleRightTemplate"
+                    points="0,{0.15*store/radius} 0,{-0.15*store/radius} {0.9*0.3*store/radius},0" 
+                    style="{board/trianglestyleWinner}">
+                    <animate
+                        attributeType="XML"
+                        attributeName="fill"
+                        values="{board/triangleAnimateWinner}"
+                        dur="1s"
+                        repeatCount="indefinite"/>
+                </polygon>
             </defs>
             
             <!-- Create background frame -->
@@ -192,7 +215,8 @@
                 </text>
             </xsl:for-each>    
             -->
-					
+            
+            
             <!-- Create houses for both players -->
             <xsl:call-template name="createHouses">
                 <xsl:with-param name="count" select="house/nrOfHouses"/>
@@ -216,10 +240,6 @@
                             style="{store/textstyleThisPlayer}">
                             <xsl:value-of select="$GameState/game/board/layer[1]/store"/>
                         </text>
-                        <use 
-                            x="{layout/posStartX - layout/distanceHouseStore + layout/distanceHorizontalHouse - 0.5 * 0.3 * store/radius}" 
-                            y="{layout/posStartY + house/height + (layout/distanceVertitalHouse div 2) + (0.35 - 1.25) * store/radius}" 
-                            xlink:href="#triangleTopTemplate"/>
                     </g>
                     
                     <!-- Player 1, Bot Store -->
@@ -257,7 +277,7 @@
                     
                     <!-- Player 2, Bot Store -->
                     <g>
-                        <use				
+                        <use
                             x="{layout/posStartX + layout/distanceHouseStore + (house/width + layout/distanceHorizontalHouse) * house/nrOfHouses + store/radius}"
                             y="{layout/posStartY + house/height + (layout/distanceVertitalHouse div 2)}" 
                             xlink:href="#storeThisPlayerTemplate"/>
@@ -269,17 +289,66 @@
                             style="{store/textstyleThisPlayer}">
                             <xsl:value-of select="$GameState/game/board/layer[2]/store"/>
                         </text>
-                        <use 
-                            x="{layout/posStartX + layout/distanceHouseStore + (house/width + layout/distanceHorizontalHouse) * house/nrOfHouses + 2 * store/radius - 0.5 * 0.3 * store/radius}" 
-                            y="{layout/posStartY + house/height + (layout/distanceVertitalHouse div 2) + (0.35 + 0.3) * store/radius}" 
-                            xlink:href="#triangleBotTemplate"/>
                     </g>
                 </xsl:otherwise>
-            </xsl:choose>	
-            
-                          			
+            </xsl:choose>
+                    
+            <!-- Display game info: game over or player's turn -->
+            <xsl:choose>
+                <xsl:when test="not($GameState/game/wonBy = '0')">
+                    <!-- Game is over -->
+                    <text
+                        x="{layout/posStartX + 4 * house/width + 3.5 * layout/distanceHorizontalHouse}"
+                        y="{layout/posStartY + house/height + 0.7 * layout/distanceVertitalHouse}"
+                        text-anchor="middle"
+                        font-size="{0.5 * house/width}"
+                        style="{menu/gameOver/textstyle}">
+                        <xsl:value-of select="concat('Player ', $GameState/game/wonBy, ' won!')"/>
+                    </text>
+                    <xsl:choose>
+                        <!-- Display blinking triangle indicating winner's side -->
+                        <xsl:when test="$GameState/game/wonBy = '1'">
+                            <use 
+                                x="{layout/posStartX + 3 * house/width + 2 * layout/distanceHorizontalHouse}" 
+                                y="{layout/posStartY + house/height + 0.5 * layout/distanceVertitalHouse}" 
+                                xlink:href="#triangleLeftTemplate"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <use 
+                                x="{layout/posStartX + 5 * house/width + 5 * layout/distanceHorizontalHouse}" 
+                                y="{layout/posStartY + house/height + 0.5 * layout/distanceVertitalHouse}" 
+                                xlink:href="#triangleRightTemplate"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>	
+                    <!-- Current player's turn -->
+                    <text
+                        x="{layout/posStartX + 4 * house/width + 3.5 * layout/distanceHorizontalHouse}"
+                        y="{layout/posStartY + house/height + 0.7 * layout/distanceVertitalHouse}"
+                        text-anchor="middle"
+                        font-size="{0.5 * house/width}"
+                        style="{menu/gameTurn/textstyle}">
+                        <xsl:value-of select='concat("Player ", $GameState/game/players/turn, "&apos;", "s turn...")'/>
+                    </text>
+                    <xsl:choose>
+                        <!-- Display blinking triangle indicating current player's turn -->
+                        <xsl:when test="$GameState/game/players/turn = '1'">
+                            <use 
+                                x="{layout/posStartX - layout/distanceHouseStore + layout/distanceHorizontalHouse - 0.5 * 0.3 * store/radius}" 
+                                y="{layout/posStartY + house/height + (layout/distanceVertitalHouse div 2) + (0.35 - 1.25) * store/radius}" 
+                                xlink:href="#triangleTopTemplate"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <use 
+                                x="{layout/posStartX + layout/distanceHouseStore + (house/width + layout/distanceHorizontalHouse) * house/nrOfHouses + 2 * store/radius - 0.5 * 0.3 * store/radius}" 
+                                y="{layout/posStartY + house/height + (layout/distanceVertitalHouse div 2) + (0.35 + 0.3) * store/radius}" 
+                                xlink:href="#triangleBotTemplate"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:otherwise>
+            </xsl:choose>
         </svg>
-
     </xsl:template>
 	
     <!-- Recursion -->

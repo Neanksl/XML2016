@@ -6,6 +6,9 @@
         <width>1500</width>
         <height>1500</height>
         <trianglestyleThisPlayer>fill:blue;stroke:white;stroke-width:1</trianglestyleThisPlayer>
+        <triangleAnimateThisPlayer>blue;white;white;blue</triangleAnimateThisPlayer>
+        <trianglestyleWinner>fill:blue;stroke:;stroke-width:1</trianglestyleWinner>
+        <triangleAnimateWinner>green;#CEECF5;#CEECF5;green</triangleAnimateWinner>
     </board>
     <seed>
         <style>fill:black;</style>
@@ -32,7 +35,7 @@
         <posStartX>300</posStartX>
         <posStartY>300</posStartY>
         <distanceHorizontalHouse>15</distanceHorizontalHouse>
-        <distanceVertitalHouse>50</distanceVertitalHouse>
+        <distanceVertitalHouse>80</distanceVertitalHouse>
         <distanceHouseStore>50</distanceHouseStore>
         <distanceYextraSeeds>8</distanceYextraSeeds>
         <distanceBetweenExtraSeeds>5</distanceBetweenExtraSeeds>
@@ -65,6 +68,16 @@
             <style>fill:yellow;stroke:orange;stroke-width:2;</style>
             <textstyle>fill:black;font-weight:bold;font-family:Agency FB;</textstyle>
         </highscoreButton>
+        
+        <!-- game information -->
+        <gameTurn>
+            <style>fill:green;stroke:green;stroke-width:2;</style>
+            <textstyle>fill:black;font-weight:bold;font-family:Agency FB;</textstyle>
+        </gameTurn>
+        <gameOver>
+            <style>fill:green;stroke:green;stroke-width:2;</style>
+            <textstyle>fill:green;font-weight:bold;font-family:Agency FB;</textstyle>
+        </gameOver>
         <!--
         <button>
             <id>newGameButton</id>
