@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One Bean  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 90 90" style="enable-background:new 0 0 90 90;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill:#5E7703;}
+	.st2{fill:#FFFFFF;}
+</style>
+<circle class="st0" cx="45" cy="46.3" r="42.5"/>
+<g>
+	<circle class="st1" cx="47" cy="47.5" r="9.3"/>
+	<ellipse transform="matrix(0.8155 -0.5787 0.5787 0.8155 -16.1166 34.062)" class="st2" cx="45.4" cy="42.3" rx="2.7" ry="0.5"/>
+	<circle class="st2" cx="41.8" cy="45.3" r="0.5"/>
+</g>
+</svg>
