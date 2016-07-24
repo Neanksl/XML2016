@@ -34,7 +34,7 @@
 							
                 <circle
                     id="seedTemplate"
-                    r="{((house/width + house/height) div 2) div 12}"
+                    r="{(house/width + house/height) div 50}"
                     style="{seed/style}"/>
 
                 <circle
@@ -329,7 +329,7 @@
                         text-anchor="middle"
                         font-size="{0.5 * house/width}"
                         style="{menu/gameTurn/textstyle}">
-                        <xsl:value-of select='concat("Player ", $GameState/game/players/turn, "&apos;", "s turn...")'/>
+                        <xsl:value-of select='concat("Player ", $GameState/game/players/turn, "&apos;", "s turn")'/>
                     </text>
                     <xsl:choose>
                         <!-- Display blinking triangle indicating current player's turn -->
@@ -367,9 +367,9 @@
                                     xlink:href="#houseThisPlayerTemplate"/>					
                                 <text
                                     x="{layout/posStartX + (house/width + layout/distanceHorizontalHouse) * $count + 0.5 * house/width}"
-                                    y="{layout/posStartY + 0.6 * house/height}"
+                                    y="{layout/posStartY + 0.26 * house/height}"
                                     text-anchor="middle"
-                                    font-size="{0.3 * house/width}"
+                                    font-size="{0.25 * house/width}"
                                     style="{house/textstyleThisPlayer}">
                                     <xsl:value-of select="$GameState/game/board/layer[1]/house[7 - $count]"/>
                                 </text>
@@ -382,17 +382,17 @@
                                         xlink:href="#houseThisPlayerTemplate"/>					
                                     <text
                                         x="{layout/posStartX + (house/width + layout/distanceHorizontalHouse) * $count + 0.5 * house/width}"
-                                        y="{layout/posStartY + 0.6 * house/height}"
+                                        y="{layout/posStartY + 0.26 * house/height}"
                                         text-anchor="middle"
-                                        font-size="{0.3 * house/width}"
+                                        font-size="{0.25 * house/width}"
                                         style="{house/textstyleThisPlayer}">
                                         <xsl:value-of select="$GameState/game/board/layer[1]/house[7 - $count]"/>
                                     </text>
                                 </a>
                             </xsl:otherwise>
-                        </xsl:choose>
-                    </g>			
-				
+                        </xsl:choose> 
+                    </g>
+                    
                     <!-- Player 1, Bottom houses -->
                     <g>
                         <use 
@@ -401,9 +401,9 @@
                             xlink:href="#houseOtherPlayerTemplate"/>
                         <text
                             x="{layout/posStartX + (house/width + layout/distanceHorizontalHouse) * $count + 0.5 * house/width}"
-                            y="{layout/posStartY + house/height + layout/distanceVertitalHouse + 0.6 * house/height}"
+                            y="{layout/posStartY + house/height + layout/distanceVertitalHouse + 0.94 * house/height}"
                             text-anchor="middle"
-                            font-size="{0.3 * house/width}"
+                            font-size="{0.25 * house/width}"
                             style="{house/textstyleOtherPlayer}">
                             <xsl:value-of select="$GameState/game/board/layer[2]/house[0 + $count]"/>
                         </text>
@@ -418,9 +418,9 @@
                             xlink:href="#houseOtherPlayerTemplate"/>					
                         <text
                             x="{layout/posStartX + (house/width + layout/distanceHorizontalHouse) * $count + 0.5 * house/width}"
-                            y="{layout/posStartY + 0.6 * house/height}"
+                            y="{layout/posStartY + 0.26 * house/height}"
                             text-anchor="middle"
-                            font-size="{0.3 * house/width}"
+                            font-size="{0.25 * house/width}"
                             style="{house/textstyleOtherPlayer}">
                             <xsl:value-of select="$GameState/game/board/layer[1]/house[7 - $count]"/>
                         </text>
@@ -436,9 +436,9 @@
                                     xlink:href="#houseThisPlayerTemplate"/>
                                 <text
                                     x="{layout/posStartX + (house/width + layout/distanceHorizontalHouse) * $count + 0.5 * house/width}"
-                                    y="{layout/posStartY + house/height + layout/distanceVertitalHouse + 0.6 * house/height}"
+                                    y="{layout/posStartY + house/height + layout/distanceVertitalHouse + 0.94 * house/height}"
                                     text-anchor="middle"
-                                    font-size="{0.3 * house/width}"
+                                    font-size="{0.25 * house/width}"
                                     style="{house/textstyleThisPlayer}">
                                     <xsl:value-of select="$GameState/game/board/layer[2]/house[0 + $count]"/>
                                 </text>
@@ -451,9 +451,9 @@
                                         xlink:href="#houseThisPlayerTemplate"/>
                                     <text
                                         x="{layout/posStartX + (house/width + layout/distanceHorizontalHouse) * $count + 0.5 * house/width}"
-                                        y="{layout/posStartY + house/height + layout/distanceVertitalHouse + 0.6 * house/height}"
+                                        y="{layout/posStartY + house/height + layout/distanceVertitalHouse + 0.94 * house/height}"
                                         text-anchor="middle"
-                                        font-size="{0.3 * house/width}"
+                                        font-size="{0.25 * house/width}"
                                         style="{house/textstyleThisPlayer}">
                                         <xsl:value-of select="$GameState/game/board/layer[2]/house[0 + $count]"/>
                                     </text>
@@ -461,11 +461,68 @@
                             </xsl:otherwise>   
                         </xsl:choose>                         
                     </g>
+                    
+                    
                 </xsl:otherwise>
-            </xsl:choose>            			
-				
+            </xsl:choose>
+            
+            <!-- Place seeds  -->                    
+            <xsl:call-template name="placeSeeds">
+                <xsl:with-param name="ind" select="0"/>
+                <xsl:with-param name="placeTurn" select="1"/>
+                <xsl:with-param name="nrOfSeeds" select="$GameState/game/board/layer[1]/house[7 - $count]"/>
+                <xsl:with-param name="seedPosStartX" select="layout/posStartX + (house/width + layout/distanceHorizontalHouse) * $count"/>
+                <xsl:with-param name="seedPosStartY" select="layout/posStartY"/>
+            </xsl:call-template>
+            
+            <!-- Place seeds  -->                    
+            <xsl:call-template name="placeSeeds">
+                <xsl:with-param name="ind" select="0"/>
+                <xsl:with-param name="placeTurn" select="2"/>
+                <xsl:with-param name="nrOfSeeds" select="$GameState/game/board/layer[2]/house[0 + $count]"/>
+                <xsl:with-param name="seedPosStartX" select="layout/posStartX + (house/width + layout/distanceHorizontalHouse) * $count"/>
+                <xsl:with-param name="seedPosStartY" select="layout/posStartY + house/height + layout/distanceVertitalHouse"/>
+            </xsl:call-template>
+            
             <xsl:call-template name="createHouses">
                 <xsl:with-param name="count" select="$count - 1"/>
+            </xsl:call-template>
+        </xsl:if>      
+    </xsl:template>
+    
+    <!-- Recursion -->
+    <!-- Max. 48 seeds in a house -> 6 rows x 8 cols -->
+    <xsl:template name="placeSeeds"> 
+        <xsl:param name="ind"/>
+        <xsl:param name="placeTurn"/>
+        <xsl:param name="nrOfSeeds"/>
+        <xsl:param name="seedPosStartX"/>
+        <xsl:param name="seedPosStartY"/>
+        <xsl:if test="$ind &lt; $nrOfSeeds">
+        
+            <xsl:choose>
+                <xsl:when test="$placeTurn = '1'">
+                    <!-- Player 1 -->
+                    <use 
+                        x="{$seedPosStartX + (house/width div 9) + (house/width div 9) * ($ind mod 8)}"
+                        y="{$seedPosStartY + (house/height div 3) + ((house/height * 2 div 3) div 7) * floor($ind div 8)}"
+                        xlink:href="#seedTemplate"/>                    
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- Player 2 -->
+                    <use 
+                        x="{$seedPosStartX + (house/width * 8 div 9) - (house/width div 9) * ($ind mod 8)}"
+                        y="{$seedPosStartY + (house/height * 2 div 3) - ((house/height * 2 div 3) div 7) * floor($ind div 8)}"                        
+                        xlink:href="#seedTemplate"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+            <xsl:call-template name="placeSeeds">
+                <xsl:with-param name="ind" select="$ind + 1"/>
+                <xsl:with-param name="placeTurn" select="$placeTurn"/>
+                <xsl:with-param name="nrOfSeeds" select="$nrOfSeeds"/>
+                <xsl:with-param name="seedPosStartX" select="$seedPosStartX"/>
+                <xsl:with-param name="seedPosStartY" select="$seedPosStartY"/>
             </xsl:call-template>
         </xsl:if>      
     </xsl:template>

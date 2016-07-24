@@ -11,7 +11,7 @@
         <triangleAnimateWinner>green;#CEECF5;#CEECF5;green</triangleAnimateWinner>
     </board>
     <seed>
-        <style>fill:black;</style>
+        <style>fill:grey;stroke:white;</style>
     </seed>
     <house>        
         <nrOfHouses>6</nrOfHouses>
@@ -21,15 +21,15 @@
         <roundY>10</roundY>
         <styleThisPlayer>fill:white;stroke:blue;stroke-width:2;</styleThisPlayer>
         <textstyleThisPlayer>fill:blue;font-family:Agency FB;</textstyleThisPlayer>
-        <styleOtherPlayer>fill:white;stroke:#F6D8CE;stroke-width:2;</styleOtherPlayer>
-        <textstyleOtherPlayer>fill:#F6D8CE;font-family:Agency FB;</textstyleOtherPlayer>
+        <styleOtherPlayer>fill:white;stroke:orange;stroke-width:2;</styleOtherPlayer>
+        <textstyleOtherPlayer>fill:orange;font-family:Agency FB;</textstyleOtherPlayer>
     </house>
     <store>
         <radius>100</radius>        
         <styleThisPlayer>fill:white;stroke:blue;stroke-width:2;</styleThisPlayer>
         <textstyleThisPlayer>fill:blue;font-weight:bold;font-family:Agency FB;</textstyleThisPlayer>
-        <styleOtherPlayer>fill:white;stroke:#F6D8CE;stroke-width:2;</styleOtherPlayer>
-        <textstyleOtherPlayer>fill:#F6D8CE;font-weight:bold;font-family:Agency FB;</textstyleOtherPlayer>        
+        <styleOtherPlayer>fill:white;stroke:orange;stroke-width:2;</styleOtherPlayer>
+        <textstyleOtherPlayer>fill:orange;font-weight:bold;font-family:Agency FB;</textstyleOtherPlayer>        
     </store>
     <layout>
         <posStartX>300</posStartX>
@@ -71,11 +71,9 @@
         
         <!-- game information -->
         <gameTurn>
-            <style>fill:green;stroke:green;stroke-width:2;</style>
-            <textstyle>fill:black;font-weight:bold;font-family:Agency FB;</textstyle>
+            <textstyle>fill:grey;font-weight:bold;font-family:Agency FB;</textstyle>
         </gameTurn>
         <gameOver>
-            <style>fill:green;stroke:green;stroke-width:2;</style>
             <textstyle>fill:green;font-weight:bold;font-family:Agency FB;</textstyle>
         </gameOver>
         <!--
