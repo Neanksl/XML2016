@@ -34,7 +34,7 @@
 							
                 <circle
                     id="seedTemplate"
-                    r="{(house/width + house/height) div 50}"
+                    r="{(house/width + house/height) div 40}"
                     style="{seed/style}"/>
 
                 <circle
@@ -491,7 +491,7 @@
     </xsl:template>
     
     <!-- Recursion -->
-    <!-- Max. 48 seeds in a house -> 6 rows x 8 cols -->
+    <!-- 5 rows x 5 cols -->
     <xsl:template name="placeSeeds"> 
         <xsl:param name="ind"/>
         <xsl:param name="placeTurn"/>
@@ -503,16 +503,16 @@
             <xsl:choose>
                 <xsl:when test="$placeTurn = '1'">
                     <!-- Player 1 -->
-                    <use 
-                        x="{$seedPosStartX + (house/width div 9) + (house/width div 9) * ($ind mod 8)}"
-                        y="{$seedPosStartY + (house/height div 3) + ((house/height * 2 div 3) div 7) * floor($ind div 8)}"
-                        xlink:href="#seedTemplate"/>                    
+                    <use
+                        x="{$seedPosStartX + (house/width div 6) + (house/width div 6) * ($ind mod 5)}"
+                        y="{$seedPosStartY + (house/height div 3) + ((house/height * 2 div 3) div 6) * floor($ind div 5)}"
+                        xlink:href="#seedTemplate"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- Player 2 -->
-                    <use 
-                        x="{$seedPosStartX + (house/width * 8 div 9) - (house/width div 9) * ($ind mod 8)}"
-                        y="{$seedPosStartY + (house/height * 2 div 3) - ((house/height * 2 div 3) div 7) * floor($ind div 8)}"                        
+                    <use
+                        x="{$seedPosStartX + (house/width * 5 div 6) - (house/width div 6) * ($ind mod 5)}"
+                        y="{$seedPosStartY + (house/height * 2 div 3) - ((house/height * 2 div 3) div 6) * floor($ind div 5)}"
                         xlink:href="#seedTemplate"/>
                 </xsl:otherwise>
             </xsl:choose>
