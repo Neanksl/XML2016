@@ -41,6 +41,14 @@ declare updating function page:players_toggleCurrentPlayer($this)
         $this/player[1])
 };
 
+declare function page:players_getHouseIdForCurrentPlayer($this)
+{
+    let $x := 1
+    return ( if(page:players_getCurrentPlayer($this)/id = 1) then
+        7
+    else
+        14 )
+};
 
 (: player class :)
 declare updating function page:player_increaseWinCount($this)
@@ -54,8 +62,6 @@ declare updating function page:player_resetWinCount($this)
     replace value of node $this/winCount
         with 0
 };
-
-
 
 (: store class :)
 declare updating function page:store_incSeedCount($this, $amount)
@@ -77,8 +83,6 @@ as xs:integer
     return
         $this
 };
-
-
 
 (: house class :)
 declare function page:house_getSeedCount($this)
@@ -104,6 +108,8 @@ declare updating function page:house_incSeedCount($this, $amount)
 
 
 (: board class :)
+
+
 declare function page:board_getHouseWithId($this, $houseId as xs:integer)
 {
     if ($houseId < 7) then
@@ -135,7 +141,6 @@ declare function page:board_getStoreWithId($this, $storeId as xs:integer)
         where $h/@id = $storeId
         return
             $h
-
 };
 
 
@@ -155,7 +160,6 @@ declare updating function page:board_increaseStoreBy1($this, $startingAt, $times
         ()
 };
 
-
 declare updating function page:board_increaseHousesBy1($this, $startingAt, $times, $old, $active)
 {
     if ($times > 0 and ($old != $startingAt or $active)) then
@@ -174,7 +178,6 @@ declare updating function page:board_increaseHousesBy1($this, $startingAt, $time
         ()
 };
 
-
 declare updating function page:board_distributeSeeds($this, $clickedHouse, $times)
 {
     if ($clickedHouse = 6 or $clickedHouse = 13) then
@@ -183,16 +186,36 @@ declare updating function page:board_distributeSeeds($this, $clickedHouse, $time
         page:board_increaseHousesBy1($this, $clickedHouse + 1, $times, $clickedHouse, true())
 };
 
-declare
-updating function page:board_clickedHouse($this, $houseId)
+
+declare function page:board_isLastStoneMyHouse($this, $players, $houseId, $numStones)
+{
+    (: get distance from :)
+    let $playerHouseId := page:players_getHouseIdForCurrentPlayer($players)
+    return $houseId + ($numStones mod 14) = $playerHouseId 
+};
+    
+declare updating function page:game_log($game, $message)
+{
+    replace value of node $game/logMessage with $message
+};
+
+declare updating function page:board_clickedHouse($this, $houseId, $game)
 {
     page:house_setSeedCount(
-    page:board_getHouseWithId($this, $houseId),
-    page:house_getSeedCount(page:board_getHouseWithId($this, $houseId)) idiv 14),
+        page:board_getHouseWithId($this, $houseId),
+        page:house_getSeedCount(page:board_getHouseWithId($this, $houseId)) idiv 14),
     
     page:board_distributeSeeds($this, $houseId,
-    page:house_getSeedCount(page:board_getHouseWithId($this, $houseId)))
+        page:house_getSeedCount(page:board_getHouseWithId($this, $houseId))),
     
+    if (page:board_isLastStoneMyHouse($this, $game/players,$houseId, 
+            page:house_getSeedCount(page:board_getHouseWithId($this, $houseId))) ) then
+       ( 
+       (: play again if the last stone hits in own pit :) 
+       )
+       
+    else
+        ( page:players_toggleCurrentPlayer($game/players) )
 };
 
 
@@ -284,17 +307,20 @@ updating function page:game_checkForGameFinished($this)
         else
             ()
         )
-    
-    
-    
-    
 };
 
+declare updating function page:game_clicked($this, $id)
+{
+    page:board_clickedHouse($this/board, xs:integer($id), $this)
+};
+
+(: old
 declare updating function page:game_clicked($this, $id)
 {
     page:board_clickedHouse($this/board, xs:integer($id)),
     page:players_toggleCurrentPlayer($this/players)
 };
+:)
 
 declare
 %rest:path("/updategamefinished")
@@ -308,7 +334,6 @@ updating function page:checkIfGameIsFinished()
         )
 };
 
-
 declare
 %rest:path("clicked/{$houseId}")
 updating function page:clickedHouse($houseId)
@@ -320,8 +345,6 @@ updating function page:clickedHouse($houseId)
         page:game_clicked(page:getDB()/game, xs:integer($houseId))
         )
 };
-
-
 
 
 declare updating function page:game_resetBoard($this, $startSeeds)
@@ -411,7 +434,6 @@ updating function page:createDB()
 };
 
 (:   testing :)
-
 declare
 %rest:path("test/db/create/{$dbname}")
 %rest:GET
