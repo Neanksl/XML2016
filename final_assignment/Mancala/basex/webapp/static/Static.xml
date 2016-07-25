@@ -51,13 +51,13 @@
     <menu>
         <!-- clickable -->
         <tryAgainButton>
-            <desc>Try again</desc>
+            <desc>New Game</desc>
             <link>tryagain</link>
             <style>fill:green;stroke:green;stroke-width:2;</style>
             <textstyle>fill:white;font-weight:bold;font-family:Agency FB;</textstyle>
         </tryAgainButton>
         <startOverButton>
-            <desc>Start Over</desc>
+            <desc>Reset Scores</desc>
             <link>db/create</link>
             <style>fill:orange;stroke:orange;stroke-width:2;</style>
             <textstyle>fill:white;font-weight:bold;font-family:Agency FB;</textstyle>
