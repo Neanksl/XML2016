@@ -5,9 +5,8 @@
 <!ATTLIST xsl:stylesheet
 id ID #REQUIRED>
 ]>
-<doc >
-<xsl:stylesheet
-    
+<doc>
+<xsl:stylesheet    
     id="stylesheet"
     version="1.0" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -22,17 +21,17 @@ id ID #REQUIRED>
         doctype-system="http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"
         media-type="image/svg"/>
     
+    <!-- avoid the stylesheet running on itself -->
+    <xsl:template match="xsl:stylesheet"/>
+    
     <!-- This XSLT uses two XML sources, where Static.xml is declared as a main XML -->
-    <xsl:variable 
-        name="GameState" select="replaceme"/>
+    <xsl:variable name="GameState" select="replaceme"/>
 
-    <xsl:template match="/doc/static">
+    <xsl:template match="doc/static">
         <svg width="{board/width}" height="{board/height}">
             <!-- Create graphics templates -->
             <defs>
-                <!-- Import font -->
-                    <!--<style type="text/css"> @import url('https://fonts.googleapis.com/css?family=Exo');</style>-->
-                
+                <!-- Import font -->                
                 <style type="text/css">
                     <![CDATA[
                         @font-face {
@@ -40,8 +39,7 @@ id ID #REQUIRED>
                             src: url('http://localhost:8984/static/agency-fb.ttf');
                         }
                    ]]>
-                </style>
-                
+                </style>                
                 
                 <rect
                     id="houseThisPlayerTemplate"
@@ -135,16 +133,16 @@ id ID #REQUIRED>
             
             <!-- Create menu buttons -->
             <!-- Try again button -->
-            <a href="tryagain/{$GameState/game/gameid}">
+            <a xlink:href="http://localhost:8984/tryagain/{$GameState/game/gameid}">
                 <rect
                     x="{layout/posStartX + house/width + layout/distanceHorizontalHouse}" 
                     y="{layout/posStartY - 2 * layout/distanceVerticalHouseFrame - 0.5 * house/height}"
                     id="tryAgainButton"
-                    width="{house/width}" 
+                    width="{house/width}"
                     height="{0.5 * house/height}"
-                    rx="{house/roundX}" 
+                    rx="{house/roundX}"
                     ry="{house/roundY}"
-                    style="{menu/tryAgainButton/style}"/>					
+                    style="{menu/tryAgainButton/style}"/>
                 <text
                     x="{layout/posStartX + house/width + layout/distanceHorizontalHouse + 0.5 * house/width}"
                     y="{layout/posStartY - 2 * layout/distanceVerticalHouseFrame + (- 0.5 + 0.3)* house/height}"
@@ -156,7 +154,7 @@ id ID #REQUIRED>
             </a>      
             
             <!-- Start over button -->
-            <a href="db/create">
+            <a xlink:href="http://localhost:8984/db/create">
                 <rect
                     x="{layout/posStartX + 2 * (house/width + layout/distanceHorizontalHouse)}" 
                     y="{layout/posStartY - 2 * layout/distanceVerticalHouseFrame - 0.5 * house/height}"
@@ -177,7 +175,7 @@ id ID #REQUIRED>
             </a>
             
             <!-- High score button -->
-            <a href="">
+            <a xlink:href="">
                 <rect
                     x="{layout/posStartX + 5 * (house/width + layout/distanceHorizontalHouse)}" 
                     y="{layout/posStartY - 2 * layout/distanceVerticalHouseFrame - 0.5 * house/height}"
@@ -398,7 +396,7 @@ id ID #REQUIRED>
                                 </text>
                             </xsl:when>
                             <xsl:otherwise>
-                                <a href="clicked/{$GameState/game/gameid}/{7 - $count}" >
+                                <a xlink:href="http://localhost:8984/clicked/{$GameState/game/gameid}/{7 - $count}" >
                                     <use 
                                         x="{layout/posStartX + (house/width + layout/distanceHorizontalHouse) * $count}" 
                                         y="{layout/posStartY}"
@@ -467,7 +465,7 @@ id ID #REQUIRED>
                                 </text>
                             </xsl:when>
                             <xsl:otherwise>
-                                <a href="clicked/{$GameState/game/gameid}/{$count + 7}" >
+                                <a xlink:href="http://localhost:8984/clicked/{$GameState/game/gameid}/{$count + 7}" >
                                     <use 
                                         x="{layout/posStartX + (house/width + layout/distanceHorizontalHouse) * $count}" 
                                         y="{layout/posStartY + house/height + layout/distanceVertitalHouse}" 
@@ -558,7 +556,7 @@ id ID #REQUIRED>
         <height>1500</height>
         <trianglestyleThisPlayer>fill:blue;stroke:white;stroke-width:1</trianglestyleThisPlayer>
         <triangleAnimateThisPlayer>blue;white;white;blue</triangleAnimateThisPlayer>
-        <trianglestyleWinner>fill:blue;stroke:;stroke-width:1</trianglestyleWinner>
+        <trianglestyleWinner>fill:green;stroke:;stroke-width:1</trianglestyleWinner>
         <triangleAnimateWinner>green;#CEECF5;#CEECF5;green</triangleAnimateWinner>
     </board>
     <seed>
@@ -642,19 +640,19 @@ id ID #REQUIRED>
             <textstyle>fill:white;font-weight:bold;font-family:Agency FB;</textstyle>
         </button>       
 
-        <display>
-            <id>backgroundFrame</id>
-            <desc>Record: </desc>
-            <width>100</width>
-            <height>50</height>
-            <roundX>10</roundX>
-            <roundY>10</roundY>
-            <posX>1000</posX>
-            <posY>200</posY>
-            <style>fill:blue;stroke:blue;stroke-width:2;</style>
-            <textstyle>fill:white;font-weight:bold;font-family:Agency FB;</textstyle>
-        </display>
-        -->
-    </menu>
-</static>
+            <display>
+                <id>backgroundFrame</id>
+                <desc>Record: </desc>
+                <width>100</width>
+                <height>50</height>
+                <roundX>10</roundX>
+                <roundY>10</roundY>
+                <posX>1000</posX>
+                <posY>200</posY>
+                <style>fill:blue;stroke:blue;stroke-width:2;</style>
+                <textstyle>fill:white;font-weight:bold;font-family:Agency FB;</textstyle>
+            </display>
+            -->
+        </menu>
+    </static>
 </doc>
