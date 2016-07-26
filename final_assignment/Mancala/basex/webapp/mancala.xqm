@@ -1,7 +1,7 @@
 
 
 module namespace page = 'http://basex.org/modules/web-page';
-
+declare namespace xsl = "http://www.w3.org/1999/XSL/Transform";
 (:
 declare namespace players = "http://basex.org/modules/web-page/players";
 declare namespace player = "http://basex.org/modules/web-page/player";
@@ -378,9 +378,9 @@ function page:getTransform($dbID)
     doc("./static/Static.xml")
 };
 
+
 declare
   %rest:path("debug/testout")
-  
 function page:cities() 
 {
 <doc>
@@ -397,20 +397,17 @@ declare
     %rest:path("getstatic/{$gameID}")
     %rest:GET
 function page:getStatic($gameID)
-  as element(Q{http://www.w3.org/1999/xhtml}html)
 {
-    let $href := concat("http://localhost:8984/gettransform/",$gameID)
+
+    copy $doc := doc("./static/Static.xml")
     
-    let $s := "<?xml version='1.0' encoding='UTF-8'?>\n"
-    let $s2 := concat('<?xml-stylesheet href=',$href,' type="text/xsl"?>')
+    modify (
     
-    return  concat ( 
-            $s,
-            $s2,
-        <graphics>
-            {doc("./static/Static.xml")}
-        </graphics>)
+     replace value of node $doc/doc/xsl:stylesheet/xsl:variable/@select with concat ("document('http://localhost:8984/gamestate/", $gameID,"')")
     
+    ) 
+    
+    return $doc
     
 };
 
