@@ -430,13 +430,8 @@
                     <listitem>
                         <para>
                             <emphasis>Static.xml</emphasis>:
-                            Contains a number of measurement input values (such as horizontal/vertiacal distance between houses, distance between stores and nearest houses etc), so that the Mancala board can be automatically created (see "Transform.xsl").
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>Transform.xsl</emphasis>:
                             Combines and transforms current gamestates from server with static measurement input values to create an SVG file that displays the Mancala board.
+                            Contains a number of measurement input values (such as horizontal/vertiacal distance between houses, distance between stores and nearest houses etc), so that the Mancala board can be automatically created (see "Transform.xsl").
                         </para>
                     </listitem>
                     <listitem>
@@ -449,6 +444,7 @@
             </para>
         </section>
         
+        
         <section>
             <title>Namespaces</title>
             <para>In order to realise the architecture represented in the classdiagram we introduced multiple namespaces, to simulate class-scopes. Since only classes with methods received their own namespace, the layer and the position are the only classes which do not have an explicit namespace. Accordingly each method is defined in the namespace of its class.</para>
@@ -458,6 +454,22 @@
             <title>Single Node Updates</title>
             <para>As XQuery updates are gathered and applied at once the end of the XQuery script, nodes cannot be updated multiple times. Therefore, the amount of seeds is calculated and each house is updated only once.</para>
         </section>
+        
+        <section>
+            <title>Index DB</title>
+            <para>TODO: IndexDB for games: At first startup, the index-db has to be initialized.</para>
+        </section>
+        
+         <section>
+             <title>TODO</title>
+            <para>TODO: node manipulation by reference</para>
+            <para>TODO: recursive node distribution</para>
+            <para>By marking a function <emphasis>updating</emphasis>, FLWOR statements cannot be used inside the function scope. To mitigate this issue, updating functions use getters on composite objects instead of local <emphasis>let</emphasis> variables.</para>
+            <para>TODO: forwarding to circumvent update issues</para>
+        </section>
+        
+    
+       
         
         <section>
             <title>Graphical User Interface (GUI)</title>
@@ -577,13 +589,7 @@
         </section>
     </section>
     
-    <section>
-        <title>Reflections</title>
-        <section>
-            <title>Updating vs FLWOR</title>
-            <para>By marking a function <emphasis>updating</emphasis>, FLWOR statements cannot be used inside the function scope. To mitigate this issue, updating functions use getters on composite objects instead of local <emphasis>let</emphasis> variables.</para>
-        </section>
-    </section>
+    
     
     <section>
         <title>Future Work</title>
