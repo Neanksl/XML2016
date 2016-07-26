@@ -18,7 +18,7 @@ declare updating function store:setSeedCount($this, $amount)
         with $amount
 };
 
-declare function store:getSeedCount($this)
+declare function store:seedCount($this)
 as xs:integer
 {
     let $this := $this

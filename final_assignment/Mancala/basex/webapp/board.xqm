@@ -12,14 +12,14 @@ import module namespace players = 'players' at 'players.xqm';
 declare updating function board:clickedHouse($this, $houseId, $game)
 {
     house:setSeedCount(
-        board:_getHouseWithId($this, $houseId),
-        house:getSeedCount(board:_getHouseWithId($this, $houseId)) idiv 14),
+        board:_houseWithId($this, $houseId),
+        house:seedCount(board:_houseWithId($this, $houseId)) idiv 14),
     
     board:_distributeSeeds($this, $houseId,
-        house:getSeedCount(board:_getHouseWithId($this, $houseId))),
+        house:seedCount(board:_houseWithId($this, $houseId))),
     
     if (board:_isLastStoneMyHouse($this, $game/players,$houseId, 
-            house:getSeedCount(board:_getHouseWithId($this, $houseId))) ) then
+            house:seedCount(board:_houseWithId($this, $houseId))) ) then
        ( 
        (: play again if the last stone hits in own pit :) 
        )
@@ -29,7 +29,7 @@ declare updating function board:clickedHouse($this, $houseId, $game)
 };
 
 
-declare function board:getStoreWithId($this, $storeId as xs:integer)
+declare function board:storeWithId($this, $storeId as xs:integer)
 {
     if ($storeId = 7) then
         for $h in $this/layer[@position = "top"]/store
@@ -67,7 +67,7 @@ declare updating function board:clearHouses($this, $position as xs:string)
 (:-------------------------------------:)
 (:Private methods:)
 
-declare function board:_getHouseWithId($this, $houseId as xs:integer)
+declare function board:_houseWithId($this, $houseId as xs:integer)
 {
     if ($houseId < 7) then
         (
@@ -90,7 +90,7 @@ declare updating function board:_increaseStoreBy1($this, $startingAt, $times, $o
 {
     if ($times > 0 and ($old != $startingAt or $active)) then
         (
-        store:incSeedCount(board:getStoreWithId($this, $startingAt),
+        store:incSeedCount(board:storeWithId($this, $startingAt),
         (($times - 1) idiv 14) + 1),
         
         if ($startingAt = 14) then
@@ -107,7 +107,7 @@ declare updating function board:_increaseHousesBy1($this, $startingAt, $times, $
     if ($times > 0 and ($old != $startingAt or $active)) then
         (
         house:incSeedCount(
-        board:_getHouseWithId($this, $startingAt),
+        board:_houseWithId($this, $startingAt),
         (($times - 1) idiv 14) + 1
         ),
         
@@ -132,7 +132,7 @@ declare updating function board:_distributeSeeds($this, $clickedHouse, $times)
 declare function board:_isLastStoneMyHouse($this, $players, $houseId, $numStones)
 {
     (: get distance from :)
-    let $playerHouseId := players:getHouseIdForCurrentPlayer($players)
+    let $playerHouseId := players:houseIdForCurrentPlayer($players)
     return $houseId + ($numStones mod 14) = $playerHouseId 
 };
 
@@ -141,7 +141,7 @@ declare updating function board:_setHousesInRangeTo($this, $startIndex, $lastInd
 {
     if($startIndex < $lastIndex + 1) then
     (
-        house:setSeedCount(board:_getHouseWithId($this,$startIndex), $value),
+        house:setSeedCount(board:_houseWithId($this,$startIndex), $value),
         board:_setHousesInRangeTo($this, $startIndex + 1, $lastIndex, $value)
     )
     else ()

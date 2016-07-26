@@ -19,20 +19,20 @@ declare updating function game:checkForGameFinished($this)
 {
     if (board:isRowEmpty($this/board, "top")) then
         (store:setSeedCount(
-            board:getStoreWithId($this/board, 14),
+            board:storeWithId($this/board, 14),
             (: store + sum of top row:)
             board:sumOfStoreAndRow($this/board, "bottom")),
         board:clearHouses($this/board,"bottom"),
-        game:_UpdateWinner($this))    
+        game:_updateWinner($this))    
     else
         (if (board:isRowEmpty($this/board, "bottom")) then
             (board:clearHouses($this/board,"top"),
                 store:setSeedCount(
-                    board:getStoreWithId($this/board, 7), 
+                    board:storeWithId($this/board, 7), 
             
                     (: store + sum of top row :)
                     board:sumOfStoreAndRow($this/board, "top")),
-            game:_UpdateWinner($this)
+            game:_updateWinner($this)
             )
         else ())
 };
@@ -62,8 +62,7 @@ declare updating function game:_resetBoard($this, $startSeeds)
 };
 
 
-
-declare updating function game:_UpdateWinner($this)
+declare updating function game:_updateWinner($this)
 {
         if (board:sumOfStoreAndRow($this/board, "top") > board:sumOfStoreAndRow($this/board, "bottom") ) then
             (replace value of node $this/wonBy
@@ -75,7 +74,6 @@ declare updating function game:_UpdateWinner($this)
                 with 2,
                 player:increaseWinCount($this/players/player[2])
                 )
-    
 };
 
 

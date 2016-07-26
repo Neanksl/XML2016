@@ -6,7 +6,7 @@ module namespace house = "house";
 (:-------------------------------------:)
 (:Public methods:)
 
-declare function house:getSeedCount($this)
+declare function house:seedCount($this)
 as xs:integer
 {
     let $this := $this

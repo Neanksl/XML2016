@@ -12,7 +12,7 @@ declare updating function players:setNextPlayerWithId($this, $id)
 };
 
 
-declare function players:getCurrentPlayer($this)
+declare function players:currentPlayer($this)
 {
     let $turnId := $this/turn
     for $player in $this/player
@@ -25,16 +25,16 @@ declare function players:getCurrentPlayer($this)
 declare updating function players:toggleCurrentPlayer($this)
 {
     players:_setNextPlayer($this,
-    if (players:getCurrentPlayer($this)/id = 1) then
+    if (players:currentPlayer($this)/id = 1) then
         $this/player[2]
     else
         $this/player[1])
 };
 
-declare function players:getHouseIdForCurrentPlayer($this)
+declare function players:houseIdForCurrentPlayer($this)
 {
     let $x := 1
-    return ( if(players:getCurrentPlayer($this)/id = 1) then
+    return ( if(players:currentPlayer($this)/id = 1) then
         7
     else
         14 )

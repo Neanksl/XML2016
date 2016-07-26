@@ -447,29 +447,43 @@
         
         <section>
             <title>OOP, namespaces and naming conventions</title>
-            <para>In order to realise the architecture represented in the classdiagram we introduced multiple namespaces, to simulate class-scopes. Since only classes with methods received their own namespace, the layer and the position are the only classes which do not have an explicit namespace. Accordingly each method is defined in the namespace of its class.</para>
-        </section>
-        
-        <section>
-            <title>Single Node Updates</title>
-            <para>As XQuery updates are gathered and applied at once the end of the XQuery script, nodes cannot be updated multiple times. Therefore, the amount of seeds is calculated and each house is updated only once.</para>
+            <para>In order to realise the architecture represented in the classdiagram we introduced multiple namespaces, to simulate class-scopes. Each namespace represents a class and each method of that class is defined inside that namespace.
+            Every class is in its own file and is separated into a public and a private section. Similar to 'self' in Python, the $this-reference of the current object is passed as the first parameter of every method. 
+                <section> 
+                    <title>Naming conventions</title>
+                    <para>
+                Public methods are named as is, private methods are prefixed with an underscore. Getter do not have the prefix 'get', setter are prefixed with 'set'. 
+                A method returning a boolean is prefixed with 'is' (e.g. seedCount, setSeedCount, isRowEmpty).
+                    </para>
+                </section>
+            </para>
         </section>
         
         <section>
             <title>Index DB</title>
+            <para>TODO: node manipulation by reference</para>
             <para>TODO: IndexDB for games: At first startup, the index-db has to be initialized.</para>
         </section>
         
-         <section>
-             <title>TODO</title>
-            <para>TODO: node manipulation by reference</para>
-            <para>TODO: recursive node distribution</para>
-            <para>By marking a function <emphasis>updating</emphasis>, FLWOR statements cannot be used inside the function scope. To mitigate this issue, updating functions use getters on composite objects instead of local <emphasis>let</emphasis> variables.</para>
-            <para>TODO: forwarding to circumvent update issues</para>
+        <section>
+            <title>Single Node Updates</title>
+            <para>As XQuery updates are gathered and applied at once the end of the XQuery script, nodes cannot be updated multiple times. In addition, updated values are not visible until the next query. 
+                We deal with this problem in two ways: 
+                1. Precompute values. This increases the complexity of the seed distribution, but guarantees that no two updates on the same nodes are executed in one query
+                2. To issue an update statement and access the same updated values in a GET request, a forward statement is used. The called method updates the database and forwards the client to another method, where the updated data is accessible. 
+            </para>
+            
+        </section>
+        <section>
+            <title>FLOWR vs. Updating-statements</title>
+            <para>
+                XQuery FLOWR statements cannot be used in conjunction with updating statements because of the delayed-updates issue described above.
+                By marking a function <emphasis>updating</emphasis>, FLWOR statements cannot be used inside the function scope. To mitigate this issue, updating functions use getters on composite objects instead of local <emphasis>let</emphasis> variables.
+                As a consequence let statements are inaccessible, forcing us to use getter methods for every time a variable would be used.     
+                Recursion is used as a replacement for loops, most noticable in the algorithm distributing the seeds.    
+            </para>
         </section>
         
-    
-       
         
         <section>
             <title>Graphical User Interface (GUI)</title>
