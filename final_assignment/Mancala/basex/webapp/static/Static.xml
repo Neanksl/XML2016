@@ -558,16 +558,16 @@ id ID #REQUIRED>
         <roundX>10</roundX>
         <roundY>10</roundY>
         <styleThisPlayer>fill:white;stroke:blue;stroke-width:2;</styleThisPlayer>
-        <textstyleThisPlayer>fill:blue;font-family:Agency FB;</textstyleThisPlayer>
+        <textstyleThisPlayer>fill:blue;font-family: AgencyFB;</textstyleThisPlayer>
         <styleOtherPlayer>fill:white;stroke:orange;stroke-width:2;</styleOtherPlayer>
-        <textstyleOtherPlayer>fill:orange;font-family:Agency FB;</textstyleOtherPlayer>
+        <textstyleOtherPlayer>fill:orange;font-family: AgencyFB;</textstyleOtherPlayer>
     </house>
     <store>
-        <radius>100</radius>        
+        <radius>100</radius>
         <styleThisPlayer>fill:white;stroke:blue;stroke-width:2;</styleThisPlayer>
-        <textstyleThisPlayer>fill:blue;font-weight:bold;font-family:Agency FB;</textstyleThisPlayer>
+        <textstyleThisPlayer>fill:blue;font-weight:bold;font-family: AgencyFB;</textstyleThisPlayer>
         <styleOtherPlayer>fill:white;stroke:orange;stroke-width:2;</styleOtherPlayer>
-        <textstyleOtherPlayer>fill:orange;font-weight:bold;font-family:Agency FB;</textstyleOtherPlayer>        
+        <textstyleOtherPlayer>fill:orange;font-weight:bold;font-family: AgencyFB;</textstyleOtherPlayer>        
     </store>
     <layout>
         <posStartX>300</posStartX>
@@ -589,30 +589,30 @@ id ID #REQUIRED>
     <menu>
         <!-- clickable -->
         <tryAgainButton>
-            <desc>Try again</desc>
+            <desc>New Game</desc>
             <link>tryagain</link>
             <style>fill:green;stroke:green;stroke-width:2;</style>
-            <textstyle>fill:white;font-weight:bold;font-family:Agency FB;</textstyle>
+            <textstyle>fill:white;font-weight:bold;font-family: AgencyFB;</textstyle>
         </tryAgainButton>
         <startOverButton>
-            <desc>Start Over</desc>
+            <desc>Reset Scores</desc>
             <link>db/create</link>
             <style>fill:orange;stroke:orange;stroke-width:2;</style>
-            <textstyle>fill:white;font-weight:bold;font-family:Agency FB;</textstyle>
+            <textstyle>fill:white;font-weight:bold;font-family: AgencyFB;</textstyle>
         </startOverButton>
         <highscoreButton>
             <desc>Highest Score:</desc>
             <link></link>
             <style>fill:yellow;stroke:orange;stroke-width:2;</style>
-            <textstyle>fill:black;font-weight:bold;font-family:Agency FB;</textstyle>
+            <textstyle>fill:black;font-weight:bold;font-family: AgencyFB;</textstyle>
         </highscoreButton>
         
         <!-- game information -->
         <gameTurn>
-            <textstyle>fill:grey;font-weight:bold;font-family:Agency FB;</textstyle>
+            <textstyle>fill:grey;font-weight:bold;font-family: AgencyFB;</textstyle>
         </gameTurn>
         <gameOver>
-            <textstyle>fill:green;font-weight:bold;font-family:Agency FB;</textstyle>
+            <textstyle>fill:green;font-weight:bold;font-family: AgencyFB;</textstyle>
         </gameOver>
         <!--
         <button>

@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="500">
+    <defs>
+        <style type="text/css">                    
+            @font-face {
+            font-family: AgencyFB;
+            src: url('agency-fb.ttf');
+            }                   
+        </style>
+        <rect id="houseThisPlayerTemplate" width="100" height="100" rx="10" ry="10" style="fill:white;stroke:blue;stroke-width:2;"></rect>
+        <rect id="houseOtherPlayerTemplate" width="100" height="100" rx="10" ry="10" style="fill:white;stroke:orange;stroke-width:2;"></rect>
+        <circle id="seedTemplate" r="5" style="fill:grey;stroke:white;"></circle>
+        <circle id="storeThisPlayerTemplate" r="100" cx="100" style="fill:white;stroke:blue;stroke-width:2;"></circle>
+        <circle id="storeOtherPlayerTemplate" r="100" cx="100" style="fill:white;stroke:orange;stroke-width:2;"></circle>
+        <polygon id="triangleTopTemplate" points="0,0 30,0 15,27" style="fill:blue;stroke:white;stroke-width:1">
+            <animate attributeType="XML" attributeName="fill" values="blue;white;white;blue" dur="2s" repeatCount="indefinite"></animate>
+        </polygon>
+        <polygon id="triangleBotTemplate" points="0,27 30,27 15,0" style="fill:blue;stroke:white;stroke-width:1">
+            <animate attributeType="XML" attributeName="fill" values="blue;white;white;blue" dur="2s" repeatCount="indefinite"></animate>
+        </polygon>
+        <polygon id="triangleLeftTemplate" points="0,15 0,-15 -27,0" style="fill:blue;stroke:;stroke-width:1">
+            <animate attributeType="XML" attributeName="fill" values="green;#CEECF5;#CEECF5;green" dur="1s" repeatCount="indefinite"></animate>
+        </polygon>
+        <polygon id="triangleRightTemplate" points="0,15 0,-15 27,0" style="fill:blue;stroke:;stroke-width:1">
+            <animate attributeType="XML" attributeName="fill" values="green;#CEECF5;#CEECF5;green" dur="1s" repeatCount="indefinite"></animate>
+        </polygon>
+    </defs>
+    <rect x="115" y="100" id="backgroundFrame" width="975" height="340" rx="120" ry="120" style="fill:#CEECF5;stroke:#BCA9F5;stroke-width:2;"></rect>
+    <a href="tryagain">
+        <rect x="265" y="20" id="tryAgainButton" width="100" height="50" rx="10" ry="10" style="fill:green;stroke:green;stroke-width:2;"></rect>
+        <text x="315" y="50" text-anchor="middle" font-size="20" style="fill:white;font-weight:bold;font-family:AgencyFB;">New Game</text>
+    </a>
+    <a href="db/create">
+        <rect x="380" y="20" id="startOverButton" width="100" height="50" rx="10" ry="10" style="fill:orange;stroke:orange;stroke-width:2;"></rect>
+        <text x="430" y="50" text-anchor="middle" font-size="20" style="fill:white;font-weight:bold;font-family:AgencyFB;">Reset Scores</text>
+    </a>
+    <a href="">
+        <rect x="725" y="20" id="startOverButton" width="200" height="50" rx="10" ry="10" style="fill:yellow;stroke:orange;stroke-width:2;"></rect>
+        <text x="825" y="50" text-anchor="middle" font-size="20" style="fill:black;font-weight:bold;font-family:AgencyFB;">Highest Score: 0</text>
+    </a>
+    <g>
+        <a href="clicked/1">
+            <use x="840" y="130" xlink:href="#houseThisPlayerTemplate"></use>
+            <text x="890" y="156" text-anchor="middle" font-size="25" style="fill:blue;font-family:AgencyFB;">4</text>
+        </a>
+    </g>
+    <g>
+        <use x="840" y="310" xlink:href="#houseOtherPlayerTemplate"></use>
+        <text x="890" y="404" text-anchor="middle" font-size="25" style="fill:orange;font-family:AgencyFB;">4</text>
+    </g>
+    <use x="856.666666666667" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="873.333333333333" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="890" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="906.666666666667" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="923.333333333333" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="906.666666666667" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="890" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="873.333333333333" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <g>
+        <a href="clicked/2">
+            <use x="725" y="130" xlink:href="#houseThisPlayerTemplate"></use>
+            <text x="775" y="156" text-anchor="middle" font-size="25" style="fill:blue;font-family:AgencyFB;">4</text>
+        </a>
+    </g>
+    <g>
+        <use x="725" y="310" xlink:href="#houseOtherPlayerTemplate"></use>
+        <text x="775" y="404" text-anchor="middle" font-size="25" style="fill:orange;font-family:AgencyFB;">4</text>
+    </g>
+    <use x="741.666666666667" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="758.333333333333" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="775" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="791.666666666667" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="808.333333333333" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="791.666666666667" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="775" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="758.333333333333" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <g>
+        <a href="clicked/3">
+            <use x="610" y="130" xlink:href="#houseThisPlayerTemplate"></use>
+            <text x="660" y="156" text-anchor="middle" font-size="25" style="fill:blue;font-family:AgencyFB;">4</text>
+        </a>
+    </g>
+    <g>
+        <use x="610" y="310" xlink:href="#houseOtherPlayerTemplate"></use>
+        <text x="660" y="404" text-anchor="middle" font-size="25" style="fill:orange;font-family:AgencyFB;">4</text>
+    </g>
+    <use x="626.666666666667" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="643.333333333333" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="660" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="676.666666666667" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="693.333333333333" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="676.666666666667" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="660" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="643.333333333333" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <g>
+        <a href="clicked/4">
+            <use x="495" y="130" xlink:href="#houseThisPlayerTemplate"></use>
+            <text x="545" y="156" text-anchor="middle" font-size="25" style="fill:blue;font-family:AgencyFB;">4</text>
+        </a>
+    </g>
+    <g>
+        <use x="495" y="310" xlink:href="#houseOtherPlayerTemplate"></use>
+        <text x="545" y="404" text-anchor="middle" font-size="25" style="fill:orange;font-family:AgencyFB;">4</text>
+    </g>
+    <use x="511.666666666667" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="528.333333333333" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="545" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="561.666666666667" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="578.333333333333" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="561.666666666667" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="545" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="528.333333333333" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <g>
+        <a href="clicked/5">
+            <use x="380" y="130" xlink:href="#houseThisPlayerTemplate"></use>
+            <text x="430" y="156" text-anchor="middle" font-size="25" style="fill:blue;font-family:AgencyFB;">4</text>
+        </a>
+    </g>
+    <g>
+        <use x="380" y="310" xlink:href="#houseOtherPlayerTemplate"></use>
+        <text x="430" y="404" text-anchor="middle" font-size="25" style="fill:orange;font-family:AgencyFB;">4</text>
+    </g>
+    <use x="396.666666666667" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="413.333333333333" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="430" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="446.666666666667" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="463.333333333333" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="446.666666666667" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="430" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="413.333333333333" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <g>
+        <a href="clicked/6">
+            <use x="265" y="130" xlink:href="#houseThisPlayerTemplate"></use>
+            <text x="315" y="156" text-anchor="middle" font-size="25" style="fill:blue;font-family:AgencyFB;">4</text>
+        </a>
+    </g>
+    <g>
+        <use x="265" y="310" xlink:href="#houseOtherPlayerTemplate"></use>
+        <text x="315" y="404" text-anchor="middle" font-size="25" style="fill:orange;font-family:AgencyFB;">4</text>
+    </g>
+    <use x="281.666666666667" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="298.333333333333" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="315" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="331.666666666667" y="163.333333333333" xlink:href="#seedTemplate"></use>
+    <use x="348.333333333333" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="331.666666666667" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="315" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <use x="298.333333333333" y="376.666666666667" xlink:href="#seedTemplate"></use>
+    <g>
+        <use x="15" y="270" xlink:href="#storeThisPlayerTemplate"></use>
+        <text x="115" y="305" text-anchor="middle" font-size="100" style="fill:blue;font-weight:bold;font-family:AgencyFB;">0</text>
+    </g>
+    <g>
+        <use x="990" y="270" xlink:href="#storeOtherPlayerTemplate"></use>
+        <text x="1090" y="305" text-anchor="middle" font-size="100" style="fill:orange;font-weight:bold;font-family:AgencyFB;">0</text>
+    </g>
+    <text x="602.5" y="286" text-anchor="middle" font-size="50" style="fill:grey;font-weight:bold;font-family:AgencyFB;">Player 1's turn</text>
+    <use x="100" y="180" xlink:href="#triangleTopTemplate"></use>
+</svg>
