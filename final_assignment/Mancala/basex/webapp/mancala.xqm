@@ -402,9 +402,7 @@ function page:getStatic($gameID)
     copy $doc := doc("./static/Static.xml")
     
     modify (
-    
-     replace value of node $doc/doc/xsl:stylesheet/xsl:variable/@select with concat ("document('http://localhost:8984/gamestate/", $gameID,"')")
-    
+     replace value of node $doc/doc/xsl:stylesheet/xsl:variable[@name = 'GameState']/@select with concat ("document('http://localhost:8984/gamestate/", $gameID,"')")
     ) 
     
     return $doc
@@ -484,6 +482,15 @@ declare function page:getDB($dbID)
         $db
 };
 
+declare function page:_gamestateWithNewID($nextID)
+{
+    copy $db := doc("./static/initial_gamestate.xml")
+    
+    modify (
+     replace value of node $db/game/gameid with $nextID
+    )
+    return $db
+};
 
 (: creates a new game and inserts the game id :)
 declare
@@ -491,11 +498,14 @@ declare
 %rest:GET
 updating function page:createDB()
 {
-    let $db := doc("./static/initial_gamestate.xml")
+
     let $games := db:open("games")
     let $lastID := page:_lastGameID()  
     let $nextID := xs:integer($lastID + 1)
     let $path := concat("/game/",$nextID)
+    let $db := page:_gamestateWithNewID($nextID)
+    
+    
     return
         (
         page:_addNewGame(<gameid>{$nextID}</gameid>, $games),
@@ -503,6 +513,7 @@ updating function page:createDB()
         db:create(concat("game-", $nextID) , $db, concat("game-", $nextID, ".xml"))
         )
 };
+
 
 (: creates the game index :)
 declare

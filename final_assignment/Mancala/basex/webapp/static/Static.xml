@@ -135,7 +135,7 @@ id ID #REQUIRED>
             
             <!-- Create menu buttons -->
             <!-- Try again button -->
-            <a href="tryagain">
+            <a href="tryagain/{$GameState/game/gameid}">
                 <rect
                     x="{layout/posStartX + house/width + layout/distanceHorizontalHouse}" 
                     y="{layout/posStartY - 2 * layout/distanceVerticalHouseFrame - 0.5 * house/height}"
@@ -398,7 +398,7 @@ id ID #REQUIRED>
                                 </text>
                             </xsl:when>
                             <xsl:otherwise>
-                                <a href="clicked/{7 - $count}" >
+                                <a href="clicked/{$GameState/game/gameid}/{7 - $count}" >
                                     <use 
                                         x="{layout/posStartX + (house/width + layout/distanceHorizontalHouse) * $count}" 
                                         y="{layout/posStartY}"
@@ -467,7 +467,7 @@ id ID #REQUIRED>
                                 </text>
                             </xsl:when>
                             <xsl:otherwise>
-                                <a href="clicked/{$count + 7}" >
+                                <a href="clicked/{$GameState/game/gameid}/{$count + 7}" >
                                     <use 
                                         x="{layout/posStartX + (house/width + layout/distanceHorizontalHouse) * $count}" 
                                         y="{layout/posStartY + house/height + layout/distanceVertitalHouse}" 
