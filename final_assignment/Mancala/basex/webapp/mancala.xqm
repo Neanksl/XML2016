@@ -1,6 +1,7 @@
 
 
 module namespace page = 'http://basex.org/modules/web-page';
+
 (:
 declare namespace players = "http://basex.org/modules/web-page/players";
 declare namespace player = "http://basex.org/modules/web-page/player";
@@ -219,8 +220,6 @@ declare updating function page:board_clickedHouse($this, $houseId, $game)
 };
 
 
-
-
 declare function page:board_rowIsEmpty($this, $position as xs:string)
 as xs:boolean
 {
@@ -314,35 +313,31 @@ declare updating function page:game_clicked($this, $id)
     page:board_clickedHouse($this/board, xs:integer($id), $this)
 };
 
-(: old
-declare updating function page:game_clicked($this, $id)
-{
-    page:board_clickedHouse($this/board, xs:integer($id)),
-    page:players_toggleCurrentPlayer($this/players)
-};
-:)
+
+
+
 
 declare
-%rest:path("/updategamefinished")
-updating function page:checkIfGameIsFinished()
+%rest:path("/updategamefinished/{$dbID}")
+updating function page:checkIfGameIsFinished($dbID)
 {
     let $x := 1
     return
         (
-        db:output(page:redirect("/")),
-        page:game_checkForGameFinished(page:getDB()/game)
+        db:output(page:redirect(concat("/game/",$dbID))),
+        page:game_checkForGameFinished(page:getDB($dbID)/game)
         )
 };
 
 declare
-%rest:path("clicked/{$houseId}")
-updating function page:clickedHouse($houseId)
+%rest:path("clicked/{$dbID}/{$houseId}")
+updating function page:clickedHouse($dbID, $houseId)
 {
     let $x := 1
     return
         (
-        db:output(page:redirect("/updategamefinished")),
-        page:game_clicked(page:getDB()/game, xs:integer($houseId))
+        db:output(page:redirect(concat("/updategamefinished/",$dbID))),
+        page:game_clicked(page:getDB($dbID)/game, xs:integer($houseId))
         )
 };
 
@@ -368,38 +363,78 @@ declare updating function page:game_resetGame($this)
 };
 
 
-declare function page:getDB()
-{
-    let $db := db:open("mancala-db")
-    return
-        $db
-};
-
 
 declare
-%rest:path("gamestate")
-function page:gamestate()
+%rest:path("gamestate/{$dbID}")
+function page:gamestate($dbID)
 {
-    page:getDB()
+    page:getDB($dbID)
 };
 
 declare
-%rest:path("getstatic")
-%rest:GET
-function page:getStatic()
+%rest:path("gettransform/{$dbID}")
+function page:getTransform($dbID)
 {
     doc("./static/Static.xml")
 };
 
 declare
-%rest:path("")
-%rest:GET
-function page:index()
+  %rest:path("debug/testout")
+  
+function page:cities() 
 {
-    page:getStatic()
+<doc>
+<head>
+    {doc("static/Static.xml")}    
+    {doc("./static/initial_gamestate.xml")}
+</head>
+</doc>
+    
 };
 
 
+declare
+    %rest:path("getstatic/{$gameID}")
+    %rest:GET
+function page:getStatic($gameID)
+  as element(Q{http://www.w3.org/1999/xhtml}html)
+{
+    let $href := concat("http://localhost:8984/gettransform/",$gameID)
+    
+    let $s := "<?xml version='1.0' encoding='UTF-8'?>\n"
+    let $s2 := concat('<?xml-stylesheet href=',$href,' type="text/xsl"?>')
+    
+    return  concat ( 
+            $s,
+            $s2,
+        <graphics>
+            {doc("./static/Static.xml")}
+        </graphics>)
+    
+    
+};
+
+
+declare
+%rest:path("/game/{$id}")
+%rest:GET
+function page:game($id)
+{
+    page:getStatic($id)
+};
+
+
+declare
+%rest:path("/")
+%rest:GET
+updating function page:index()
+{
+    let $x := 1
+    return
+    (
+    db:output(page:redirect("/db/create"))
+    )
+};
 
 declare function page:redirect($redirect as xs:string) as element(restxq:redirect)
 {
@@ -407,31 +442,95 @@ declare function page:redirect($redirect as xs:string) as element(restxq:redirec
 };
 
 declare
-%rest:path("tryagain")
+%rest:path("tryagain/{$dbID}")
 %rest:GET
-updating function page:tryAgain()
+updating function page:tryAgain($dbID)
 {
-    let $db := page:getDB()
+    let $db := page:getDB($dbID)
     return
         (
-        db:output(page:redirect("/")),
+        db:output(page:redirect(concat("/game/",$dbID))),
         page:game_resetGame($db/game)
         )
 };
 
+declare 
+%rest:path("debug/lastID")
+%rest:GET
+function page:debug__lastGameID()
+{
+    let $x := 1
+    let $db := db:open("games")
+    return $db
+};
+
+declare function page:_lastGameID()
+as xs:integer
+{
+    let $x := 1
+    let $db := db:open("games")
+    return xs:integer(max( $db/databases/gameid ))
+};
+
+
+declare updating function page:_addNewGame($newEntry, $games)
+{
+    insert node $newEntry as last into $games/databases
+};
+
+
+
+declare function page:getDB($dbID)
+{
+    let $db := db:open(concat("game-",$dbID))
+    return
+        $db
+};
+
+
+(: creates a new game and inserts the game id :)
 declare
 %rest:path("db/create")
 %rest:GET
 updating function page:createDB()
 {
     let $db := doc("./static/initial_gamestate.xml")
-    
+    let $games := db:open("games")
+    let $lastID := page:_lastGameID()  
+    let $nextID := xs:integer($lastID + 1)
+    let $path := concat("/game/",$nextID)
+    return
+        (
+        page:_addNewGame(<gameid>{$nextID}</gameid>, $games),
+        db:output(page:redirect($path)),
+        db:create(concat("game-", $nextID) , $db, concat("game-", $nextID, ".xml"))
+        )
+};
+
+(: creates the game index :)
+declare
+%rest:path("db/initgameindex")
+%rest:GET
+updating function page:initGameIndex()
+{
+    let $db := doc("./static/database-index.xml")
     return
         (
         db:output(page:redirect("/")),
-        db:create("mancala-db", $db, "mancala-db.xml")
+        db:create("games", $db, "games.xml")
         )
 };
+
+
+
+
+
+
+
+
+
+
+
 
 (:   testing :)
 declare

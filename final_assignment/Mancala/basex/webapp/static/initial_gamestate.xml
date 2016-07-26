@@ -1,18 +1,19 @@
  <game>
+     <gameid>-1</gameid>
         <board>
             <layer position="top">
                 <house
-                    id="1">4</house>
+                    id="1">19</house>
                 <house
-                    id="2">4</house>
+                    id="2">0</house>
                 <house
-                    id="3">4</house>
+                    id="3">0</house>
                 <house
-                    id="4">4</house>
+                    id="4">3</house>
                 <house
-                    id="5">4</house>
+                    id="5">0</house>
                 <house
-                    id="6">4</house>
+                    id="6">0</house>
                 
                 <store
                     id="7">0</store>
@@ -21,17 +22,17 @@
             <layer
                 position="bottom">
                 <house
-                    id="8">4</house>
+                    id="8">8</house>
                 <house
-                    id="9">4</house>
+                    id="9">0</house>
                 <house
-                    id="10">4</house>
+                    id="10">0</house>
                 <house
-                    id="11">4</house>
+                    id="11">0</house>
                 <house
-                    id="12">4</house>
+                    id="12">0</house>
                 <house
-                    id="13">4</house>
+                    id="13">0</house>
                 
                 <store
                     id="14">0</store>
@@ -55,5 +56,4 @@
             </player>
         </players>
      <logMessage></logMessage>
-    </game>
-    
+ </game>
