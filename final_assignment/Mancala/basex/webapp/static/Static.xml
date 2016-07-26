@@ -30,6 +30,19 @@ id ID #REQUIRED>
         <svg width="{board/width}" height="{board/height}">
             <!-- Create graphics templates -->
             <defs>
+                <!-- Import font -->
+                    <!--<style type="text/css"> @import url('https://fonts.googleapis.com/css?family=Exo');</style>-->
+                
+                <style type="text/css">
+                    <![CDATA[
+                        @font-face {
+                            font-family: AgencyFB;
+                            src: url('http://localhost:8984/static/agency-fb.ttf');
+                        }
+                   ]]>
+                </style>
+                
+                
                 <rect
                     id="houseThisPlayerTemplate"
                     width="{house/width}" height="{house/height}"
