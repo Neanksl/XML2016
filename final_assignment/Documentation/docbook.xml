@@ -446,7 +446,7 @@
         
         
         <section>
-            <title>Namespaces</title>
+            <title>OOP, namespaces and naming conventions</title>
             <para>In order to realise the architecture represented in the classdiagram we introduced multiple namespaces, to simulate class-scopes. Since only classes with methods received their own namespace, the layer and the position are the only classes which do not have an explicit namespace. Accordingly each method is defined in the namespace of its class.</para>
         </section>
         
