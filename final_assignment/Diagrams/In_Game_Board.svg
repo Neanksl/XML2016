@@ -27,11 +27,11 @@
     <rect x="115" y="100" id="backgroundFrame" width="975" height="340" rx="120" ry="120" style="fill:#CEECF5;stroke:#BCA9F5;stroke-width:2;"></rect>
     <a href="tryagain">
         <rect x="265" y="20" id="tryAgainButton" width="100" height="50" rx="10" ry="10" style="fill:green;stroke:green;stroke-width:2;"></rect>
-        <text x="315" y="50" text-anchor="middle" font-size="20" style="fill:white;font-weight:bold;font-family:AgencyFB;">New Game</text>
+        <text x="315" y="50" text-anchor="middle" font-size="20" style="fill:white;font-weight:bold;font-family:AgencyFB;">Reset Game</text>
     </a>
     <a href="db/create">
         <rect x="380" y="20" id="startOverButton" width="100" height="50" rx="10" ry="10" style="fill:orange;stroke:orange;stroke-width:2;"></rect>
-        <text x="430" y="50" text-anchor="middle" font-size="20" style="fill:white;font-weight:bold;font-family:AgencyFB;">Reset Scores</text>
+        <text x="430" y="50" text-anchor="middle" font-size="20" style="fill:white;font-weight:bold;font-family:AgencyFB;">Create New</text>
     </a>
     <a href="">
         <rect x="725" y="20" id="startOverButton" width="200" height="50" rx="10" ry="10" style="fill:yellow;stroke:orange;stroke-width:2;"></rect>
