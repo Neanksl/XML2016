@@ -30,7 +30,7 @@
             and each house holds 4 seeds at the beginning of the game. The goal is to collect as
             many seeds as possible in the store, which is also called <emphasis role="bold"
                 >Kalah</emphasis>. There are different versions of the game, but for this project we
-            chose a Kalah-version, which uses 48 seeds in total, equaly distributed in the 12
+            chose a Kalah-version, which uses 48 seeds in total, equally distributed in the 12
             houses.</para>
     </section>
 
@@ -43,7 +43,7 @@
 
         <itemizedlist mark="opencircle">
             <listitem>
-                <para>Player begins by choosing a house at his option and starts distributing the
+                <para>A player begins by choosing a house on his/her side and then distributes the
                     seeds around the board until there is no seed left in his hand. The seeds should
                     be dropped one-by-one and in counterclockwise direction.</para>
             </listitem>
@@ -64,7 +64,7 @@
 
     <section>
         <title>Technologies</title>
-        <para>In this lab course, there were many of XML-Technologies used. <itemizedlist
+        <para>In this lab course, a diversity of XML-Technologies was used. <itemizedlist
                 mark="opencircle">
                 <listitem>
                     <para> SVG: Scalable Vector Graphics, helps describing two-dimensional graphics
@@ -76,8 +76,8 @@
                         other XML Documents.</para>
                 </listitem>
                 <listitem>
-                    <para> XQuery is to XML what SQL is to database tables. XML Data will be queried
-                        thanks to XQuery. </para>
+                    <para> XQuery is to XML what SQL is to database tables. XML Data is queried with
+                        XQuery. </para>
                 </listitem>
                 <listitem>
                     <para> BaseX: scalable, high performance XML Database engine which allows
@@ -89,8 +89,8 @@
 
     <section>
         <title>Diagrams</title>
-        <para>Use Cases and Use Case Diagram The mancala game can be splitted up in the following
-            usecases: <itemizedlist>
+        <para>Use Cases and Use Case Diagram - The mancala game can be splitted up in the following
+            use cases: <itemizedlist>
                 <listitem>
                     <para> Initially the players want to be able to start a new game of mancala. </para>
                     <itemizedlist>
@@ -104,12 +104,12 @@
                     <para> Each player wants to be able to make specific moves. </para>
                 </listitem>
                 <listitem>
-                    <para> The players want to be able to win the game and see how many games
-                        they have won so far, and with which scores. </para>
+                    <para> The players want to be able to win the game and see how many games they
+                        have won so far, and with which scores. </para>
                 </listitem>
                 <listitem>
-                    <para> If the players decide to continue the match later, they want to be
-                        able to save and load the game. </para>
+                    <para> If the players decide to continue the match later, they should be able to
+                        resume their game. </para>
                 </listitem>
             </itemizedlist>
             <mediaobject>
@@ -229,28 +229,26 @@
                     house and trigger the intended move. <orderedlist>
                         <listitem>
                             <para>
-                                <emphasis>click</emphasis>: The user clicked a house to start the
-                                game. </para>
+                                <emphasis>click</emphasis>: The user clicked a house to make a move.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>clickedHouse(int)</emphasis>: 
-                                Each house can be described by a specific index. As the client makes a move, it will be evaluated. 
-                                The client sends the clickedHouse(int) request with the spiecified index 
+                                <emphasis>/clicked/{$gameId}/{$houseId}</emphasis>: 
+                                Each house can be described by a specific ID in the current game with the regarding game ID. 
+                                The Browser sends the request with the specified IDs 
                                 as parameter to the controller in order to trigger the player's move.
                                 It is to be noticed that only clicks on a house are valid and trigger a request. 
-                                Now the Client is waiting for a response from the controller. </para>
+                                Now the Browser is waiting for a response from the controller. </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>clickedHouse(int)</emphasis>: The controller received the
-                                clickedHouse(int) request from the client and forwards it to the
-                                server, i.e. the game. </para>
+                                <emphasis>fetch</emphasis>: The controller received the
+                                request for a player's move from the Browser and now fetches the current gamestate from the regarding database.
+                                The database for this game immediately return the current gamestate for the game.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>getGameState()</emphasis>: The server now requests the
-                                current state of the game from the database. </para>
+                                <emphasis>clickedId(id)</emphasis>: The controller calls clickedId(id) on the </para>
                         </listitem>
                         <listitem>
                             <para>
@@ -481,54 +479,57 @@
             </mediaobject>
 
             <para> The shown Mancala board contains: <itemizedlist>
-                    <listitem>
-                        <para> 12 houses, 6 for each player. Player 1 owns the upper houses, player
-                            2 the lower. </para>
-                    </listitem>
-                    <listitem>
-                        <para> 2 stores, 1 for each player. Player 1's store is on the left and
-                            player 2's on the right. </para>
-                    </listitem>
-                    <listitem>
-                        <para> Game buttons, such as:</para>
-                        <itemizedlist>
-                            <listitem>
-                                <para>
-                                    <emphasis>Create New</emphasis>: creates a new game instance
-                                    without affecting players' scores. </para>
-                            </listitem>
-                            <listitem>
-                                <para>
-                                    <emphasis>Reset Game</emphasis>: creates a new game instance
-                                    and reset ALL players' scores. </para>
-                            </listitem>
-                            <listitem>
-                                <para>Highest Score: the player can check the highest score that he gained after a specific numbers of game.</para>
-                            </listitem>
-                        </itemizedlist>
-                    </listitem>
-                    <listitem>
-                        <para> The text in the middle indicates the current game status, for example:
-                            which player is playing or if one player has won. Players' turns are
-                            hinted by a typical color and a blinking triangle in the corresponding
-                            store. In case of winning, the status text in the middle will point to
-                            the left or right depending on which player has won. </para>
-                    </listitem>
-                    <listitem>
-                        <para> Each house is a clickable object. However, the current player can
-                            only select his own stores that have positive (> 0) number of stones. In
-                            addition the shown digits, the corresponding amount of stones is also
-                            displayed as a set of dots, each of which represents one stone. </para>
-                    </listitem>
-                </itemizedlist> An example of a gamestate after several turns: <mediaobject>
-                    <imageobject>
-                        <imagedata format="SVG" fileref="./../Diagrams/In_Game_Board.svg"/>
-                    </imageobject>
-                </mediaobject> An example of a gamestate, in which player 1 has won: <mediaobject>
-                    <imageobject>
-                        <imagedata format="SVG" fileref="./../Diagrams/End_Game_Board.svg"/>
-                    </imageobject>
-                </mediaobject>
+                <listitem>
+                    <para> 12 houses, 6 for each player. Player 1 owns the upper houses, player
+                        2 the lower. </para>
+                </listitem>
+                <listitem>
+                    <para> 2 stores, 1 for each player. Player 1's store is on the left and
+                        player 2's on the right. </para>
+                </listitem>
+                <listitem>
+                    <para> Game buttons, such as:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>Reset Game</emphasis>: the current game will be reset.
+                                As long as the game is not won (or lost), there is no change in
+                                the DB.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>Create New</emphasis>: creates a new game instance in
+                                DB.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Highest Score: the current highest score of all won games
+                                stored in the DB.</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+                <listitem>
+                    <para> The text in the middle indicates the current game status, for
+                        example: which player is playing or if one player has won. Players'
+                        turns are hinted by a typical color and a blinking triangle in the
+                        corresponding store. In case of winning, the status text in the middle
+                        will point to the left or right depending on which player has won.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para> Each house is a clickable object. However, the current player can
+                        only select his own stores that have positive (> 0) number of stones. In
+                        addition the shown digits, the corresponding amount of stones is also
+                        displayed as a set of dots, each of which represents one stone. </para>
+                </listitem>
+            </itemizedlist> An example of a gamestate after several turns: <mediaobject>
+                <imageobject>
+                    <imagedata format="SVG" fileref="./../Diagrams/In_Game_Board.svg"/>
+                </imageobject>
+            </mediaobject> An example of a gamestate, in which player 1 has won: <mediaobject>
+                <imageobject>
+                    <imagedata format="SVG" fileref="./../Diagrams/End_Game_Board.svg"/>
+                </imageobject>
+            </mediaobject>
             </para>
 
             <para> The main process of storing and transforming data from server to GUI as an SVG
