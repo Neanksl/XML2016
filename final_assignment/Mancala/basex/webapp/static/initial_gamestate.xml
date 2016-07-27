@@ -3,7 +3,7 @@
         <board>
             <layer position="top">
                 <house
-                    id="1">19</house>
+                    id="1">0</house>
                 <house
                     id="2">0</house>
                 <house
@@ -13,16 +13,16 @@
                 <house
                     id="5">0</house>
                 <house
-                    id="6">0</house>
+                    id="6">1</house>
                 
                 <store
-                    id="7">0</store>
+                    id="7">2</store>
             </layer>
             
             <layer
                 position="bottom">
                 <house
-                    id="8">8</house>
+                    id="8">0</house>
                 <house
                     id="9">0</house>
                 <house
@@ -30,7 +30,7 @@
                 <house
                     id="11">0</house>
                 <house
-                    id="12">0</house>
+                    id="12">1</house>
                 <house
                     id="13">0</house>
                 
