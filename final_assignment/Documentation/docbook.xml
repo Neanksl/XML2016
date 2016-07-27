@@ -248,46 +248,26 @@
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>clickedId(id)</emphasis>: The controller calls clickedId(id) on the </para>
+                                <emphasis>clickedId(id)</emphasis>: The controller calls clickedId(id) on the game, which then modifies the gamestate accordingly, by distributing the seeds.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>gamestate</emphasis>: The database returns the current
-                                gamestate. </para>
+                                <emphasis>/updategamefinished/{$id}</emphasis>: After receiving the success response from the game, the controller now sends the response to the initial request from the Browser (1). 
+                                This response tells the Browser to send another request, which serves to determine if the current game is ended and updating the game's extra attributes, like the wincount.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>updateGameState()</emphasis>: After receiving the current
-                                gamestate the server evaluates the move which was triggered by the
-                                player and updates the gamestate appropriately. </para>
+                                <emphasis>checkfinished()</emphasis>: This is the call to trigger of the just described updates, since the game and not the controller is handling the gamestate.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>setGameState()</emphasis>: The just updated gamestate is
-                                immediately sent to the database where it is being stored. </para>
+                                <emphasis>/game/($id)</emphasis>: Again the Controller redirects the Browser after receiving the success response from the Game.
+                                This redirect requests the updated gamestate from the Controller.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>gamestate</emphasis>: Now the game sends the gamestate to
-                                the controller as response for the clickedHouse(int) request from
-                                the controller (Nr. 3). </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis>updateGameStateView()</emphasis>: The Controller generates
-                                the SVG which can represents the current gamestate. </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis>gameStateSVG</emphasis>: The just generated SVG is now
-                                sent to the client as response for the clickedHouse(int) request
-                                (Nr. 2). </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis>refreshView()</emphasis>: Finally the Client refreshs its
-                                view and the user can now see the game with the initial settings.
-                            </para>
+                                <emphasis>fetch</emphasis>: The Controller requests the updated gamestate as it is now stored in the database from the database.
+                                This is then returned to the Controller and then forwarded to the Browser which now can uopdate the view so that the player see the result of his action.</para>
                         </listitem>
                     </orderedlist>
                 </para>
@@ -302,72 +282,67 @@
         <section>
             <title>Classes</title>
             <para> The following list explains the classes shown in the class diagram. <itemizedlist>
-                    <listitem>
-                        <para>
-                            <emphasis>Player</emphasis>: The Player class represents one of two
-                            players. It has an ID to differentiate between the players and each
-                            player has a winCount, which contains the amount of won games. Thereby
-                            it has the method to increase the winCount after a won match and the
-                            method to reset the winCount if the game session has came to an end.
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>Players</emphasis>: The Players class is the controller of two
-                            Player classes. It remembers which players turn it is and provides the
-                            according methods to set/get/toggle the player turn. </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>GameObject</emphasis>: The GameObject is an abstract class
-                            which works as a superclass for the House and the Store class. To
-                            identify the different GameObjects they contain the property ID.
-                            Furthermore, each GameObject tracks the amount of seeds in it and
-                            provide the appropriate methods to get/set/increment the current
-                            seedCount. The Store and the House classes have up to now the exact same
-                            attributes and methods as their superclass. </para>
-                        <itemizedlist>
-                            <listitem>
-                                <para>
-                                    <emphasis>House</emphasis>: The houses represent the holes on
-                                    the board in which the seeds will sit in. </para>
-                            </listitem>
-                            <listitem>
-                                <para>
-                                    <emphasis>Store</emphasis>: The store is the slightly bigger
-                                    house, which stores all the seeds a player won. Therefore, each
-                                    player has only one store. </para>
-                            </listitem>
-                        </itemizedlist>
-
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>Layer</emphasis>: The Layer class is just a wrapper class for
-                            the store and the houses of one player. Since a player has six houses
-                            and one store it consists exactly of six houses and one store.
-                            Furthermore, the Layer class contains the attribute position, which is
-                            an enumeration of either "top" or "bottom". </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>Board</emphasis>: The board is the contoller class for the
-                            mancala board. It consists of two layers - one top and one bottom layer.
-                            The board is able to get a house or a store by its ID so that the
-                            appropriate method (inSeedCount) can be called if a player clicks on a
-                            house. The board also wraps getting a house/store and calling its
-                            incSeedCount by the handler method clickedHouse, which is called if a
-                            player clicks on a house. Finally the board contains the resetBoard
-                            method, which sets the board to its initial setup. </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>Game</emphasis>: The game is the top level controller of one
-                            instance of a game. It consists of the Board and the Players class and
-                            after calling the contructor the currentGame property is instanciated.
-                            Additionally it has the method to reset the current game. </para>
-                    </listitem>
-                </itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis>Player</emphasis>: The Player class represents one of two
+                        players. It has an ID to differentiate between the players and each
+                        player has a winCount, which contains the amount of won games. Thereby
+                        it has the method to increase the winCount after a won match and the
+                        method to reset the winCount if the game session has come to an end.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Players</emphasis>: The Players class is the controller of two
+                        Player classes. It remembers which player's turn it is and provides the
+                        appropriate methods to set/get/toggle the player turn. </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>GameObject</emphasis>: The GameObject is an abstract class
+                        which works as a superclass for the House and the Store class.
+                        A property ID is responsible for identifying different GameObjects. 
+                        Furthermore, each GameObject tracks the amount of seeds in it and
+                        provide the appropriate methods to get/set/increment the current
+                        seedCount. The Store and the House classes have up to now the exact same
+                        attributes and methods as their superclass. </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>House</emphasis>: The houses represent the holes on
+                                the board in which the seeds will be sown in. </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>Store</emphasis>: The store is the slightly bigger
+                                house, which stores all the seeds a player has won. Therefore, each
+                                player has only one store. </para>
+                        </listitem>
+                    </itemizedlist>
+                    
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Board</emphasis>: The board is the controller class for the
+                        mancala board. It consists the attribute Position, which is an 
+                        enumeration of either "top" o "bottom". The board is able to get a house 
+                        or a store by its ID so that the appropriate method (incSeedCount) 
+                        can be called if a player clicks on a house. 
+                        The board also wraps getting a house/store and calling its
+                        incSeedCount by the handler method clickedHouse, which is called as a
+                        player clicks on a house. 
+                        sumOfStoreAndRow shows the total amount of seeds in the store and houses according to the position.
+                        If Row is Empty, it means one of the players has won, the seeds in the houses will be collected.
+                        Seeds will be distributed as the player click on a house, using the function distributeSeeds().
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Game</emphasis>: The game is the top level controller of one
+                        instance of a game. It consists of the Board and the Players class.
+                        Additionally it has the method to reset the current game. </para>
+                </listitem>
+            </itemizedlist>
             </para>
             <mediaobject>
                 <imageobject>
@@ -376,7 +351,7 @@
             </mediaobject>
         </section>
     </section>
-
+    
     <section>
         <title>Implementation</title>
 
