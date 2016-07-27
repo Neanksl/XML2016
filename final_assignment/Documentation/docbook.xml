@@ -225,49 +225,63 @@
             </section>
             <section>
                 <title>Select a house</title>
-                <para>In order to make a move, a player can click in the browser on a
-                    house and trigger the intended move. <orderedlist>
+                <para>In order to make a move, a player has to click on one of his/her houses in the
+                    browser. <orderedlist>
                         <listitem>
                             <para>
-                                <emphasis>click</emphasis>: The user clicked a house to make a move.</para>
+                                <emphasis>click</emphasis>: The user clicked a house to make a
+                                move.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>/clicked/{$gameId}/{$houseId}</emphasis>: 
-                                Each house can be described by a specific ID in the current game with the regarding game ID. 
-                                The Browser sends the request with the specified IDs 
-                                as parameter to the controller in order to trigger the player's move.
-                                It is to be noticed that only clicks on a house are valid and trigger a request. 
-                                Now the Browser is waiting for a response from the controller. </para>
+                                <emphasis>/clicked/{$gameId}/{$houseId}</emphasis>: Each house has a
+                                specific ID, which is sent by the browser to the controller in order
+                                to trigger the player's move. It is to be noticed that only clicks
+                                on a house are valid and trigger a request. The Browser then waits
+                                for a response from the controller. </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>fetch</emphasis>: The controller received the
-                                request for a player's move from the Browser and now fetches the current gamestate from the regarding database.
-                                The database for this game immediately return the current gamestate for the game.</para>
+                                <emphasis>fetch</emphasis>: The controller receives the request for
+                                a player's move from the Browser and then fetches the current
+                                gamestate from the corresponding game database. The database for
+                                this game immediately returns the current gamestate for the
+                                game.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>clickedId(id)</emphasis>: The controller calls clickedId(id) on the game, which then modifies the gamestate accordingly, by distributing the seeds.</para>
+                                <emphasis>clickedId(id)</emphasis>: The controller calls
+                                clickedId(id) on the game, which then modifies the gamestate
+                                accordingly, by distributing the seeds.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>/updategamefinished/{$id}</emphasis>: After receiving the success response from the game, the controller now sends the response to the initial request from the Browser (1). 
-                                This response tells the Browser to send another request, which serves to determine if the current game is ended and updating the game's extra attributes, like the wincount.</para>
+                                <emphasis>/updategamefinished/{$id}</emphasis>: After receiving the
+                                success response from the game, the controller now sends the
+                                response to the initial request from the Browser (1). This response
+                                tells the Browser to send another request, which serves to determine
+                                if the current game is ended and updating the game's extra
+                                attributes, like the wincount.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>checkfinished()</emphasis>: This is the call to trigger of the just described updates, since the game and not the controller is handling the gamestate.</para>
+                                <emphasis>checkfinished()</emphasis>: This is the call to trigger
+                                the described updates, because  the gamestate is handled by the game
+                                and not the controller.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>/game/($id)</emphasis>: Again the Controller redirects the Browser after receiving the success response from the Game.
-                                This redirect requests the updated gamestate from the Controller.</para>
+                                <emphasis>/game/($id)</emphasis>: Again the Controller redirects the
+                                Browser after receiving the success response from the Game. This
+                                redirect requests the updated gamestate from the Controller.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>fetch</emphasis>: The Controller requests the updated gamestate as it is now stored in the database from the database.
-                                This is then returned to the Controller and then forwarded to the Browser which now can uopdate the view so that the player see the result of his action.</para>
+                                <emphasis>fetch</emphasis>: The Controller requests the updated
+                                gamestate as it is now stored in the database. This is then returned
+                                to the Controller and then forwarded to the Browser which now can
+                                update the view so that the player see the result of his
+                                action.</para>
                         </listitem>
                     </orderedlist>
                 </para>
