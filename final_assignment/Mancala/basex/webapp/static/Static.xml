@@ -124,7 +124,7 @@ id ID #REQUIRED>
                     </text>
                 </a>
 
-                <!-- High score button -->
+                <!-- High score button -->                
                 <rect x="{layout/posStartX + 5 * (house/width + layout/distanceHorizontalHouse)}"
                     y="{layout/posStartY - 2 * layout/distanceVerticalHouseFrame - 0.5 * house/height}"
                     id="startOverButton" width="{2 * house/width}" height="{0.5 * house/height}"

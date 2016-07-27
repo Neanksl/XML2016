@@ -192,7 +192,7 @@ declare function page:_highscore()
         let $games := page:_gamesDB()
         for $oneGame in $games/databases/gameid
         where $oneGame/@winner > 0
-        order by data($oneGame/@winner) ascending
+        order by data($oneGame/@winner) descending
         return <outcome>
                 <winner>{ data($oneGame/@winner)}</winner>
                 <loser>{data($oneGame/@loser)}</loser>

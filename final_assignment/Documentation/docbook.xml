@@ -41,18 +41,13 @@
 
         <itemizedlist mark="opencircle">
             <listitem>
-                <para>A player's turn begins by choosing one of the houses on his side and starts
-                    distributes the seeds around the board until there is no seed left in his hand.
-                    The seeds should be dropped one-by-one and in counterclockwise direction. The
-                    opponent's Kalah should be skipped. </para>
+                <para>Player begins by choosing a house at his option and starts distributing the
+                    seeds around the board until there is no seed left in his hand. The seeds should
+                    be dropped one-by-one and in counterclockwise direction.</para>
             </listitem>
             <listitem>
-                <para>If the last seed is dropped into the player's Kalah, he gets an extra turn. </para>
-            </listitem>
-            <listitem>
-                <para>If the last seed falls into an empty house owned by the player, player is
-                    allowed to capture all the seeds of the opposite house and store them in his own
-                    Kalah. </para>
+                <para>If the last seed is dropped into the player's Kalah, he gets an extra turn.
+                </para>
             </listitem>
             <listitem>
                 <para>The player who still has seeds on his side of the board when the opponent's
@@ -107,11 +102,11 @@
                     <para> Each player wants to be able to make specific moves. </para>
                 </listitem>
                 <listitem>
-                    <para> TODO The players want to be able to win the game and see how many games
-                        they have won so far. </para>
+                    <para> The players want to be able to win the game and see how many games
+                        they have won so far, and with which scores. </para>
                 </listitem>
                 <listitem>
-                    <para> TODO If the players decide to continue the match later, they want to be
+                    <para> If the players decide to continue the match later, they want to be
                         able to save and load the game. </para>
                 </listitem>
             </itemizedlist>
@@ -125,8 +120,8 @@
         <section>
             <title>Architecture</title>
             <para> The following diagram shows the architecture of our implementation of the Mancala
-                game. The architecture follows the "Model View Controller" design pattern and is
-                divided into three components:<itemizedlist>
+                game. The architecture can be divided in three components, which are also a
+                representation for the MVC (model view controller) pattern. <itemizedlist>
                     <listitem>
                         <para>
                             <emphasis>Database</emphasis>: The database represents the storage for
@@ -141,14 +136,12 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Server</emphasis>: When a new game beginns, a request is sent
-                            to the server to create a new gamestate, which is saved in the database.
-                            A player's move afterwards sends another request to the server to edit
-                            the current, already existing gamestate. Distinguishing between these
-                            two requests is a task of the server and puts it in the role of a
-                            controller. Independently from that decision the new gamestate will be
-                            stored in the database and a visual representation of this gamestate is
-                            being returned to the client. </para>
+                            <emphasis>Server</emphasis>: The server receives the requests (actions)
+                            from the client and then acts as a controller by deciding if a new
+                            gamestate should be created or the existing gamestate (currently saved
+                            on the database) should be edited. Independently from that decision the
+                            new gamestate will be stored in the database and a visual representation
+                            of this gamestate is being returned to the client. </para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -175,15 +168,15 @@
                         <para>
                             <emphasis>Controller</emphasis>: The controller represents the
                             application controller. It forwards requests from the frontend to the
-                            backend and it triggers updates of the client, if new data is available.
-                        </para>
+                            backend and it triggers updates of the client, if new data are
+                            available. </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis>Game</emphasis>: The game is implemented as the server of the
                             application. Different frontends (Client and Controller) can interact
                             with this server, i.e. the game. Therefore, it also acts as a controller
-                            but its scope is only an instance of the mancala game. </para>
+                            but its scope is only a instance of the mancala game. </para>
                     </listitem>
                     <listitem>
                         <para>
@@ -195,8 +188,8 @@
             </para>
             <section>
                 <title>Create game</title>
-                <para> In order to start a new game the player can press the "New game" button or
-                    one of his houses. <orderedlist>
+                <para> In order to start a new game the player can press the 
+                "Create New"/"Reset Game" button or one of his houses. <orderedlist>
                         <listitem>
                             <para>
                                 <emphasis>click</emphasis>: The user clicked on the according
@@ -205,9 +198,9 @@
                         <listitem>
                             <para>
                                 <emphasis>newGame()</emphasis>: The client evaluates the click, for
-                                example, on the "New game" button. Then the client sends the
+                                example, on the "Create New" button. Then the client sends the
                                 newGame() request to the controller in order to instanciate a new
-                                game. Now the Client is waiting for a response from the controller.
+                                game. Now the Client is waiting for a response of the controller.
                             </para>
                         </listitem>
                         <listitem>
@@ -219,7 +212,7 @@
                         <listitem>
                             <para>
                                 <emphasis>createGameState()</emphasis>: After receiving the request
-                                for a new game the game creates a new instance of the mancala game
+                                for a new game, the game creates a new instance of the mancala game
                                 with the initial settings. </para>
                         </listitem>
                         <listitem>
@@ -237,18 +230,19 @@
                         <listitem>
                             <para>
                                 <emphasis>updateGameStateView()</emphasis>: The Controller generates
-                                the SVG which represents the current gamestate. </para>
+                                the SVG which can represent the current gamestate. </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>gameStateSVG</emphasis>: The generated SVG is now sent to
-                                the client as a response to the newGame() request (Nr. 2). </para>
+                                <emphasis>gameStateSVG</emphasis>: The newly generated SVG is now
+                                sent to the client as response to the newGame() request (Nr. 2).
+                            </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>refreshView()</emphasis>: Finally the Client refreshes
-                                its' view and the user can now see the game with the initial
-                                settings. </para>
+                                <emphasis>refreshView()</emphasis>: Finally the Client refreshs its
+                                view and the user can now see the game with the initial settings.
+                            </para>
                         </listitem>
                     </orderedlist>
                 </para>
@@ -260,8 +254,8 @@
             </section>
             <section>
                 <title>Select a house</title>
-                <para> TODO MICHI In order to make a move, a player must click on a house in the
-                    browser. <orderedlist>
+                <para>In order to make a move, a player can click in the browser on a
+                    house and trigger the intended move. <orderedlist>
                         <listitem>
                             <para>
                                 <emphasis>click</emphasis>: The user clicked a house to start the
@@ -269,12 +263,12 @@
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>clickedHouse(int)</emphasis>: The client evaluates the
-                                click as a click on a house with a specific index. Then the client
-                                sends the clickedHouse(int) request with the regarding index as
-                                parameter to the controller in order to trigger the player's move.
-                                Now the Client is waiting for a response from the controller.
-                            </para>
+                                <emphasis>clickedHouse(int)</emphasis>: 
+                                Each house can be described by a specific index. As the client makes a move, it will be evaluated. 
+                                The client sends the clickedHouse(int) request with the spiecified index 
+                                as parameter to the controller in order to trigger the player's move.
+                                It is to be noticed that only clicks on a house are valid and trigger a request. 
+                                Now the Client is waiting for a response from the controller. </para>
                         </listitem>
                         <listitem>
                             <para>
@@ -296,11 +290,11 @@
                             <para>
                                 <emphasis>updateGameState()</emphasis>: After receiving the current
                                 gamestate the server evaluates the move which was triggered by the
-                                player and updates the gamestate. </para>
+                                player and updates the gamestate appropriately. </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>setGameState()</emphasis>: The updated gamestate is
+                                <emphasis>setGameState()</emphasis>: The just updated gamestate is
                                 immediately sent to the database where it is being stored. </para>
                         </listitem>
                         <listitem>
@@ -361,12 +355,12 @@
                             identify the different GameObjects they contain the property ID.
                             Furthermore, each GameObject tracks the amount of seeds in it and
                             provide the appropriate methods to get/set/increment the current
-                            seedCount. The Store and the House classes has up to now the exact same
+                            seedCount. The Store and the House classes have up to now the exact same
                             attributes and methods as their superclass. </para>
                         <itemizedlist>
                             <listitem>
                                 <para>
-                                    <emphasis>House</emphasis>: The houses represents the holes on
+                                    <emphasis>House</emphasis>: The houses represent the holes on
                                     the board in which the seeds will sit in. </para>
                             </listitem>
                             <listitem>
@@ -390,7 +384,7 @@
                         <para>
                             <emphasis>Board</emphasis>: The board is the contoller class for the
                             mancala board. It consists of two layers - one top and one bottom layer.
-                            The board is able to get a hosue or a store by its ID so that the
+                            The board is able to get a house or a store by its ID so that the
                             appropriate method (inSeedCount) can be called if a player clicks on a
                             house. The board also wraps getting a house/store and calling its
                             incSeedCount by the handler method clickedHouse, which is called if a
@@ -439,7 +433,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>mancala.xqm</emphasis>: Contains all methods described in the
+                            <emphasis>Mancala.xqm</emphasis>: Contains all methods described in the
                             class diagram. </para>
                     </listitem>
                 </itemizedlist>
@@ -449,12 +443,12 @@
 
         <section>
             <title>OOP, namespaces and naming conventions</title>
-            <para>In order to implement the architecture represented in the classdiagram we
-                introduced multiple namespaces, to simulate class-scopes. Each namespace represents
-                a class and each method of that class is defined inside that namespace. Every class
-                is in its own file and is separated into a public and a private section. Similar to
-                'self' in Python, the $this-reference of the current object is passed as the first
-                parameter of every method.</para>
+            <para>In order to realise the architecture represented in the classdiagram, we introduced
+                multiple namespaces, to simulate class-scopes. Each namespace represents a class and
+                each method of that class is defined inside that namespace. Every class is in its
+                own file and is separated into a public and a private section. Similar to 'self' in
+                Python, the $this-reference of the current object is passed as the first parameter
+                of every method.</para>
             <section>
                 <title>Naming conventions</title>
                 <para> Public methods are named as is, private methods are prefixed with an
@@ -465,10 +459,12 @@
         </section>
 
         <section>
-            <title>Index DB</title>
-            <para>TODO: node manipulation by reference</para>
-            <para>TODO: IndexDB for games: At first startup, the index-db has to be
-                initialized.</para>
+            <title>Gameindex Database</title>
+            
+            <para>The application stores a reference to all games in a games-database. 
+                This database is used to generate unique game-ids and keep track of the outcome of individual games.
+                The databse has to be created once by calling <emphasis>/db/initgameindex</emphasis>
+            </para>
         </section>
 
         <section>
@@ -520,18 +516,21 @@
                         <itemizedlist>
                             <listitem>
                                 <para>
-                                    <emphasis>New Game</emphasis>: creates a new game instance
+                                    <emphasis>Create New</emphasis>: creates a new game instance
                                     without affecting players' scores. </para>
                             </listitem>
                             <listitem>
                                 <para>
-                                    <emphasis>Reset Scores</emphasis>: creates a new game instance
+                                    <emphasis>Reset Game</emphasis>: creates a new game instance
                                     and reset ALL players' scores. </para>
+                            </listitem>
+                            <listitem>
+                                <para>Highest Score: the player can check the highest score that he gained after a specific numbers of game.</para>
                             </listitem>
                         </itemizedlist>
                     </listitem>
                     <listitem>
-                        <para> The text in the middle indicates current game status, for example:
+                        <para> The text in the middle indicates the current game status, for example:
                             which player is playing or if one player has won. Players' turns are
                             hinted by a typical color and a blinking triangle in the corresponding
                             store. In case of winning, the status text in the middle will point to
@@ -622,13 +621,12 @@
             <warning>
                 <itemizedlist>
                     <listitem>
-                        <para> Eine Beschreibung der Requests und Responses zwischen Client und
-                            Server nach dem REST-Prinzip und ihre Abbildung auf Queries mit restXQ.
+                        <para>
+                            The RESTXQ service is accessible via http://localhost:8984/.
+                            All RESTXQ annotations are assigned to the http://exquery.org/ns/restxq namespace. 
+                            If a RESTXQ URL is requested, the RESTXQPATH module directory and its sub-directories will be through passed, 
+                            and all XQuery files will be parsed for functions with RESTXQ annotations.
                         </para>
-                    </listitem>
-                    <listitem>
-                        <para> Eine Beschreibung der Benutzeroberfläche für die verschiedenen
-                            Stadien des Spiels mit den jeweiligen Interaktionsmöglichkeiten. </para>
                     </listitem>
                 </itemizedlist>
             </warning>
@@ -666,9 +664,9 @@
         </section>
         <section>
             <title>User Network</title>
-            <para>Building a user network allows the integration of many additional features which
-                can improve the user experience. As mentioned above, each user will have a profile
-                that shows his/her statistics. The profile will also be visible for other players.
+            <para>Building a user network allows the inegration of many additional features which
+                can improve the user experience. As mentoined above, each use will have a profile
+                that shows his statistics. The profile will also be visible for other players.
                 Additional features could include challenging a user, chat as well as offline
                 messaging.</para>
         </section>
@@ -679,25 +677,5 @@
                 movement of the seeds or adding sound effects when a seed get into the user's
                 store.</para>
         </section>
-    </section>
-    <section>
-        <title>Reflection</title>
-        <para>The lab course introduced us to more advanced posibilities of XML that go beyond the
-            well known markup language usage. Different aspects of XML where used to build a
-            complete web service including database with the help of XQuery, front-end
-            representation with SVG and backend with BaseX and RESTXQ module for the API. The task
-            to deliver a working application contributed to the hands-on character of the class and
-            provided us with a very realistic expirience about the challenges faced in development. </para>
-        <para>Good organisation and communication was an important factor to proceed with the
-            project at a good pace. In order to also work efficiently as a group a certain degree of
-            flexibility was needed, which could be accomplished by the usage of trello and  git and
-            the continuous integration approach. The documentation regarding the project was also
-            continuously extended and updated, which helped sustain a good overview of the
-            project.</para>
-        <para>The theoretical classes, materials and scripts provided the needed information to
-            complete the projects without the need of additional support from the professor. One of
-            the biggest difficulties we faced was the update of the game state because of the
-            limitations of XQuery databases (described in section 5). </para>
-
     </section>
 </article>
