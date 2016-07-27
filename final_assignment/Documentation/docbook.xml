@@ -678,4 +678,23 @@
                 store.</para>
         </section>
     </section>
+    <section>
+        <title>Reflection</title>
+        <para>The lab course introduced us to more advanced posibilities of XML that go beyond the
+            well known markup language usage. Different aspects of XML where used to build a
+            complete web service including database with the help of XQuery, front-end
+            representation with SVG and backend with BaseX and RESTXQ module for the API. The task
+            to deliver a working application contributed to the hands-on character of the class and
+            provided us with a very realistic expirience about the challenges faced in development. </para>
+        <para>Good organisation and communication was an important factor to proceed with the
+            project at a good pace. In order to also work efficiently as a group a certain degree of
+            flexibility was needed, which could be accomplished by the usage of trello and git and
+            the continuous integration approach. The documentation regarding the project was also
+            continuously extended and updated, which helped sustain a good overview of the
+            project.</para>
+        <para>The theoretical classes, materials and scripts provided the needed information to
+            complete the projects without the need of additional support from the professor. One of
+            the biggest difficulties we faced was the update of the game state because of the
+            limitations of XQuery databases (described in section 5).</para>
+    </section>
 </article>
