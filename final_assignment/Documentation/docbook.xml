@@ -455,6 +455,7 @@
                 own file and is separated into a public and a private section. Similar to 'self' in
                 Python, the $this-reference of the current object is passed as the first parameter
                 of every method.</para>
+            <para>Nodes are accessed and manipulated via references rather than generating new xml nodes</para>
             <section>
                 <title>Naming conventions</title>
                 <para> Public methods are named as is, private methods are prefixed with an
@@ -465,10 +466,12 @@
         </section>
 
         <section>
-            <title>Index DB</title>
-            <para>TODO: node manipulation by reference</para>
-            <para>TODO: IndexDB for games: At first startup, the index-db has to be
-                initialized.</para>
+            <title>Gameindex Database</title>
+            
+            <para>The application stores a reference to all games in a games-database. 
+                This database is used to generate unique game-ids and keep track of the outcome of individual games.
+                The databse has to be created once by calling <emphasis>/db/initgameindex</emphasis>
+                </para>
         </section>
 
         <section>
