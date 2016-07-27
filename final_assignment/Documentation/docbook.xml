@@ -282,72 +282,67 @@
         <section>
             <title>Classes</title>
             <para> The following list explains the classes shown in the class diagram. <itemizedlist>
-                    <listitem>
-                        <para>
-                            <emphasis>Player</emphasis>: The Player class represents one of two
-                            players. It has an ID to differentiate between the players and each
-                            player has a winCount, which contains the amount of won games. Thereby
-                            it has the method to increase the winCount after a won match and the
-                            method to reset the winCount if the game session has came to an end.
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>Players</emphasis>: The Players class is the controller of two
-                            Player classes. It remembers which players turn it is and provides the
-                            according methods to set/get/toggle the player turn. </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>GameObject</emphasis>: The GameObject is an abstract class
-                            which works as a superclass for the House and the Store class. To
-                            identify the different GameObjects they contain the property ID.
-                            Furthermore, each GameObject tracks the amount of seeds in it and
-                            provide the appropriate methods to get/set/increment the current
-                            seedCount. The Store and the House classes have up to now the exact same
-                            attributes and methods as their superclass. </para>
-                        <itemizedlist>
-                            <listitem>
-                                <para>
-                                    <emphasis>House</emphasis>: The houses represent the holes on
-                                    the board in which the seeds will sit in. </para>
-                            </listitem>
-                            <listitem>
-                                <para>
-                                    <emphasis>Store</emphasis>: The store is the slightly bigger
-                                    house, which stores all the seeds a player won. Therefore, each
-                                    player has only one store. </para>
-                            </listitem>
-                        </itemizedlist>
-
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>Layer</emphasis>: The Layer class is just a wrapper class for
-                            the store and the houses of one player. Since a player has six houses
-                            and one store it consists exactly of six houses and one store.
-                            Furthermore, the Layer class contains the attribute position, which is
-                            an enumeration of either "top" or "bottom". </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>Board</emphasis>: The board is the contoller class for the
-                            mancala board. It consists of two layers - one top and one bottom layer.
-                            The board is able to get a house or a store by its ID so that the
-                            appropriate method (inSeedCount) can be called if a player clicks on a
-                            house. The board also wraps getting a house/store and calling its
-                            incSeedCount by the handler method clickedHouse, which is called if a
-                            player clicks on a house. Finally the board contains the resetBoard
-                            method, which sets the board to its initial setup. </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>Game</emphasis>: The game is the top level controller of one
-                            instance of a game. It consists of the Board and the Players class and
-                            after calling the contructor the currentGame property is instanciated.
-                            Additionally it has the method to reset the current game. </para>
-                    </listitem>
-                </itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis>Player</emphasis>: The Player class represents one of two
+                        players. It has an ID to differentiate between the players and each
+                        player has a winCount, which contains the amount of won games. Thereby
+                        it has the method to increase the winCount after a won match and the
+                        method to reset the winCount if the game session has come to an end.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Players</emphasis>: The Players class is the controller of two
+                        Player classes. It remembers which player's turn it is and provides the
+                        appropriate methods to set/get/toggle the player turn. </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>GameObject</emphasis>: The GameObject is an abstract class
+                        which works as a superclass for the House and the Store class.
+                        A property ID is responsible for identifying different GameObjects. 
+                        Furthermore, each GameObject tracks the amount of seeds in it and
+                        provide the appropriate methods to get/set/increment the current
+                        seedCount. The Store and the House classes have up to now the exact same
+                        attributes and methods as their superclass. </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>House</emphasis>: The houses represent the holes on
+                                the board in which the seeds will be sown in. </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>Store</emphasis>: The store is the slightly bigger
+                                house, which stores all the seeds a player has won. Therefore, each
+                                player has only one store. </para>
+                        </listitem>
+                    </itemizedlist>
+                    
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Board</emphasis>: The board is the controller class for the
+                        mancala board. It consists the attribute Position, which is an 
+                        enumeration of either "top" o "bottom". The board is able to get a house 
+                        or a store by its ID so that the appropriate method (incSeedCount) 
+                        can be called if a player clicks on a house. 
+                        The board also wraps getting a house/store and calling its
+                        incSeedCount by the handler method clickedHouse, which is called as a
+                        player clicks on a house. 
+                        sumOfStoreAndRow shows the total amount of seeds in the store and houses according to the position.
+                        If Row is Empty, it means one of the players has won, the seeds in the houses will be collected.
+                        Seeds will be distributed as the player click on a house, using the function distributeSeeds().
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Game</emphasis>: The game is the top level controller of one
+                        instance of a game. It consists of the Board and the Players class.
+                        Additionally it has the method to reset the current game. </para>
+                </listitem>
+            </itemizedlist>
             </para>
             <mediaobject>
                 <imageobject>
@@ -356,7 +351,7 @@
             </mediaobject>
         </section>
     </section>
-
+    
     <section>
         <title>Implementation</title>
 
