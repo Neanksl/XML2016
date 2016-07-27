@@ -30,7 +30,7 @@
             and each house holds 4 seeds at the beginning of the game. The goal is to collect as
             many seeds as possible in the store, which is also called <emphasis role="bold"
                 >Kalah</emphasis>. There are different versions of the game, but for this project we
-            chose a Kalah-version, which uses 48 seeds in total, equaly distributed in the 12
+            chose a Kalah-version, which uses 48 seeds in total, equally distributed in the 12
             houses.</para>
     </section>
 
@@ -43,7 +43,7 @@
 
         <itemizedlist mark="opencircle">
             <listitem>
-                <para>Player begins by choosing a house at his option and starts distributing the
+                <para>A player begins by choosing a house on his/her side and then distributes the
                     seeds around the board until there is no seed left in his hand. The seeds should
                     be dropped one-by-one and in counterclockwise direction.</para>
             </listitem>
@@ -64,7 +64,7 @@
 
     <section>
         <title>Technologies</title>
-        <para>In this lab course, there were many of XML-Technologies used. <itemizedlist
+        <para>In this lab course, a diversity of XML-Technologies was used. <itemizedlist
                 mark="opencircle">
                 <listitem>
                     <para> SVG: Scalable Vector Graphics, helps describing two-dimensional graphics
@@ -76,8 +76,8 @@
                         other XML Documents.</para>
                 </listitem>
                 <listitem>
-                    <para> XQuery is to XML what SQL is to database tables. XML Data will be queried
-                        thanks to XQuery. </para>
+                    <para> XQuery is to XML what SQL is to database tables. XML Data is queried with
+                        XQuery. </para>
                 </listitem>
                 <listitem>
                     <para> BaseX: scalable, high performance XML Database engine which allows
@@ -89,8 +89,8 @@
 
     <section>
         <title>Diagrams</title>
-        <para>Use Cases and Use Case Diagram The mancala game can be splitted up in the following
-            usecases: <itemizedlist>
+        <para>Use Cases and Use Case Diagram - The mancala game can be splitted up in the following
+            use cases: <itemizedlist>
                 <listitem>
                     <para> Initially the players want to be able to start a new game of mancala. </para>
                     <itemizedlist>
@@ -104,12 +104,12 @@
                     <para> Each player wants to be able to make specific moves. </para>
                 </listitem>
                 <listitem>
-                    <para> The players want to be able to win the game and see how many games
-                        they have won so far, and with which scores. </para>
+                    <para> The players want to be able to win the game and see how many games they
+                        have won so far, and with which scores. </para>
                 </listitem>
                 <listitem>
-                    <para> If the players decide to continue the match later, they want to be
-                        able to save and load the game. </para>
+                    <para> If the players decide to continue the match later, they should be able to
+                        resume their game. </para>
                 </listitem>
             </itemizedlist>
             <mediaobject>
