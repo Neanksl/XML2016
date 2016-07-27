@@ -13,7 +13,7 @@ updating function page:checkIfGameIsFinished($dbID)
     let $gamesDB := page:_gamesDB()
     return
         (db:output(page:_redirect(concat("/game/",$id))),
-        game:checkForGameFinished(page:_getDB($id)/game, $gamesDB))
+        game:checkForFinished(page:_getDB($id)/game, $gamesDB))
 };
 
 declare
@@ -81,7 +81,7 @@ updating function page:tryAgain($dbID)
     let $db := page:_getDB($dbID)
     return
         (db:output(page:_redirect(concat("/game/",$dbID))),
-        game:resetGame($db/game))
+        game:reset($db/game))
 };
 
 

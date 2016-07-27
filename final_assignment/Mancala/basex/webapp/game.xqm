@@ -15,7 +15,7 @@ declare updating function game:clicked($this, $id)
     board:clickedHouse($this/board, xs:integer($id), $this)
 };
 
-declare updating function game:checkForGameFinished($this, $gamesDB)
+declare updating function game:checkForFinished($this, $gamesDB)
 {
     if (board:isRowEmpty($this/board, "top")) then
         (store:setSeedCount(
@@ -38,7 +38,7 @@ declare updating function game:checkForGameFinished($this, $gamesDB)
             ())
 };
 
-declare updating function game:resetGame($this)
+declare updating function game:reset($this)
 {
     game:_resetBoard($this/board, 4),
     players:setNextPlayerWithId($this/players, 1),
