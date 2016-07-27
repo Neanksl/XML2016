@@ -159,30 +159,33 @@
                 the four entities: <itemizedlist>
                     <listitem>
                         <para>
-                            <emphasis>Client</emphasis>: The client is the user interface, which
+                            <emphasis>:Browser</emphasis>: The browser is the user interface, which
                             serves the user as visual representation of the application. If a user
                             interacts with the system, the interaction is aimed at a component shown
-                            by the client. </para>
+                            by the browser.</para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Controller</emphasis>: The controller represents the
+                            <emphasis>:Controller</emphasis>: The controller represents the
                             application controller. It forwards requests from the frontend to the
-                            backend and it triggers updates of the client, if new data are
-                            available. </para>
+                            backend and it triggers view-updates, if new data are
+                            available.</para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Game</emphasis>: The game is implemented as the server of the
-                            application. Different frontends (Client and Controller) can interact
-                            with this server, i.e. the game. Therefore, it also acts as a controller
-                            but its scope is only a instance of the mancala game. </para>
+                            <emphasis>:Game</emphasis>: The game contains the public interface to the model layer.  
+                            The controller forwards all actions and requests to the game, which updates the gamestate.
+                        </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Database</emphasis>: This entity stores the active gamestates.
+                            <emphasis>index:Database</emphasis>: This entity stores the references to the saved gamestates.
                             A gamestate is an instance of the current game. Each game always has one
-                            gamestate that can be saved. </para>
+                            gamestate that can be saved.</para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>game-{$id}:Database</emphasis>: This database represents one game, i.e. one gamestate.</para>
                     </listitem>
                 </itemizedlist>
             </para>
