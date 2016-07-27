@@ -257,18 +257,17 @@
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>checkfinished()</emphasis>: This is the call to trigger of the just described updates, since the game is handling the gamestate and not the controller.</para>
+                                <emphasis>checkfinished()</emphasis>: This is the call to trigger of the just described updates, since the game and not the controller is handling the gamestate.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>setGameState()</emphasis>: The just updated gamestate is
-                                immediately sent to the database where it is being stored. </para>
+                                <emphasis>/game/($id)</emphasis>: Again the Controller redirects the Browser after receiving the success response from the Game.
+                                This redirect requests the updated gamestate from the Controller.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>gamestate</emphasis>: Now the game sends the gamestate to
-                                the controller as response for the clickedHouse(int) request from
-                                the controller (Nr. 3). </para>
+                                <emphasis>fetch</emphasis>: The Controller requests the updated gamestate as it is now stored in the database from the database.
+                                This is then returned to the Controller and then forwarded to the Browser which now can uopdate the view so that the player see the result of his action.</para>
                         </listitem>
                     </orderedlist>
                 </para>
