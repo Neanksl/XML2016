@@ -31,7 +31,7 @@ declare updating function players:toggleCurrentPlayer($this)
         $this/player[1])
 };
 
-declare function players:houseIdForCurrentPlayer($this)
+declare function players:storeIdForCurrentPlayer($this)
 {
     let $x := 1
     return ( if(players:currentPlayer($this)/id = 1) then

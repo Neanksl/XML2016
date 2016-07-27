@@ -131,7 +131,7 @@ declare updating function board:_distributeSeeds($this, $clickedHouse, $times)
 declare function board:_isLastSeedInMyStore($this, $players, $houseId, $numStones) as xs:boolean
 {
     (: get distance from :)
-    let $playerHouseId := players:houseIdForCurrentPlayer($players)
+    let $playerHouseId := players:storeIdForCurrentPlayer($players)
     return $houseId + ($numStones mod 14) = $playerHouseId 
 };
 
