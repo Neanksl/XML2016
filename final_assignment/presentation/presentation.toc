@@ -4,7 +4,7 @@
 \beamer@sectionintoc {2}{Mancala}{3}{0}{2}
 \beamer@sectionintoc {3}{Technologies}{5}{0}{3}
 \beamer@sectionintoc {4}{Architecture}{7}{0}{4}
-\beamer@sectionintoc {5}{UML}{9}{0}{5}
+\beamer@sectionintoc {5}{Objekt Design}{9}{0}{5}
 \beamer@subsectionintoc {5}{1}{Use Case Diagram}{11}{0}{5}
 \beamer@subsectionintoc {5}{2}{Class Diagram}{13}{0}{5}
 \beamer@subsectionintoc {5}{3}{Sequenz Diagram}{15}{0}{5}
