@@ -125,16 +125,16 @@
                 game. The architecture can be divided in three components<itemizedlist>
                     <listitem>
                         <para>
-                            <emphasis>Database</emphasis>: One index database is used to track all games. 
-                            Each game is represented by a dedicated database, named <emphasis>game-{id of game}</emphasis> 
-                            which stores the state of the repsective game.  
-                        </para>
+                            <emphasis>Database</emphasis>: One index database is used to track all
+                            games. Each game is represented by a dedicated database, named
+                                <emphasis>game-{id of game}</emphasis> which stores the state of the
+                            respective game. This allows multiple games to be played simultaneously.  </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Client</emphasis>: The client is the frontend of the
-                            application, i.e. the user interaction interface. Any action from the
-                            players trigger a request to the server.</para>
+                            <emphasis>Client</emphasis>: The client is the front end of the
+                            application, i.e. the user interaction interface. Any action made by the
+                            players triggers a request to the server.</para>
                     </listitem>
                     <listitem>
                         <para>
@@ -248,46 +248,26 @@
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>clickedId(id)</emphasis>: The controller calls clickedId(id) on the </para>
+                                <emphasis>clickedId(id)</emphasis>: The controller calls clickedId(id) on the game, which then modifies the gamestate accordingly, by distributing the seeds.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>gamestate</emphasis>: The database returns the current
-                                gamestate. </para>
+                                <emphasis>/updategamefinished/{$id}</emphasis>: After receiving the success response from the game, the controller now sends the response to the initial request from the Browser (1). 
+                                This response tells the Browser to send another request, which serves to determine if the current game is ended and updating the game's extra attributes, like the wincount.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>updateGameState()</emphasis>: After receiving the current
-                                gamestate the server evaluates the move which was triggered by the
-                                player and updates the gamestate appropriately. </para>
+                                <emphasis>checkfinished()</emphasis>: This is the call to trigger of the just described updates, since the game and not the controller is handling the gamestate.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>setGameState()</emphasis>: The just updated gamestate is
-                                immediately sent to the database where it is being stored. </para>
+                                <emphasis>/game/($id)</emphasis>: Again the Controller redirects the Browser after receiving the success response from the Game.
+                                This redirect requests the updated gamestate from the Controller.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>gamestate</emphasis>: Now the game sends the gamestate to
-                                the controller as response for the clickedHouse(int) request from
-                                the controller (Nr. 3). </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis>updateGameStateView()</emphasis>: The Controller generates
-                                the SVG which can represents the current gamestate. </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis>gameStateSVG</emphasis>: The just generated SVG is now
-                                sent to the client as response for the clickedHouse(int) request
-                                (Nr. 2). </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis>refreshView()</emphasis>: Finally the Client refreshs its
-                                view and the user can now see the game with the initial settings.
-                            </para>
+                                <emphasis>fetch</emphasis>: The Controller requests the updated gamestate as it is now stored in the database from the database.
+                                This is then returned to the Controller and then forwarded to the Browser which now can uopdate the view so that the player see the result of his action.</para>
                         </listitem>
                     </orderedlist>
                 </para>
