@@ -7,8 +7,10 @@ Emiliyana Kalinova - 03644465
 Ha Ngan Nguyen - 03644399
 Son Nguyen - 03622000
 
-To run the game (in Windows)
-1. Run basexhttp.bat in Mancala/basex/bin
+
+1. For windows: Run basexhttp.bat in Mancala/basex/bin
+1. For *nix: Run ./basexhttp in Mancala/basex/bin
+
 2. Open Firefox (only works in Firefox at the moment), enter http://localhost:8984/db/initgameindex
 3. Enjoy!
 

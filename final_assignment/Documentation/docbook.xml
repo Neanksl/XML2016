@@ -24,12 +24,14 @@
             <emphasis role="underline">Type</emphasis> Board game</para>
         <para>
             <emphasis role="underline">Number of players</emphasis> Mostly two </para>
-        <para>At the beginning of the game, a <emphasis role="bold">Mancala-Playboard</emphasis> is
-            needed. The board will be seperated into 2 rows. Each player has 6 small <emphasis
-                role="bold">"houses"</emphasis> on their side, and a big <emphasis role="bold"
-                >"store" </emphasis> - which also called <emphasis role="bold">Kalah</emphasis> -
-            where the stones are to be collected and stored. In this lab course, we chose the
-            Kalah-version, which uses 48 "seeds" equally distributed in 12 houses.</para>
+        <para>The core element of the game is the <emphasis role="bold">Mancala-Playboard</emphasis>
+            and it includes 6 small <emphasis role="bold">"houses"</emphasis> and one big <emphasis
+                role="bold">"store" </emphasis> for each player. The houses are lined up in two rows
+            and each house holds 4 seeds at the beginning of the game. The goal is to collect as
+            many seeds as possible in the store, which is also called <emphasis role="bold"
+                >Kalah</emphasis>. There are different versions of the game, but for this project we
+            chose a Kalah-version, which uses 48 seeds in total, equaly distributed in the 12
+            houses.</para>
     </section>
 
     <section>
@@ -120,28 +122,26 @@
         <section>
             <title>Architecture</title>
             <para> The following diagram shows the architecture of our implementation of the Mancala
-                game. The architecture can be divided in three components, which are also a
-                representation for the MVC (model view controller) pattern. <itemizedlist>
+                game. The architecture can be divided in three components<itemizedlist>
                     <listitem>
                         <para>
-                            <emphasis>Database</emphasis>: The database represents the storage for
-                            one gamestate. That means one current instance of the game is saved in
-                            the database. </para>
+                            <emphasis>Database</emphasis>: One index database is used to track all games. 
+                            Each game is represented by a dedicated database, named <emphasis>game-{id of game}</emphasis> 
+                            which stores the state of the repsective game.  
+                        </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis>Client</emphasis>: The client is the frontend of the
                             application, i.e. the user interaction interface. Any action from the
-                            players will be forwarded as a RESTful request to the server. </para>
+                            players trigger a request to the server.</para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis>Server</emphasis>: The server receives the requests (actions)
-                            from the client and then acts as a controller by deciding if a new
-                            gamestate should be created or the existing gamestate (currently saved
-                            on the database) should be edited. Independently from that decision the
-                            new gamestate will be stored in the database and a visual representation
-                            of this gamestate is being returned to the client. </para>
+                            from the client and forwards these actions to the model layer containing the business logic.
+                            The modified gamestate is saved back to the databases and returned to the client for display.
+                        </para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -413,6 +413,13 @@
 
         <section>
             <title>Filestructure</title>
+            <para>
+                The RESTXQ service is accessible via http://localhost:8984/.
+                All RESTXQ annotations are assigned to the http://exquery.org/ns/restxq namespace. 
+                If a RESTXQ URL is requested, the RESTXQPATH module directory and its sub-directories will be accessed, 
+                and all XQuery files will be parsed for functions with RESTXQ annotations.
+            </para>
+            
             <para> The following list shows the files, which were used to implement the basic
                 functionalities of XQuery for mancala. <itemizedlist>
                     <listitem>
@@ -616,21 +623,7 @@
             </para>
         </section>
 
-        <section>
-            <title>TODOs</title>
-            <warning>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            The RESTXQ service is accessible via http://localhost:8984/.
-                            All RESTXQ annotations are assigned to the http://exquery.org/ns/restxq namespace. 
-                            If a RESTXQ URL is requested, the RESTXQPATH module directory and its sub-directories will be through passed, 
-                            and all XQuery files will be parsed for functions with RESTXQ annotations.
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </warning>
-        </section>
+        
     </section>
 
 
