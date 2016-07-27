@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oxygenxml.com/docbook/xml/5.0/rng/dbsvg.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<!DOCTYPE article PUBLIC "ARTICLE" "docbook.dtd">
+<?xml-stylesheet type="text/css" href="./css/docbook.css"?>
+
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/2001/xlink"
+    version="5.0">
+    <info>
+        <title>
+            <emphasis> Mancala </emphasis>
+        </title>
+        <subtitle>Praktikum: XML-Technologie</subtitle>
+        <pubdate>01.07.2016</pubdate>
+    </info>
+    <para>
+        <wordasword>Mancala</wordasword>, also Manqala or Mancala, is a very popular ancient game
+        with numerous variations. This count-and-capture game can be played by two people, with the
+        aim of winning the most "seeds" on the "field". </para>
+    <section>
+        <title>Introduction</title>
+        <para>
+            <emphasis role="underline">Type</emphasis> Board game</para>
+        <para>
+            <emphasis role="underline">Number of players</emphasis> Mostly two </para>
+        <para>The core element of the game is the <emphasis role="bold">Mancala-Playboard</emphasis>
+            and it includes 6 small <emphasis role="bold">"houses"</emphasis> and one big <emphasis
+                role="bold">"store" </emphasis> for each player. The houses are lined up in two rows
+            and each house holds 4 seeds at the beginning of the game. The goal is to collect as
+            many seeds as possible in the store, which is also called <emphasis role="bold"
+                >Kalah</emphasis>. There are different versions of the game, but for this project we
+            chose a Kalah-version, which uses 48 seeds in total, equally distributed in the 12
+            houses.</para>
+    </section>
+
+    <section>
+        <title>Playing rules</title>
+        <para>
+            <emphasis role="underline">
+                <emphasis role="bold">Game objective</emphasis>
+            </emphasis> : The objective of the game is to capture more seeds than the opponent. </para>
+
+        <itemizedlist mark="opencircle">
+            <listitem>
+                <para>A player begins by choosing a house on his/her side and then distributes the
+                    seeds around the board until there is no seed left in his hand. The seeds should
+                    be dropped one-by-one and in counterclockwise direction.</para>
+            </listitem>
+            <listitem>
+                <para>If the last seed is dropped into the player's Kalah, he gets an extra turn.
+                </para>
+            </listitem>
+            <listitem>
+                <para>The player who still has seeds on his side of the board when the opponent's
+                    houses are empty captures all of those.</para>
+            </listitem>
+            <listitem>
+                <para>The game ends where one player has no seeds left. The player with the most
+                    seeds wins the game. </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+
+    <section>
+        <title>Technologies</title>
+        <para>In this lab course, a diversity of XML-Technologies was used. <itemizedlist
+                mark="opencircle">
+                <listitem>
+                    <para> SVG: Scalable Vector Graphics, helps describing two-dimensional graphics
+                        for the Web with support for interactivity and animation.</para>
+                </listitem>
+                <listitem>
+                    <para> XSLT, XSL: EXtensible Stylesheet Language is a part of XSL, which is the
+                        stylesheet language for XML. XSLT helps transforming XML Documents into
+                        other XML Documents.</para>
+                </listitem>
+                <listitem>
+                    <para> XQuery is to XML what SQL is to database tables. XML Data is queried with
+                        XQuery. </para>
+                </listitem>
+                <listitem>
+                    <para> BaseX: scalable, high performance XML Database engine which allows
+                        querying and storing XML on the net.</para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </section>
+
+    <section>
+        <title>Diagrams</title>
+        <para>Use Cases and Use Case Diagram - The mancala game can be splitted up in the following
+            use cases: <itemizedlist>
+                <listitem>
+                    <para> Initially the players want to be able to start a new game of mancala. </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para> The players also want to have the possibility to discard the
+                                current game and restart it. </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+                <listitem>
+                    <para> Each player wants to be able to make specific moves. </para>
+                </listitem>
+                <listitem>
+                    <para> The players want to be able to win the game and see how many games they
+                        have won so far, and with which scores. </para>
+                </listitem>
+                <listitem>
+                    <para> If the players decide to continue the match later, they should be able to
+                        resume their game. </para>
+                </listitem>
+            </itemizedlist>
+            <mediaobject>
+                <imageobject>
+                    <imagedata format="SVG" fileref="./../Diagrams/UseCases.svg"/>
+                </imageobject>
+            </mediaobject>
+        </para>
+
+        <section>
+            <title>Architecture</title>
+            <para> The following diagram shows the architecture of our implementation of the Mancala
+                game. The architecture can be divided in three components<itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>Database</emphasis>: One index database is used to track all
+                            games. Each game is represented by a dedicated database, named
+                                <emphasis>game-{id of game}</emphasis> which stores the state of the
+                            respective game. This allows multiple games to be played simultaneously.  </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Client</emphasis>: The client is the front end of the
+                            application, i.e. the user interaction interface. Any action made by the
+                            players triggers a request to the server.</para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Server</emphasis>: The server receives the requests (actions)
+                            from the client and forwards these actions to the model layer containing the business logic.
+                            The modified gamestate is saved back to the databases and returned to the client for display.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata format="SVG" fileref="./../Diagrams/Architecture.svg"/>
+                </imageobject>
+            </mediaobject>
+        </section>
+
+        <section>
+            <title>Sequence</title>
+            <para> Each of the following sequence diagrams describes a chain of events that is
+                triggered when a player interacts with the system. These events are actions between
+                the four entities: <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>:Browser</emphasis>: The browser is the user interface, which
+                            serves the user as visual representation of the application. If a user
+                            interacts with the system, the interaction is aimed at a component shown
+                            by the browser.</para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>:Controller</emphasis>: The controller represents the
+                            application controller. It forwards requests from the frontend to the
+                            backend and it triggers view-updates, if new data are
+                            available.</para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>:Game</emphasis>: The game contains the public interface to the model layer.  
+                            The controller forwards all actions and requests to the game, which updates the gamestate.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>index:Database</emphasis>: This entity stores the references to the saved gamestates.
+                            A gamestate is an instance of the current game. Each game always has one
+                            gamestate that can be saved.</para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>game-{$id}:Database</emphasis>: This database represents one game, i.e. one gamestate.</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <section>
+                <title>Create game</title>
+                <para>When the player accesses <emphasis>/</emphasis> a new game is created. To start a new game, the player can press the "Create New" button.<orderedlist>
+                        <listitem>
+                            <para> When the client accessses <emphasis>/</emphasis>, the controller
+                                forwards to <emphasis>/db/create</emphasis></para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                The call to <emphasis>/db/create</emphasis> generates a new game-id from the index database and stores it. This id is used to create a new game database 
+                                and the client is forwarded to <emphasis>/game/{game-id}</emphasis>. 
+                                </para>
+                        </listitem>
+                        <listitem>
+                            <para> A call to <emphasis>/game/{game-id}</emphasis> returns the
+                                combined xsl and svg file. As the xsl fetches the gamestate from the
+                                game database, the <emphasis>select</emphasis> attribute of the
+                                    <emphasis>gamestate</emphasis> has to be modified to contain the
+                                game-id of the current game. </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                When evaluating the xsl, the xsl fetches the <emphasis>gamestate</emphasis> with the current 
+                                <emphasis>game-id</emphasis> (<emphasis>/gamestate/{game-id}</emphasis>) and transforms the gamestate into the svg.  
+                            </para>
+                        </listitem>
+                    </orderedlist>
+                </para>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata format="SVG" fileref="./../Diagrams/Sequence_createGame.svg"/>
+                    </imageobject>
+                </mediaobject>
+            </section>
+            <section>
+                <title>Select a house</title>
+                <para>In order to make a move, a player has to click on one of his/her houses in the
+                    browser. <orderedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>click</emphasis>: The user clicked a house to make a
+                                move.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>/clicked/{$gameId}/{$houseId}</emphasis>: Each house has a
+                                specific ID, which is sent by the browser to the controller in order
+                                to trigger the player's move. It is to be noticed that only clicks
+                                on a house are valid and trigger a request. The Browser then waits
+                                for a response from the controller. </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>fetch</emphasis>: The controller receives the request for
+                                a player's move from the Browser and then fetches the current
+                                gamestate from the corresponding game database. The database for
+                                this game immediately returns the current gamestate for the
+                                game.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>clickedId(id)</emphasis>: The controller calls
+                                clickedId(id) on the game, which then modifies the gamestate
+                                accordingly, by distributing the seeds.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>/updategamefinished/{$id}</emphasis>: After receiving the
+                                success response from the game, the controller now sends the
+                                response to the initial request from the Browser (1). This response
+                                tells the Browser to send another request, which serves to determine
+                                if the current game is ended and updating the game's extra
+                                attributes, like the wincount.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>checkfinished()</emphasis>: This is the call to trigger
+                                the described updates, because  the gamestate is handled by the game
+                                and not the controller.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>/game/($id)</emphasis>: Again the Controller redirects the
+                                Browser after receiving the success response from the Game. This
+                                redirect requests the updated gamestate from the Controller.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>fetch</emphasis>: The Controller requests the updated
+                                gamestate as it is now stored in the database. This is then returned
+                                to the Controller and then forwarded to the Browser which now can
+                                update the view so that the player see the result of his
+                                action.</para>
+                        </listitem>
+                    </orderedlist>
+                </para>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata format="SVG" fileref="./../Diagrams/Sequence_clickHouse.svg"/>
+                    </imageobject>
+                </mediaobject>
+            </section>
+        </section>
+
+        <section>
+            <title>Classes</title>
+            <para> The following list explains the classes shown in the class diagram. <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis>Player</emphasis>: The Player class represents one of two
+                        players. It has an ID to differentiate between the players and each
+                        player has a winCount, which contains the amount of won games. Thereby
+                        it has the method to increase the winCount after a won match and the
+                        method to reset the winCount if the game session has come to an end.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Players</emphasis>: The Players class is the controller of two
+                        Player classes. It remembers which player's turn it is and provides the
+                        appropriate methods to set/get/toggle the player turn. </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>GameObject</emphasis>: The GameObject is an abstract class
+                        which works as a superclass for the House and the Store class.
+                        A property ID is responsible for identifying different GameObjects. 
+                        Furthermore, each GameObject tracks the amount of seeds in it and
+                        provide the appropriate methods to get/set/increment the current
+                        seedCount. The Store and the House classes have up to now the exact same
+                        attributes and methods as their superclass. </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>House</emphasis>: The houses represent the holes on
+                                the board in which the seeds will be sown in. </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>Store</emphasis>: The store is the slightly bigger
+                                house, which stores all the seeds a player has won. Therefore, each
+                                player has only one store. </para>
+                        </listitem>
+                    </itemizedlist>
+                    
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Board</emphasis>: The board is the controller class for the
+                        mancala board. It consists the attribute Position, which is an 
+                        enumeration of either "top" o "bottom". The board is able to get a house 
+                        or a store by its ID so that the appropriate method (incSeedCount) 
+                        can be called if a player clicks on a house. 
+                        The board also wraps getting a house/store and calling its
+                        incSeedCount by the handler method clickedHouse, which is called as a
+                        player clicks on a house. 
+                        sumOfStoreAndRow shows the total amount of seeds in the store and houses according to the position.
+                        If Row is Empty, it means one of the players has won, the seeds in the houses will be collected.
+                        Seeds will be distributed as the player click on a house, using the function distributeSeeds().
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Game</emphasis>: The game is the top level controller of one
+                        instance of a game. It consists of the Board and the Players class.
+                        Additionally it has the method to reset the current game. </para>
+                </listitem>
+            </itemizedlist>
+            </para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata format="SVG" fileref="./../Diagrams/Classes.svg"/>
+                </imageobject>
+            </mediaobject>
+        </section>
+    </section>
+    
+    <section>
+        <title>Implementation</title>
+
+        <section>
+            <title>Filestructure</title>
+            <para>
+                The RESTXQ service is accessible via http://localhost:8984/.
+                All RESTXQ annotations are assigned to the http://exquery.org/ns/restxq namespace. 
+                If a RESTXQ URL is requested, the RESTXQPATH module directory and its sub-directories will be accessed, 
+                and all XQuery files will be parsed for functions with RESTXQ annotations.
+            </para>
+            
+            <para> The following list shows the files, which were used to implement the basic
+                functionalities of XQuery for mancala. <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>initial_gamestate.xml</emphasis>: Contains all initial
+                            elements (initial values for a game to start) shown in the class diagram
+                            with according mulitplicity. </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Static.xml</emphasis>: Combines and transforms current
+                            gamestates from server with static measurement input values to create an
+                            SVG file that displays the Mancala board. Contains a number of
+                            measurement input values (such as horizontal/vertiacal distance between
+                            houses, distance between stores and nearest houses etc), so that the
+                            Mancala board can be automatically created (see "Transform.xsl").
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Mancala.xqm</emphasis>: Contains all methods described in the
+                            class diagram. </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+
+
+        <section>
+            <title>OOP, namespaces and naming conventions</title>
+            <para>In order to realise the architecture represented in the classdiagram, we introduced
+                multiple namespaces, to simulate class-scopes. Each namespace represents a class and
+                each method of that class is defined inside that namespace. Every class is in its
+                own file and is separated into a public and a private section. Similar to 'self' in
+                Python, the $this-reference of the current object is passed as the first parameter
+                of every method.</para>
+            <section>
+                <title>Naming conventions</title>
+                <para> Public methods are named as is, private methods are prefixed with an
+                    underscore. Getter do not have the prefix 'get', setter are prefixed with 'set'.
+                    A method returning a boolean is prefixed with 'is' (e.g. seedCount,
+                    setSeedCount, isRowEmpty). </para>
+            </section>
+        </section>
+
+        <section>
+            <title>Gameindex Database</title>
+            
+            <para>The application stores a reference to all games in a games-database. 
+                This database is used to generate unique game-ids and keep track of the outcome of individual games.
+                The databse has to be created once by calling <emphasis>/db/initgameindex</emphasis>
+            </para>
+        </section>
+
+        <section>
+            <title>Single Node Updates</title>
+            <para>As XQuery updates are gathered and applied at once the end of the XQuery script,
+                nodes cannot be updated multiple times. In addition, updated values are not visible
+                until the next query. We deal with this problem in two ways: 1. Precompute values.
+                This increases the complexity of the seed distribution, but guarantees that no two
+                updates on the same nodes are executed in one query 2. To issue an update statement
+                and access the same updated values in a GET request, a forward statement is used.
+                The called method updates the database and forwards the client to another method,
+                where the updated data is accessible. </para>
+
+        </section>
+        <section>
+            <title>FLOWR vs. Updating-statements</title>
+            <para> XQuery FLOWR statements cannot be used in conjunction with updating statements
+                because of the delayed-updates issue described above. By marking a function
+                    <emphasis>updating</emphasis>, FLWOR statements cannot be used inside the
+                function scope. To mitigate this issue, updating functions use getters on composite
+                objects instead of local <emphasis>let</emphasis> variables. As a consequence let
+                statements are inaccessible, forcing us to use getter methods for every time a
+                variable would be used. Recursion is used as a replacement for loops, most noticable
+                in the algorithm distributing the seeds. </para>
+        </section>
+
+
+        <section>
+            <title>Graphical User Interface (GUI)</title>
+            <para>The project's homepage delivers the main GUI, which is an SVG file as shown
+                below:</para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata format="SVG" fileref="./../Diagrams/Initial_Board.svg"/>
+                </imageobject>
+            </mediaobject>
+
+            <para> The shown Mancala board contains: <itemizedlist>
+                <listitem>
+                    <para> 12 houses, 6 for each player. Player 1 owns the upper houses, player
+                        2 the lower. </para>
+                </listitem>
+                <listitem>
+                    <para> 2 stores, 1 for each player. Player 1's store is on the left and
+                        player 2's on the right. </para>
+                </listitem>
+                <listitem>
+                    <para> Game buttons, such as:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>Reset Game</emphasis>: the current game will be reset.
+                                As long as the game is not won (or lost), there is no change in
+                                the DB.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>Create New</emphasis>: creates a new game instance in
+                                DB.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Highest Score: the current highest score of all won games
+                                stored in the DB.</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+                <listitem>
+                    <para> The text in the middle indicates the current game status, for
+                        example: which player is playing or if one player has won. Players'
+                        turns are hinted by a typical color and a blinking triangle in the
+                        corresponding store. In case of winning, the status text in the middle
+                        will point to the left or right depending on which player has won.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para> Each house is a clickable object. However, the current player can
+                        only select his own stores that have positive (> 0) number of stones. In
+                        addition the shown digits, the corresponding amount of stones is also
+                        displayed as a set of dots, each of which represents one stone. </para>
+                </listitem>
+            </itemizedlist> An example of a gamestate after several turns: <mediaobject>
+                <imageobject>
+                    <imagedata format="SVG" fileref="./../Diagrams/In_Game_Board.svg"/>
+                </imageobject>
+            </mediaobject> An example of a gamestate, in which player 1 has won: <mediaobject>
+                <imageobject>
+                    <imagedata format="SVG" fileref="./../Diagrams/End_Game_Board.svg"/>
+                </imageobject>
+            </mediaobject>
+            </para>
+
+            <para> The main process of storing and transforming data from server to GUI as an SVG
+                file can be described in the following steps: <orderedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>SVG outline definition</emphasis>: The board's "skeleton" is
+                            defined by <emphasis>Static.xml</emphasis> stored in the server. This
+                            XML file contains very few static measurements that draws the GUI's
+                            layout, such as width, height, distance between objects etc. Based on
+                            these values, the rest can be automatically computed in the later stage,
+                            which hence ensures the model's flexibility and easiness for later
+                            adjustment. Styles for these objects (e.g. houses, stores, seeds etc.)
+                            are also stored and can be adjusted anytime. In this step, the most
+                            important part is to organize required tags in a meaning structure.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>SVG data source</emphasis>: Game data (such as number of seeds
+                            in each house, whose turn it is etc.) is store in the server and can be
+                            retrieved by a RESTful request. The gamestate fetched can then be
+                            processed and displayed on the board. The gamestate is seperated from
+                            the static measurements to save storage space and increase request
+                            processing time. The data source must conform to the SVG outline.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>SVG transformation</emphasis>:
+                                <emphasis>Transform.xsl</emphasis> combines both SVG outline and
+                            data source into one single SVG file, which is displayed by default on
+                            the project's homepage (i.e. http://localhost:8984/). Based on the two
+                            XML sources, the XSL file calculates, creates, aligns and assigns styles
+                            to all objects shown on the board. Some of the techniques that are used
+                            to implement the transformation are:</para>
+
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <emphasis>&lt;defs&gt;</emphasis> and
+                                        <emphasis>&lt;use&gt;</emphasis> tags to reuse
+                                    objects</para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <emphasis>&lt;if&gt;</emphasis> or
+                                        <emphasis>&lt;choose&gt;</emphasis>,
+                                        <emphasis>&lt;when&gt;</emphasis> and
+                                        <emphasis>&lt;otherwise&gt;</emphasis> tags to handle
+                                    different data states</para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <emphasis>&lt;call-template&gt;</emphasis> and
+                                        <emphasis>&lt;template&gt;</emphasis> tags to enable
+                                    recursion with parameters over repeated work </para>
+                            </listitem>
+                        </itemizedlist>
+
+                    </listitem>
+                </orderedlist>
+            </para>
+        </section>
+
+        
+    </section>
+
+
+
+    <section>
+        <title>Future Work</title>
+        <para>The game could be improved by adding the following additional features</para>
+
+        <section>
+            <title>Play against the computer</title>
+            <para>The player has the possibility to choose between playing against a real opponent
+                or against the computer. When a game against the computer is selected, the player
+                can chose the difficulty level of the game. There are 3 options available - easy,
+                medium, difficult.</para>
+        </section>
+        <section>
+            <title>Allow multiple pairs of users to play simultaneously</title>
+            <para>Currently, the mancala application can only save the state of one game which
+                limits it to allowing only two users to play. In order to extend the service and
+                support a multiple number of games simultaneously, each game state should be
+                preserved separatelly.</para>
+        </section>
+        <section>
+            <title>User Ranking</title>
+            <para>Allowing multiple games at the same time asumes a bigger number of users. Adding a
+                user ranking and statistics would provide the players with a better overview of
+                their own performance as well as of their competitors. The statistics could be
+                integrated into each user's profile, showing the amount of games he/she won or lost.
+                A hall of fame listing the best 5 players of all time could be an additional
+                motivation for the users.</para>
+        </section>
+        <section>
+            <title>User Network</title>
+            <para>Building a user network allows the inegration of many additional features which
+                can improve the user experience. As mentoined above, each use will have a profile
+                that shows his statistics. The profile will also be visible for other players.
+                Additional features could include challenging a user, chat as well as offline
+                messaging.</para>
+        </section>
+        <section>
+            <title>Animation</title>
+            <para>Adding animation and special effects to the game play would also have a positive
+                impact on the user experience. An example for such special effects is animating the
+                movement of the seeds or adding sound effects when a seed get into the user's
+                store.</para>
+        </section>
+    </section>
+    <section>
+        <title>Reflection</title>
+        <para>The lab course introduced us to more advanced posibilities of XML that go beyond the
+            well known markup language usage. Different aspects of XML where used to build a
+            complete web service including database with the help of XQuery, front-end
+            representation with SVG and backend with BaseX and RESTXQ module for the API. The task
+            to deliver a working application contributed to the hands-on character of the class and
+            provided us with a very realistic expirience about the challenges faced in development. </para>
+        <para>Good organisation and communication was an important factor to proceed with the
+            project at a good pace. In order to also work efficiently as a group a certain degree of
+            flexibility was needed, which could be accomplished by the usage of trello and git and
+            the continuous integration approach. The documentation regarding the project was also
+            continuously extended and updated, which helped sustain a good overview of the
+            project.</para>
+        <para>The theoretical classes, materials and scripts provided the needed information to
+            complete the projects without the need of additional support from the professor. One of
+            the biggest difficulties we faced was the update of the game state because of the
+            limitations of XQuery databases (described in section 5).</para>
+    </section>
+</article>
