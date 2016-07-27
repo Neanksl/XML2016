@@ -411,6 +411,13 @@
 
         <section>
             <title>Filestructure</title>
+            <para>
+                The RESTXQ service is accessible via http://localhost:8984/.
+                All RESTXQ annotations are assigned to the http://exquery.org/ns/restxq namespace. 
+                If a RESTXQ URL is requested, the RESTXQPATH module directory and its sub-directories will be accessed, 
+                and all XQuery files will be parsed for functions with RESTXQ annotations.
+            </para>
+            
             <para> The following list shows the files, which were used to implement the basic
                 functionalities of XQuery for mancala. <itemizedlist>
                     <listitem>
@@ -614,21 +621,7 @@
             </para>
         </section>
 
-        <section>
-            <title>TODOs</title>
-            <warning>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            The RESTXQ service is accessible via http://localhost:8984/.
-                            All RESTXQ annotations are assigned to the http://exquery.org/ns/restxq namespace. 
-                            If a RESTXQ URL is requested, the RESTXQPATH module directory and its sub-directories will be through passed, 
-                            and all XQuery files will be parsed for functions with RESTXQ annotations.
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </warning>
-        </section>
+        
     </section>
 
 
