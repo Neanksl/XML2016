@@ -344,20 +344,30 @@ Anwendung:
 
 \begin{frame}
 \frametitle{Backend}
-\begin{enumerate}
+\begin{itemize}
 \item OOP
-\item -- one xqm per class
-\item -- one namespace per class
-\item -- private methods prefixed with _
-
+\begin{itemize}
+\item one xqm per class
+\item one namespace per class
+\item private methods prefixed with \_
+\end{itemize}
 \item Databases
-\item -- one index database
-\item -- one database per game
-
+\begin{itemize}
+\item one index database
+\item one database per game
+\end{itemize}
 \item Problems
-\item -- FLOWR vs update: Use getter instead of let, redirect frontend to other url for updated database
-\item -- Single node updates: Precompute every value
-\end{enumerate}
+\begin{itemize}
+\item FLOWR vs update: 
+\begin{itemize}
+\item Use getter instead of \texttt{let}
+\item Use recursion instead of loop
+\item Redirect frontend to other url for updated database
+\end{itemize}
+\item Single node updates:\\
+\quad Precompute every value before updating a node
+\end{itemize}
+\end{itemize}
 
 \end{frame}
 
