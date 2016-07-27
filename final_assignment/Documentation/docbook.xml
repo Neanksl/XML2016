@@ -261,28 +261,26 @@
                     house and trigger the intended move. <orderedlist>
                         <listitem>
                             <para>
-                                <emphasis>click</emphasis>: The user clicked a house to start the
-                                game. </para>
+                                <emphasis>click</emphasis>: The user clicked a house to make a move.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>clickedHouse(int)</emphasis>: 
-                                Each house can be described by a specific index. As the client makes a move, it will be evaluated. 
-                                The client sends the clickedHouse(int) request with the spiecified index 
+                                <emphasis>/clicked/{$gameId}/{$houseId}</emphasis>: 
+                                Each house can be described by a specific ID in the current game with the regarding game ID. 
+                                The Browser sends the request with the specified IDs 
                                 as parameter to the controller in order to trigger the player's move.
                                 It is to be noticed that only clicks on a house are valid and trigger a request. 
-                                Now the Client is waiting for a response from the controller. </para>
+                                Now the Browser is waiting for a response from the controller. </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>clickedHouse(int)</emphasis>: The controller received the
-                                clickedHouse(int) request from the client and forwards it to the
-                                server, i.e. the game. </para>
+                                <emphasis>fetch</emphasis>: The controller received the
+                                request for a player's move from the Browser and now fetches the current gamestate from the regarding database.
+                                The database for this game immediately return the current gamestate for the game.</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>getGameState()</emphasis>: The server now requests the
-                                current state of the game from the database. </para>
+                                <emphasis>clickedId(id)</emphasis>: The controller calls clickedId(id) on the </para>
                         </listitem>
                         <listitem>
                             <para>
@@ -513,54 +511,57 @@
             </mediaobject>
 
             <para> The shown Mancala board contains: <itemizedlist>
-                    <listitem>
-                        <para> 12 houses, 6 for each player. Player 1 owns the upper houses, player
-                            2 the lower. </para>
-                    </listitem>
-                    <listitem>
-                        <para> 2 stores, 1 for each player. Player 1's store is on the left and
-                            player 2's on the right. </para>
-                    </listitem>
-                    <listitem>
-                        <para> Game buttons, such as:</para>
-                        <itemizedlist>
-                            <listitem>
-                                <para>
-                                    <emphasis>Create New</emphasis>: creates a new game instance
-                                    without affecting players' scores. </para>
-                            </listitem>
-                            <listitem>
-                                <para>
-                                    <emphasis>Reset Game</emphasis>: creates a new game instance
-                                    and reset ALL players' scores. </para>
-                            </listitem>
-                            <listitem>
-                                <para>Highest Score: the player can check the highest score that he gained after a specific numbers of game.</para>
-                            </listitem>
-                        </itemizedlist>
-                    </listitem>
-                    <listitem>
-                        <para> The text in the middle indicates the current game status, for example:
-                            which player is playing or if one player has won. Players' turns are
-                            hinted by a typical color and a blinking triangle in the corresponding
-                            store. In case of winning, the status text in the middle will point to
-                            the left or right depending on which player has won. </para>
-                    </listitem>
-                    <listitem>
-                        <para> Each house is a clickable object. However, the current player can
-                            only select his own stores that have positive (> 0) number of stones. In
-                            addition the shown digits, the corresponding amount of stones is also
-                            displayed as a set of dots, each of which represents one stone. </para>
-                    </listitem>
-                </itemizedlist> An example of a gamestate after several turns: <mediaobject>
-                    <imageobject>
-                        <imagedata format="SVG" fileref="./../Diagrams/In_Game_Board.svg"/>
-                    </imageobject>
-                </mediaobject> An example of a gamestate, in which player 1 has won: <mediaobject>
-                    <imageobject>
-                        <imagedata format="SVG" fileref="./../Diagrams/End_Game_Board.svg"/>
-                    </imageobject>
-                </mediaobject>
+                <listitem>
+                    <para> 12 houses, 6 for each player. Player 1 owns the upper houses, player
+                        2 the lower. </para>
+                </listitem>
+                <listitem>
+                    <para> 2 stores, 1 for each player. Player 1's store is on the left and
+                        player 2's on the right. </para>
+                </listitem>
+                <listitem>
+                    <para> Game buttons, such as:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>Reset Game</emphasis>: the current game will be reset.
+                                As long as the game is not won (or lost), there is no change in
+                                the DB.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>Create New</emphasis>: creates a new game instance in
+                                DB.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Highest Score: the current highest score of all won games
+                                stored in the DB.</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+                <listitem>
+                    <para> The text in the middle indicates the current game status, for
+                        example: which player is playing or if one player has won. Players'
+                        turns are hinted by a typical color and a blinking triangle in the
+                        corresponding store. In case of winning, the status text in the middle
+                        will point to the left or right depending on which player has won.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para> Each house is a clickable object. However, the current player can
+                        only select his own stores that have positive (> 0) number of stones. In
+                        addition the shown digits, the corresponding amount of stones is also
+                        displayed as a set of dots, each of which represents one stone. </para>
+                </listitem>
+            </itemizedlist> An example of a gamestate after several turns: <mediaobject>
+                <imageobject>
+                    <imagedata format="SVG" fileref="./../Diagrams/In_Game_Board.svg"/>
+                </imageobject>
+            </mediaobject> An example of a gamestate, in which player 1 has won: <mediaobject>
+                <imageobject>
+                    <imagedata format="SVG" fileref="./../Diagrams/End_Game_Board.svg"/>
+                </imageobject>
+            </mediaobject>
             </para>
 
             <para> The main process of storing and transforming data from server to GUI as an SVG
