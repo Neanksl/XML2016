@@ -1,0 +1,142 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Diagrams</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"><link rel="home" href="index.html" title="Mancala"><link rel="up" href="index.html" title="Mancala"><link rel="prev" href="ar01s03.html" title="Technologies"><link rel="next" href="ar01s05.html" title="Implementation"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Diagrams</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ar01s03.html">Prev</a>&nbsp;</td><th width="60%" align="center">&nbsp;</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ar01s05.html">Next</a></td></tr></table><hr></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e48"></a>Diagrams</h2></div></div></div><p>Use Cases and Use Case Diagram The mancala game can be splitted up in the following
+            usecases: </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> Initially the players want to be able to start a new game of mancala. </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p> The players also want to have the possibility to discard the
+                                current game and restart it. </p></li></ul></div></li><li class="listitem"><p> Each player wants to be able to make specific moves. </p></li><li class="listitem"><p> TODO The players want to be able to win the game and see how many games
+                        they have won so far. </p></li><li class="listitem"><p> TODO If the players decide to continue the match later, they want to be
+                        able to save and load the game. </p></li></ul></div><p>
+            </p><div class="mediaobject"><object type="image/svg+xml" data="../.././../Diagrams/UseCases.svg"></object></div><p>
+        </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="d5e66"></a>Architecture</h3></div></div></div><p> The following diagram show the architecture of our implementation of the Mancala
+                game. The architecture can be divided in three components, which are also a
+                representation for the MVC (model view controller) pattern. </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+                            <span class="emphasis"><em>Database</em></span>: The database represents the storage for
+                            one gamestate. That means one current instance of the game is saved in
+                            the database. </p></li><li class="listitem"><p>
+                            <span class="emphasis"><em>Client</em></span>: The client is the frontend of the
+                            application, i.e. the user interaction interface. Any action from the
+                            players will be forwarded as a RESTful request to the server. </p></li><li class="listitem"><p>
+                            <span class="emphasis"><em>Server</em></span>: The server receives the requests (actions)
+                            from the client and then acts as a controller by deciding if a new
+                            gamestate should be created or the existing gamestate (currently saved
+                            on the database) should be edited. Independently from that decision the
+                            new gamestate will be stored in the database and a visual representation
+                            of this gamestate is being returned to the client. </p></li></ul></div><p>
+            </p><div class="mediaobject"><object type="image/svg+xml" data="../.././../Diagrams/Architecture.svg"></object></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="d5e82"></a>Sequence</h3></div></div></div><p> Each of the following sequence diagrams describe a chain of events that is
+                triggered when a player interacts with the system. These events are actions between
+                the four entities: </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+                            <span class="emphasis"><em>Client</em></span>: The client is the user interface, which
+                            serves the user as visual representation of the application. If a user
+                            interacts with the system, the interaction is aimed at a component shown
+                            by the client. </p></li><li class="listitem"><p>
+                            <span class="emphasis"><em>Controller</em></span>: The controller represents the
+                            application controller. It forwards requests from the frontend to the
+                            backend and it triggers updates of the client, if new data are
+                            available. </p></li><li class="listitem"><p>
+                            <span class="emphasis"><em>Game</em></span>: The game is implemented as the server of the
+                            application. Different frontends (Client and Controller) can interact
+                            with this server, i.e. the game. Therefore, it also acts as a controller
+                            but its scope is only a instance of the mancala game. </p></li><li class="listitem"><p>
+                            <span class="emphasis"><em>Database</em></span>: This entity stores the active gamestates.
+                            A gamestate is an instance of the current game. Each game always has one
+                            gamestate that can be saved. </p></li></ul></div><p>
+            </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="d5e98"></a>Create game</h4></div></div></div><p> TODO MICHI In order to start a new game the player can press the "New
+                    game"/"Start over" button or one of his houses. </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+                                <span class="emphasis"><em>click</em></span>: The user clicked on the according
+                                objects shown by the Client. </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>newGame()</em></span>: The client evaluates the click, for
+                                example, on the "New game" button. Then the client sends the
+                                newGame() request to the controller in order to instanciate a new
+                                game. Now the Client is waiting for a response of the controller.
+                            </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>newGame()</em></span>: The controller received the
+                                newGame() request from the client and forwards it to the server,
+                                i.e. the game. </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>createGameState()</em></span>: After receiving the request
+                                for a new game the game creates a new instance of the mancala game
+                                with the initial settings. </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>setGameState()</em></span>: The just instanciated gamestate
+                                is immediately sent to the database where it is being stored.
+                            </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>gamestate</em></span>: Now the game sends the gamestate to
+                                the controller as response for the newGame() request from the
+                                controller (Nr. 3). </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>updateGameStateView()</em></span>: The Controller generates
+                                the SVG which can represents the current gamestate. </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>gameStateSVG</em></span>: The just generated SVG is now
+                                sent to the client as response for the newGame() request (Nr. 2).
+                            </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>refreshView()</em></span>: Finally the Client refreshs its
+                                view and the user can now see the game with the initial settings.
+                            </p></li></ol></div><p>
+                </p><div class="mediaobject"><object type="image/svg+xml" data="../.././../Diagrams/Sequence_createGame.svg"></object></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="d5e132"></a>Select a house</h4></div></div></div><p> TODO MICHI In order to make a move, a player can click in the browser on a
+                    house and trigger the intended move. </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+                                <span class="emphasis"><em>click</em></span>: The user clicked a house to start the
+                                game. </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>clickedHouse(int)</em></span>: The client evaluates the
+                                click to be a click on a house with a specific index. Then the
+                                client sends the clickedHouse(int) request with the regarding index
+                                as parameter to the controller in order to trigger the player move.
+                                Now the Client is waiting for a response of the controller. </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>clickedHouse(int)</em></span>: The controller received the
+                                clickedHouse(int) request from the client and forwards it to the
+                                server, i.e. the game. </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>getGameState()</em></span>: The server now requests the
+                                current state of the game from the database. </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>gamestate</em></span>: The database returns the current
+                                gamestate. </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>updateGameState()</em></span>: After receiving the current
+                                gamestate the server evaluates the move which was triggered by the
+                                player and updates the gamestate appropriately. </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>setGameState()</em></span>: The just updated gamestate is
+                                immediately sent to the database where it is being stored. </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>gamestate</em></span>: Now the game sends the gamestate to
+                                the controller as response for the clickedHouse(int) request from
+                                the controller (Nr. 3). </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>updateGameStateView()</em></span>: The Controller generates
+                                the SVG which can represents the current gamestate. </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>gameStateSVG</em></span>: The just generated SVG is now
+                                sent to the client as response for the clickedHouse(int) request
+                                (Nr. 2). </p></li><li class="listitem"><p>
+                                <span class="emphasis"><em>refreshView()</em></span>: Finally the Client refreshs its
+                                view and the user can now see the game with the initial settings.
+                            </p></li></ol></div><p>
+                </p><div class="mediaobject"><object type="image/svg+xml" data="../.././../Diagrams/Sequence_clickHouse.svg"></object></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="d5e172"></a>Classes</h3></div></div></div><p> The following list explains the classes shown in the class diagram. </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+                            <span class="emphasis"><em>Player</em></span>: The Player class represents one of two
+                            players. It has an ID to differentiate between the players and each
+                            player has a winCount, which contains the amount of won games. Thereby
+                            it has the method to increase the winCount after a won match and the
+                            method to reset the winCount if the game session has came to an end.
+                        </p></li><li class="listitem"><p>
+                            <span class="emphasis"><em>Players</em></span>: The Players class is the controller of two
+                            Player classes. It remembers which players turn it is and provides the
+                            according methods to set/get/toggle the player turn. </p></li><li class="listitem"><p>
+                            <span class="emphasis"><em>GameObject</em></span>: The GameObject is an abstract class
+                            which works as a superclass for the House and the Store class. To
+                            identify the different GameObjects they contain the property ID.
+                            Furthermore, each GameObject tracks the amount of seeds in it and
+                            provide the appropriate methods to get/set/increment the current
+                            seedCount. The Store and the House classes has up to now the exact same
+                            attributes and methods as their superclass. </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
+                                    <span class="emphasis"><em>House</em></span>: The houses represents the holes on
+                                    the board in which the seeds will sit in. </p></li><li class="listitem"><p>
+                                    <span class="emphasis"><em>Store</em></span>: The store is the slightly bigger
+                                    house, which stores all the seeds a player won. Therefore, each
+                                    player has only one store. </p></li></ul></div></li><li class="listitem"><p>
+                            <span class="emphasis"><em>Layer</em></span>: The Layer class is just a wrapper class for
+                            the store and the houses of one player. Since a player has six houses
+                            and one store it consists exactly of six houses and one store.
+                            Furthermore, the Layer class contains the attribute position, which is
+                            an enumeration of either "top" or "bottom". </p></li><li class="listitem"><p>
+                            <span class="emphasis"><em>Board</em></span>: The board is the contoller class for the
+                            mancala board. It consists of two layers - one top and one bottom layer.
+                            The board is able to get a hosue or a store by its ID so that the
+                            appropriate method (inSeedCount) can be called if a player clicks on a
+                            house. The board also wraps getting a house/store and calling its
+                            incSeedCount by the handler method clickedHouse, which is called if a
+                            player clicks on a house. Finally the board contains the resetBoard
+                            method, which sets the board to its initial setup. </p></li><li class="listitem"><p>
+                            <span class="emphasis"><em>Game</em></span>: The game is the top level controller of one
+                            instance of a game. It consists of the Board and the Players class and
+                            after calling the contructor the currentGame property is instanciated.
+                            Additionally it has the method to reset the current game. </p></li></ul></div><p>
+            </p><div class="mediaobject"><object type="image/svg+xml" data="../.././../Diagrams/Classes.svg"></object></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ar01s03.html">Prev</a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ar01s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Technologies&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;Implementation</td></tr></table></div></body></html>
