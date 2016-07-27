@@ -24,12 +24,14 @@
             <emphasis role="underline">Type</emphasis> Board game</para>
         <para>
             <emphasis role="underline">Number of players</emphasis> Mostly two </para>
-        <para>At the beginning of the game, a <emphasis role="bold">Mancala-Playboard</emphasis> is
-            needed. The board will be seperated into 2 rows. Each player has 6 small <emphasis
-                role="bold">"houses"</emphasis> on their side, and a big <emphasis role="bold"
-                >"store" </emphasis> - which also called <emphasis role="bold">Kalah</emphasis> -
-            where the stones are to be collected and stored. In this lab course, we chose the
-            Kalah-version, which uses 48 "seeds" equally distributed in 12 houses.</para>
+        <para>The core element of the game is the <emphasis role="bold">Mancala-Playboard</emphasis>
+            and it includes 6 small <emphasis role="bold">"houses"</emphasis> and one big <emphasis
+                role="bold">"store" </emphasis> for each player. The houses are lined up in two rows
+            and each house holds 4 seeds at the beginning of the game. The goal is to collect as
+            many seeds as possible in the store, which is also called <emphasis role="bold"
+                >Kalah</emphasis>. There are different versions of the game, but for this project we
+            chose a Kalah-version, which uses 48 seeds in total, equaly distributed in the 12
+            houses.</para>
     </section>
 
     <section>
