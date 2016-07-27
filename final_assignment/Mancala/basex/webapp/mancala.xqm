@@ -187,12 +187,12 @@ declare function page:_gamestateWithNewID($nextID)
 
 declare function page:_highscore()
 {
-    let $highscore := <highscore> 
+    let $highscore := <highscore>
     { 
         let $games := page:_gamesDB()
         for $oneGame in $games/databases/gameid
         where $oneGame/@winner > 0
-        order by data($oneGame/@winner) descending
+        order by data($oneGame/@winner) ascending
         return <outcome>
                 <winner>{ data($oneGame/@winner)}</winner>
                 <loser>{data($oneGame/@loser)}</loser>
