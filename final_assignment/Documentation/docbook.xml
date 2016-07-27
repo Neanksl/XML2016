@@ -191,60 +191,28 @@
             </para>
             <section>
                 <title>Create game</title>
-                <para> In order to start a new game the player can press the 
-                "Create New"/"Reset Game" button or one of his houses. <orderedlist>
+                <para>When the player accesses <emphasis>/</emphasis> a new game is created. To start a new game, the player can press the "Create New" button.<orderedlist>
                         <listitem>
                             <para>
-                                <emphasis>click</emphasis>: The user clicked on the according
-                                objects shown by the Client. </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis>newGame()</emphasis>: The client evaluates the click, for
-                                example, on the "Create New" button. Then the client sends the
-                                newGame() request to the controller in order to instanciate a new
-                                game. Now the Client is waiting for a response of the controller.
+                                When the client accessses <emphasis>/</emphasis>, the controller forwards to <emphasis>/db/create</emphasis> to create a new game database entry.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>newGame()</emphasis>: The controller received the
-                                newGame() request from the client and forwards it to the server,
-                                i.e. the game. </para>
+                                The call to <emphasis>/db/create</emphasis> generates a new game-id from the index database and stores it. This id is used to create a new game database 
+                                and the client is forwarded to <emphasis>/game/{game-id}</emphasis>. 
+                                </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>createGameState()</emphasis>: After receiving the request
-                                for a new game, the game creates a new instance of the mancala game
-                                with the initial settings. </para>
+                                A call to <emphasis>/game/{game-id}</emphasis> returns the combined xsl and svg file. 
+                                As the xsl fetches the gamestate, the <emphasis>select</emphasis> attribute of the <emphasis>gamestate</emphasis> has to be modified to contain the game-id of the current game. 
+                                </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>setGameState()</emphasis>: The just instanciated gamestate
-                                is immediately sent to the database where it is being stored.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis>gamestate</emphasis>: Now the game sends the gamestate to
-                                the controller as response for the newGame() request from the
-                                controller (Nr. 3). </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis>updateGameStateView()</emphasis>: The Controller generates
-                                the SVG which can represent the current gamestate. </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis>gameStateSVG</emphasis>: The newly generated SVG is now
-                                sent to the client as response to the newGame() request (Nr. 2).
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis>refreshView()</emphasis>: Finally the Client refreshs its
-                                view and the user can now see the game with the initial settings.
+                                When evaluating the xsl, the xsl fetches the <emphasis>gamestate</emphasis> with the current 
+                                <emphasis>game-id</emphasis> (<emphasis>/gamestate/{game-id}</emphasis>) and transforms the gamestate into the svg.  
                             </para>
                         </listitem>
                     </orderedlist>
