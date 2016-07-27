@@ -10,9 +10,10 @@ declare
 updating function page:checkIfGameIsFinished($dbID)
 {
     let $id := $dbID
+    let $gamesDB := page:_gamesDB()
     return
         (db:output(page:_redirect(concat("/game/",$id))),
-        game:checkForGameFinished(page:_getDB($id)/game))
+        game:checkForFinished(page:_getDB($id)/game, $gamesDB))
 };
 
 declare
@@ -31,7 +32,14 @@ declare
 %rest:path("gamestate/{$dbID}")
 function page:gamestate($dbID)
 {
-    page:_getDB($dbID)
+    
+    copy $db := page:_getDB($dbID)
+    
+    modify
+    (
+    insert node page:_highscore() as last into $db/game
+    )
+    return $db
 };
 
 declare
@@ -73,7 +81,7 @@ updating function page:tryAgain($dbID)
     let $db := page:_getDB($dbID)
     return
         (db:output(page:_redirect(concat("/game/",$dbID))),
-        game:resetGame($db/game))
+        game:reset($db/game))
 };
 
 
@@ -92,7 +100,7 @@ updating function page:createDB()
     
     return
         (
-        page:_addNewGame(<gameid>{$nextID}</gameid>, $games),
+        page:_addNewGame(<gameid winner="0" loser="0">{$nextID}</gameid>, $games),
         db:output(page:_redirect($path)),
         db:create(concat("game-", $nextID) , $db, concat("game-", $nextID, ".xml"))
         )
@@ -113,6 +121,25 @@ updating function page:initGameIndex()
         )
 };
 
+declare
+%rest:path("debug/update")
+%rest:GET
+updating function page:_debugupdate()
+{
+
+    replace value of node page:_gamesDB()/databases/gameid[text() = 1]/@winner with 42,
+    replace value of node page:_gamesDB()/databases/gameid[text()  = 1]/@loser with 41
+};
+
+
+declare
+%rest:path("debug/get")
+%rest:GET
+function page:_debugget()
+{
+   page:_gamesDB()
+};
+
 
 (:-------------------------------------:)
 (:Private methods:)
@@ -126,8 +153,14 @@ declare function page:_lastGameID()
 as xs:integer
 {
     let $x := 1
-    let $db := db:open("games")
+    let $db := page:_gamesDB()
     return xs:integer(max( $db/databases/gameid ))
+};
+
+declare function page:_gamesDB()
+{
+let $db := db:open("games")
+return $db
 };
 
 declare updating function page:_addNewGame($newEntry, $games)
@@ -150,4 +183,22 @@ declare function page:_gamestateWithNewID($nextID)
      replace value of node $db/game/gameid with $nextID
     )
     return $db
+};
+
+declare function page:_highscore()
+{
+    let $highscore := <highscore>
+    { 
+        let $games := page:_gamesDB()
+        for $oneGame in $games/databases/gameid
+        where $oneGame/@winner > 0
+        order by data($oneGame/@winner) ascending
+        return <outcome>
+                <winner>{ data($oneGame/@winner)}</winner>
+                <loser>{data($oneGame/@loser)}</loser>
+               </outcome> 
+    } 
+    </highscore>
+    
+    return $highscore
 };

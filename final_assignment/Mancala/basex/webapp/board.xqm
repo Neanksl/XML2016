@@ -18,7 +18,7 @@ declare updating function board:clickedHouse($this, $houseId, $game)
     board:_distributeSeeds($this, $houseId,
         house:seedCount(board:_houseWithId($this, $houseId))),
     
-    if (board:_isLastStoneMyHouse($this, $game/players,$houseId, 
+    if (board:_isLastSeedInMyStore($this, $game/players,$houseId, 
             house:seedCount(board:_houseWithId($this, $houseId))) ) then
        ( 
        (: play again if the last stone hits in own pit :) 
@@ -85,7 +85,6 @@ declare function board:_houseWithId($this, $houseId as xs:integer)
         )
 };
 
-
 declare updating function board:_increaseStoreBy1($this, $startingAt, $times, $old, $active)
 {
     if ($times > 0 and ($old != $startingAt or $active)) then
@@ -129,7 +128,7 @@ declare updating function board:_distributeSeeds($this, $clickedHouse, $times)
 };
 
 
-declare function board:_isLastStoneMyHouse($this, $players, $houseId, $numStones)
+declare function board:_isLastSeedInMyStore($this, $players, $houseId, $numStones) as xs:boolean
 {
     (: get distance from :)
     let $playerHouseId := players:houseIdForCurrentPlayer($players)
