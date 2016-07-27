@@ -144,7 +144,6 @@ id ID #REQUIRED>
                                 select="concat(menu/highscoreButton/desc, ' 0')"/>
                         </xsl:otherwise>
                     </xsl:choose>
-                    
                 </text>
 
                 <!--
@@ -562,13 +561,13 @@ id ID #REQUIRED>
         <menu>
             <!-- clickable -->
             <tryAgainButton>
-                <desc>New Game</desc>
+                <desc>Reset Game</desc>
                 <link>tryagain</link>
                 <style>fill:green;stroke:green;stroke-width:2;</style>
                 <textstyle>fill:white;font-weight:bold;font-family: AgencyFB;</textstyle>
             </tryAgainButton>
             <startOverButton>
-                <desc>Reset Scores</desc>
+                <desc>Create New</desc>
                 <link>db/create</link>
                 <style>fill:orange;stroke:orange;stroke-width:2;</style>
                 <textstyle>fill:white;font-weight:bold;font-family: AgencyFB;</textstyle>
