@@ -125,16 +125,16 @@
                 game. The architecture can be divided in three components<itemizedlist>
                     <listitem>
                         <para>
-                            <emphasis>Database</emphasis>: One index database is used to track all games. 
-                            Each game is represented by a dedicated database, named <emphasis>game-{id of game}</emphasis> 
-                            which stores the state of the repsective game.  
-                        </para>
+                            <emphasis>Database</emphasis>: One index database is used to track all
+                            games. Each game is represented by a dedicated database, named
+                                <emphasis>game-{id of game}</emphasis> which stores the state of the
+                            respective game. This allows multiple games to be played simultaneously.  </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis>Client</emphasis>: The client is the frontend of the
-                            application, i.e. the user interaction interface. Any action from the
-                            players trigger a request to the server.</para>
+                            <emphasis>Client</emphasis>: The client is the front end of the
+                            application, i.e. the user interaction interface. Any action made by the
+                            players triggers a request to the server.</para>
                     </listitem>
                     <listitem>
                         <para>
