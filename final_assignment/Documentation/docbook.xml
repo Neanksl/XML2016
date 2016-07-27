@@ -193,9 +193,8 @@
                 <title>Create game</title>
                 <para>When the player accesses <emphasis>/</emphasis> a new game is created. To start a new game, the player can press the "Create New" button.<orderedlist>
                         <listitem>
-                            <para>
-                                When the client accessses <emphasis>/</emphasis>, the controller forwards to <emphasis>/db/create</emphasis> to create a new game database entry.
-                            </para>
+                            <para> When the client accessses <emphasis>/</emphasis>, the controller
+                                forwards to <emphasis>/db/create</emphasis></para>
                         </listitem>
                         <listitem>
                             <para>
@@ -204,10 +203,11 @@
                                 </para>
                         </listitem>
                         <listitem>
-                            <para>
-                                A call to <emphasis>/game/{game-id}</emphasis> returns the combined xsl and svg file. 
-                                As the xsl fetches the gamestate, the <emphasis>select</emphasis> attribute of the <emphasis>gamestate</emphasis> has to be modified to contain the game-id of the current game. 
-                                </para>
+                            <para> A call to <emphasis>/game/{game-id}</emphasis> returns the
+                                combined xsl and svg file. As the xsl fetches the gamestate from the
+                                game database, the <emphasis>select</emphasis> attribute of the
+                                    <emphasis>gamestate</emphasis> has to be modified to contain the
+                                game-id of the current game. </para>
                         </listitem>
                         <listitem>
                             <para>
