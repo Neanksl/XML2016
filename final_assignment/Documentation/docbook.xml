@@ -120,28 +120,26 @@
         <section>
             <title>Architecture</title>
             <para> The following diagram shows the architecture of our implementation of the Mancala
-                game. The architecture can be divided in three components, which are also a
-                representation for the MVC (model view controller) pattern. <itemizedlist>
+                game. The architecture can be divided in three components<itemizedlist>
                     <listitem>
                         <para>
-                            <emphasis>Database</emphasis>: The database represents the storage for
-                            one gamestate. That means one current instance of the game is saved in
-                            the database. </para>
+                            <emphasis>Database</emphasis>: One index database is used to track all games. 
+                            Each game is represented by a dedicated database, named <emphasis>game-{id of game}</emphasis> 
+                            which stores the state of the repsective game.  
+                        </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis>Client</emphasis>: The client is the frontend of the
                             application, i.e. the user interaction interface. Any action from the
-                            players will be forwarded as a RESTful request to the server. </para>
+                            players trigger a request to the server.</para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis>Server</emphasis>: The server receives the requests (actions)
-                            from the client and then acts as a controller by deciding if a new
-                            gamestate should be created or the existing gamestate (currently saved
-                            on the database) should be edited. Independently from that decision the
-                            new gamestate will be stored in the database and a visual representation
-                            of this gamestate is being returned to the client. </para>
+                            from the client and forwards these actions to the model layer containing the business logic.
+                            The modified gamestate is saved back to the databases and returned to the client for display.
+                        </para>
                     </listitem>
                 </itemizedlist>
             </para>
