@@ -449,12 +449,12 @@
 
         <section>
             <title>OOP, namespaces and naming conventions</title>
-            <para>In order to realise the architecture represented in the classdiagram we introduced
-                multiple namespaces, to simulate class-scopes. Each namespace represents a class and
-                each method of that class is defined inside that namespace. Every class is in its
-                own file and is separated into a public and a private section. Similar to 'self' in
-                Python, the $this-reference of the current object is passed as the first parameter
-                of every method.</para>
+            <para>In order to implement the architecture represented in the classdiagram we
+                introduced multiple namespaces, to simulate class-scopes. Each namespace represents
+                a class and each method of that class is defined inside that namespace. Every class
+                is in its own file and is separated into a public and a private section. Similar to
+                'self' in Python, the $this-reference of the current object is passed as the first
+                parameter of every method.</para>
             <section>
                 <title>Naming conventions</title>
                 <para> Public methods are named as is, private methods are prefixed with an
@@ -628,7 +628,7 @@
                     </listitem>
                     <listitem>
                         <para> Eine Beschreibung der Benutzeroberfläche für die verschiedenen
-                            Stadien des Spiels mit den jeweiligen Interaktionsmüglichkeiten. </para>
+                            Stadien des Spiels mit den jeweiligen Interaktionsmöglichkeiten. </para>
                     </listitem>
                 </itemizedlist>
             </warning>
@@ -666,9 +666,9 @@
         </section>
         <section>
             <title>User Network</title>
-            <para>Building a user network allows the inegration of many additional features which
-                can improve the user experience. As mentoined above, each use will have a profile
-                that shows his statistics. The profile will also be visible for other players.
+            <para>Building a user network allows the integration of many additional features which
+                can improve the user experience. As mentioned above, each user will have a profile
+                that shows his/her statistics. The profile will also be visible for other players.
                 Additional features could include challenging a user, chat as well as offline
                 messaging.</para>
         </section>
@@ -679,5 +679,25 @@
                 movement of the seeds or adding sound effects when a seed get into the user's
                 store.</para>
         </section>
+    </section>
+    <section>
+        <title>Reflection</title>
+        <para>The lab course introduced us to more advanced posibilities of XML that go beyond the
+            well known markup language usage. Different aspects of XML where used to build a
+            complete web service including database with the help of XQuery, front-end
+            representation with SVG and backend with BaseX and RESTXQ module for the API. The task
+            to deliver a working application contributed to the hands-on character of the class and
+            provided us with a very realistic expirience about the challenges faced in development. </para>
+        <para>Good organisation and communication was an important factor to proceed with the
+            project at a good pace. In order to also work efficiently as a group a certain degree of
+            flexibility was needed, which could be accomplished by the usage of trello and  git and
+            the continuous integration approach. The documentation regarding the project was also
+            continuously extended and updated, which helped sustain a good overview of the
+            project.</para>
+        <para>The theoretical classes, materials and scripts provided the needed information to
+            complete the projects without the need of additional support from the professor. One of
+            the biggest difficulties we faced was the update of the game state because of the
+            limitations of XQuery databases (described in section 5). </para>
+
     </section>
 </article>
