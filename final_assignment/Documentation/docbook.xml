@@ -118,7 +118,7 @@
             </para>
             <mediaobject>
                 <imageobject>
-                    <imagedata format="SVG" fileref="./../Diagrams/Architecture.svg"/>
+                    <imagedata format="SVG" fileref="Architecture.svg"/>
                 </imageobject>
             </mediaobject>
         </section>
@@ -149,7 +149,7 @@
             </itemizedlist>
             <mediaobject>
                 <imageobject>
-                    <imagedata format="SVG" scale="65" fileref="./../Diagrams/UseCases.svg"/>
+                    <imagedata format="SVG" scale="65" fileref="UseCases.svg"/>
                 </imageobject>
             </mediaobject>
         </para>
@@ -223,7 +223,7 @@
                 </para>
                 <mediaobject>
                     <imageobject>
-                        <imagedata format="SVG" scale="65" fileref="./../Diagrams/Sequence_createGame.svg"/>
+                        <imagedata format="SVG" scale="65" fileref="Sequence_createGame.svg"/>
                     </imageobject>
                 </mediaobject>
             </section>
@@ -291,7 +291,7 @@
                 </para>
                 <mediaobject>
                     <imageobject>
-                        <imagedata format="SVG" scale="65" fileref="./../Diagrams/Sequence_clickHouse.svg"/>
+                        <imagedata format="SVG" scale="65" fileref="Sequence_clickHouse.svg"/>
                     </imageobject>
                 </mediaobject>
             </section>
@@ -364,7 +364,7 @@
             </para>
             <mediaobject>
                 <imageobject>
-                    <imagedata format="svg" scale="65" fileref="./../Diagrams/Classes.svg"/>
+                    <imagedata format="svg" scale="10" fileref="Classes.png"/>
                 </imageobject>
             </mediaobject>
         </section>
@@ -467,7 +467,7 @@
                 below:</para>
             <mediaobject>
                 <imageobject>
-                    <imagedata format="SVG" scale="60" fileref="./../Diagrams/Initial_Board.svg"/>
+                    <imagedata format="SVG" scale="60" fileref="Initial_Board.svg"/>
                 </imageobject>
             </mediaobject>
 
@@ -515,11 +515,11 @@
                 </listitem>
             </itemizedlist> An example of a gamestate after several turns: <mediaobject>
                 <imageobject>
-                    <imagedata format="SVG" scale="60" fileref="./../Diagrams/In_Game_Board.svg"/>
+                    <imagedata format="SVG" scale="60" fileref="In_Game_Board.svg"/>
                 </imageobject>
             </mediaobject> An example of a gamestate, in which player 1 has won: <mediaobject>
                 <imageobject>
-                    <imagedata format="SVG" scale="60" fileref="./../Diagrams/End_Game_Board.svg"/>
+                    <imagedata format="SVG" scale="60" fileref="End_Game_Board.svg"/>
                 </imageobject>
             </mediaobject>
             </para>
