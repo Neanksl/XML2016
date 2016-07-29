@@ -12,14 +12,14 @@
             <emphasis> Mancala </emphasis>
         </title>
         <subtitle>Praktikum: XML-Technologie</subtitle>
-        <pubdate>01.07.2016</pubdate>
+        <pubdate>29.07.2016</pubdate>
     </info>
     <para>
         <wordasword>Mancala</wordasword>, also Manqala or Mancala, is a very popular ancient game
         with numerous variations. This count-and-capture game can be played by two people, with the
         aim of winning the most "seeds" on the "field". </para>
     <section>
-        <title>Introduction</title>
+        <title>1. Introduction</title>
         <para>
             <emphasis role="underline">Type</emphasis> Board game</para>
         <para>
@@ -35,7 +35,7 @@
     </section>
 
     <section>
-        <title>Playing rules</title>
+        <title>2. Playing rules</title>
         <para>
             <emphasis role="underline">
                 <emphasis role="bold">Game objective</emphasis>
@@ -63,7 +63,7 @@
     </section>
 
     <section>
-        <title>Technologies</title>
+        <title>3. Technologies</title>
         <para>In this lab course, a diversity of XML-Technologies was used. <itemizedlist
                 mark="opencircle">
                 <listitem>
@@ -88,9 +88,44 @@
     </section>
 
     <section>
-        <title>Diagrams</title>
-        <para>Use Cases and Use Case Diagram - The mancala game can be splitted up in the following
-            use cases: <itemizedlist>
+        <title>4. Diagrams</title>
+        
+        <section>
+            <title>4.1 Architecture</title>
+            <para> The following diagram shows the architecture of our implementation of the Mancala
+                game. The architecture can be divided in three components<itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>Database</emphasis>: One index database is used to track all
+                            games. Each game is represented by a dedicated database, named
+                            <emphasis>game-{id of game}</emphasis> which stores the state of the
+                            respective game. This allows multiple games to be played simultaneously.  </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Client</emphasis>: The client is the front end of the
+                            application, i.e. the user interaction interface. Any action made by the
+                            players triggers a request to the server.</para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Server</emphasis>: The server receives the requests (actions)
+                            from the client and forwards these actions to the model layer containing the business logic.
+                            The modified gamestate is saved back to the databases and returned to the client for display.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata format="SVG" fileref="./../Diagrams/Architecture.svg"/>
+                </imageobject>
+            </mediaobject>
+        </section>
+        
+        <section>
+            <title>4.2 Use Cases and Use Case Diagram</title>
+        <para>The mancala game can be splitted up into following use cases: <itemizedlist>
                 <listitem>
                     <para> Initially the players want to be able to start a new game of mancala. </para>
                     <itemizedlist>
@@ -118,42 +153,11 @@
                 </imageobject>
             </mediaobject>
         </para>
-
-        <section>
-            <title>Architecture</title>
-            <para> The following diagram shows the architecture of our implementation of the Mancala
-                game. The architecture can be divided in three components<itemizedlist>
-                    <listitem>
-                        <para>
-                            <emphasis>Database</emphasis>: One index database is used to track all
-                            games. Each game is represented by a dedicated database, named
-                                <emphasis>game-{id of game}</emphasis> which stores the state of the
-                            respective game. This allows multiple games to be played simultaneously.  </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>Client</emphasis>: The client is the front end of the
-                            application, i.e. the user interaction interface. Any action made by the
-                            players triggers a request to the server.</para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis>Server</emphasis>: The server receives the requests (actions)
-                            from the client and forwards these actions to the model layer containing the business logic.
-                            The modified gamestate is saved back to the databases and returned to the client for display.
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </para>
-            <mediaobject>
-                <imageobject>
-                    <imagedata format="SVG" fileref="./../Diagrams/Architecture.svg"/>
-                </imageobject>
-            </mediaobject>
         </section>
 
+        
         <section>
-            <title>Sequence</title>
+            <title>4.2 Sequence</title>
             <para> Each of the following sequence diagrams describes a chain of events that is
                 triggered when a player interacts with the system. These events are actions between
                 the four entities: <itemizedlist>
@@ -294,7 +298,7 @@
         </section>
 
         <section>
-            <title>Classes</title>
+            <title>4.3 Classes</title>
             <para> The following list explains the classes shown in the class diagram. <itemizedlist>
                 <listitem>
                     <para>
@@ -339,7 +343,7 @@
                     <para>
                         <emphasis>Board</emphasis>: The board is the controller class for the
                         mancala board. It consists the attribute Position, which is an 
-                        enumeration of either "top" o "bottom". The board is able to get a house 
+                        enumeration of either "top" or "bottom". The board is able to get a house 
                         or a store by its ID so that the appropriate method (incSeedCount) 
                         can be called if a player clicks on a house. 
                         The board also wraps getting a house/store and calling its
@@ -360,22 +364,22 @@
             </para>
             <mediaobject>
                 <imageobject>
-                    <imagedata format="SVG" fileref="./../Diagrams/Classes.svg"/>
+                    <imagedata format="svg" fileref="./../Diagrams/Classes.svg"/>
                 </imageobject>
             </mediaobject>
         </section>
     </section>
     
     <section>
-        <title>Implementation</title>
+        <title>5. Implementation</title>
 
         <section>
-            <title>Filestructure</title>
+            <title>5.1 Filestructure</title>
             <para>
                 The RESTXQ service is accessible via http://localhost:8984/.
                 All RESTXQ annotations are assigned to the http://exquery.org/ns/restxq namespace. 
                 If a RESTXQ URL is requested, the RESTXQPATH module directory and its sub-directories will be accessed, 
-                and all XQuery files will be parsed for functions with RESTXQ annotations.
+                and all XQuery files will be parsed for functions with the compatible RESTXQ annotations.
             </para>
             
             <para> The following list shows the files, which were used to implement the basic
@@ -393,7 +397,7 @@
                             SVG file that displays the Mancala board. Contains a number of
                             measurement input values (such as horizontal/vertiacal distance between
                             houses, distance between stores and nearest houses etc), so that the
-                            Mancala board can be automatically created (see "Transform.xsl").
+                            Mancala board can be automatically created.
                         </para>
                     </listitem>
                     <listitem>
@@ -407,7 +411,7 @@
 
 
         <section>
-            <title>OOP, namespaces and naming conventions</title>
+            <title>5.2 OOP, namespaces and naming conventions</title>
             <para>In order to realise the architecture represented in the classdiagram, we introduced
                 multiple namespaces, to simulate class-scopes. Each namespace represents a class and
                 each method of that class is defined inside that namespace. Every class is in its
@@ -424,7 +428,7 @@
         </section>
 
         <section>
-            <title>Gameindex Database</title>
+            <title>5.3 Gameindex Database</title>
             
             <para>The application stores a reference to all games in a games-database. 
                 This database is used to generate unique game-ids and keep track of the outcome of individual games.
@@ -433,7 +437,7 @@
         </section>
 
         <section>
-            <title>Single Node Updates</title>
+            <title>5.4 Single Node Updates</title>
             <para>As XQuery updates are gathered and applied at once the end of the XQuery script,
                 nodes cannot be updated multiple times. In addition, updated values are not visible
                 until the next query. We deal with this problem in two ways: 1. Precompute values.
@@ -445,7 +449,7 @@
 
         </section>
         <section>
-            <title>FLOWR vs. Updating-statements</title>
+            <title>5.5 FLOWR vs. Updating-statements</title>
             <para> XQuery FLOWR statements cannot be used in conjunction with updating statements
                 because of the delayed-updates issue described above. By marking a function
                     <emphasis>updating</emphasis>, FLWOR statements cannot be used inside the
@@ -458,7 +462,7 @@
 
 
         <section>
-            <title>Graphical User Interface (GUI)</title>
+            <title>5.6 Graphical User Interface (GUI)</title>
             <para>The project's homepage delivers the main GUI, which is an SVG file as shown
                 below:</para>
             <mediaobject>
@@ -482,8 +486,7 @@
                         <listitem>
                             <para>
                                 <emphasis>Reset Game</emphasis>: the current game will be reset.
-                                As long as the game is not won (or lost), there is no change in
-                                the DB.</para>
+                                As long as the game is not won (or lost), the highest score will not be updated.</para>
                         </listitem>
                         <listitem>
                             <para>
@@ -491,7 +494,7 @@
                                 DB.</para>
                         </listitem>
                         <listitem>
-                            <para>Highest Score: the current highest score of all won games
+                            <para><emphasis>Highest Score:</emphasis> the current highest score of all won games
                                 stored in the DB.</para>
                         </listitem>
                     </itemizedlist>
@@ -506,9 +509,9 @@
                 </listitem>
                 <listitem>
                     <para> Each house is a clickable object. However, the current player can
-                        only select his own stores that have positive (> 0) number of stones. In
-                        addition the shown digits, the corresponding amount of stones is also
-                        displayed as a set of dots, each of which represents one stone. </para>
+                        only select his own stores that have positive (> 0) number of seeds. In
+                        addition to the shown digits, the corresponding amount of seeds is also
+                        displayed as a set of dots, each of which represents one seed. </para>
                 </listitem>
             </itemizedlist> An example of a gamestate after several turns: <mediaobject>
                 <imageobject>
@@ -526,14 +529,14 @@
                     <listitem>
                         <para>
                             <emphasis>SVG outline definition</emphasis>: The board's "skeleton" is
-                            defined by <emphasis>Static.xml</emphasis> stored in the server. This
-                            XML file contains very few static measurements that draws the GUI's
+                            defined in the second half of <emphasis>Static.xml</emphasis> stored in the server. This
+                            XML file contains static measurements that draws the GUI's
                             layout, such as width, height, distance between objects etc. Based on
                             these values, the rest can be automatically computed in the later stage,
                             which hence ensures the model's flexibility and easiness for later
                             adjustment. Styles for these objects (e.g. houses, stores, seeds etc.)
                             are also stored and can be adjusted anytime. In this step, the most
-                            important part is to organize required tags in a meaning structure.
+                            important part is to organize required tags in a meaningful structure.
                         </para>
                     </listitem>
                     <listitem>
@@ -549,11 +552,11 @@
                     <listitem>
                         <para>
                             <emphasis>SVG transformation</emphasis>:
-                                <emphasis>Transform.xsl</emphasis> combines both SVG outline and
+                            The stylesheet found in the first half of <emphasis>Static.xml</emphasis> combines both SVG outline and
                             data source into one single SVG file, which is displayed by default on
                             the project's homepage (i.e. http://localhost:8984/). Based on the two
-                            XML sources, the XSL file calculates, creates, aligns and assigns styles
-                            to all objects shown on the board. Some of the techniques that are used
+                            XML sources, the XSL calculates, creates, aligns and assigns styles
+                            to all objects shown on the board. Some of the techniques which are used
                             to implement the transformation are:</para>
 
                         <itemizedlist>
@@ -590,25 +593,25 @@
 
 
     <section>
-        <title>Future Work</title>
+        <title>6. Future Work</title>
         <para>The game could be improved by adding the following additional features</para>
 
         <section>
-            <title>Play against the computer</title>
+            <title>6.1 Play against the computer</title>
             <para>The player has the possibility to choose between playing against a real opponent
                 or against the computer. When a game against the computer is selected, the player
                 can chose the difficulty level of the game. There are 3 options available - easy,
                 medium, difficult.</para>
         </section>
         <section>
-            <title>Allow multiple pairs of users to play simultaneously</title>
+            <title>6.2 Allow multiple pairs of users to play simultaneously</title>
             <para>Currently, the mancala application can only save the state of one game which
                 limits it to allowing only two users to play. In order to extend the service and
                 support a multiple number of games simultaneously, each game state should be
                 preserved separatelly.</para>
         </section>
         <section>
-            <title>User Ranking</title>
+            <title>6.3 User Ranking</title>
             <para>Allowing multiple games at the same time asumes a bigger number of users. Adding a
                 user ranking and statistics would provide the players with a better overview of
                 their own performance as well as of their competitors. The statistics could be
@@ -617,7 +620,7 @@
                 motivation for the users.</para>
         </section>
         <section>
-            <title>User Network</title>
+            <title>6.4 User Network</title>
             <para>Building a user network allows the inegration of many additional features which
                 can improve the user experience. As mentoined above, each use will have a profile
                 that shows his statistics. The profile will also be visible for other players.
@@ -625,7 +628,7 @@
                 messaging.</para>
         </section>
         <section>
-            <title>Animation</title>
+            <title>6.5 Animation</title>
             <para>Adding animation and special effects to the game play would also have a positive
                 impact on the user experience. An example for such special effects is animating the
                 movement of the seeds or adding sound effects when a seed get into the user's
@@ -633,7 +636,7 @@
         </section>
     </section>
     <section>
-        <title>Reflection</title>
+        <title>7. Reflection</title>
         <para>The lab course introduced us to more advanced posibilities of XML that go beyond the
             well known markup language usage. Different aspects of XML where used to build a
             complete web service including database with the help of XQuery, front-end
