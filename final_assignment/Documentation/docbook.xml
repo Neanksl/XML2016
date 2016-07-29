@@ -149,7 +149,7 @@
             </itemizedlist>
             <mediaobject>
                 <imageobject>
-                    <imagedata format="SVG" fileref="./../Diagrams/UseCases.svg"/>
+                    <imagedata format="SVG" scale="65" fileref="./../Diagrams/UseCases.svg"/>
                 </imageobject>
             </mediaobject>
         </para>
@@ -223,7 +223,7 @@
                 </para>
                 <mediaobject>
                     <imageobject>
-                        <imagedata format="SVG" fileref="./../Diagrams/Sequence_createGame.svg"/>
+                        <imagedata format="SVG" scale="65" fileref="./../Diagrams/Sequence_createGame.svg"/>
                     </imageobject>
                 </mediaobject>
             </section>
@@ -291,7 +291,7 @@
                 </para>
                 <mediaobject>
                     <imageobject>
-                        <imagedata format="SVG" fileref="./../Diagrams/Sequence_clickHouse.svg"/>
+                        <imagedata format="SVG" scale="65" fileref="./../Diagrams/Sequence_clickHouse.svg"/>
                     </imageobject>
                 </mediaobject>
             </section>
@@ -364,7 +364,7 @@
             </para>
             <mediaobject>
                 <imageobject>
-                    <imagedata format="svg" fileref="./../Diagrams/Classes.svg"/>
+                    <imagedata format="svg" scale="65" fileref="./../Diagrams/Classes.svg"/>
                 </imageobject>
             </mediaobject>
         </section>
@@ -449,8 +449,8 @@
 
         </section>
         <section>
-            <title>5.5 FLOWR vs. Updating-statements</title>
-            <para> XQuery FLOWR statements cannot be used in conjunction with updating statements
+            <title>5.5 FLWOR vs. Updating-statements</title>
+            <para> XQuery FLWOR statements cannot be used in conjunction with updating statements
                 because of the delayed-updates issue described above. By marking a function
                     <emphasis>updating</emphasis>, FLWOR statements cannot be used inside the
                 function scope. To mitigate this issue, updating functions use getters on composite
@@ -467,7 +467,7 @@
                 below:</para>
             <mediaobject>
                 <imageobject>
-                    <imagedata format="SVG" fileref="./../Diagrams/Initial_Board.svg"/>
+                    <imagedata format="SVG" scale="60" fileref="./../Diagrams/Initial_Board.svg"/>
                 </imageobject>
             </mediaobject>
 
@@ -515,11 +515,11 @@
                 </listitem>
             </itemizedlist> An example of a gamestate after several turns: <mediaobject>
                 <imageobject>
-                    <imagedata format="SVG" fileref="./../Diagrams/In_Game_Board.svg"/>
+                    <imagedata format="SVG" scale="60" fileref="./../Diagrams/In_Game_Board.svg"/>
                 </imageobject>
             </mediaobject> An example of a gamestate, in which player 1 has won: <mediaobject>
                 <imageobject>
-                    <imagedata format="SVG" fileref="./../Diagrams/End_Game_Board.svg"/>
+                    <imagedata format="SVG" scale="60" fileref="./../Diagrams/End_Game_Board.svg"/>
                 </imageobject>
             </mediaobject>
             </para>
@@ -605,10 +605,12 @@
         </section>
         <section>
             <title>6.2 Allow multiple pairs of users to play simultaneously</title>
-            <para>Currently, the mancala application can only save the state of one game which
-                limits it to allowing only two users to play. In order to extend the service and
-                support a multiple number of games simultaneously, each game state should be
-                preserved separatelly.</para>
+            <para>The mancala server supports parallel multiple games, which are accessible from multiple clients. However, two players can only play locally against each other. 
+                
+                Allowing a "distributed" multiplayer game where two players are not co-located on one computer faces architecture challenges,
+                as actions performed by one player on one computer are not pushed to the other one.  
+                A page refresh is required in order to see the opponent's move, which can be implemented with the help of javascript, 
+                using automated asynchronous gamestate-refreshes. Another solution would be a websocket connection, which allows the server to push gamestate changes to the client.</para>
         </section>
         <section>
             <title>6.3 User Ranking</title>
