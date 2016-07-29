@@ -223,7 +223,7 @@
                 </para>
                 <mediaobject>
                     <imageobject>
-                        <imagedata format="SVG" scale="65" fileref="../Diagrams/Sequence_createGame.svg"/>
+                        <imagedata format="png" scale="40" fileref="Sequence_createGame.png"/>
                     </imageobject>
                 </mediaobject>
             </section>
@@ -291,7 +291,7 @@
                 </para>
                 <mediaobject>
                     <imageobject>
-                        <imagedata format="SVG" scale="65" fileref="../Diagrams/Sequence_clickHouse.svg"/>
+                        <imagedata format="png" scale="40" fileref="Sequence_clickHouse.png"/>
                     </imageobject>
                 </mediaobject>
             </section>
