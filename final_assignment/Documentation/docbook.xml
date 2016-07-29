@@ -118,7 +118,7 @@
             </para>
             <mediaobject>
                 <imageobject>
-                    <imagedata format="SVG" fileref="Architecture.svg"/>
+                    <imagedata format="png" scale="50" fileref="Architecture.png"/>
                 </imageobject>
             </mediaobject>
         </section>
