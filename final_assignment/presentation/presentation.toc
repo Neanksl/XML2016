@@ -7,7 +7,7 @@
 \beamer@sectionintoc {5}{Objekt Design}{9}{0}{5}
 \beamer@subsectionintoc {5}{1}{Use Case Diagram}{11}{0}{5}
 \beamer@subsectionintoc {5}{2}{Class Diagram}{13}{0}{5}
-\beamer@subsectionintoc {5}{3}{Sequenz Diagram}{15}{0}{5}
+\beamer@subsectionintoc {5}{3}{Sequenzdiagramm}{15}{0}{5}
 \beamer@sectionintoc {6}{Demo}{18}{0}{6}
 \beamer@sectionintoc {7}{Frontend}{20}{0}{7}
 \beamer@sectionintoc {8}{Backend}{22}{0}{8}
